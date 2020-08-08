@@ -1,5 +1,82 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://LoginRequest.gd" type="Script" id=1]
+[ext_resource path="res://FetchRequest.gd" type="Script" id=2]
 
 [node name="Demo" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResponseTitle" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -33.0
+margin_top = -27.0
+margin_right = 33.0
+margin_bottom = -13.0
+text = "Response:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Response" type="Label" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 60.0
+margin_top = -7.0
+margin_right = -60.0
+margin_bottom = 256.0
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -92.0
+margin_bottom = -47.0
+custom_constants/separation = 15
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AuthButton" type="Button" parent="HBoxContainer"]
+margin_left = 366.0
+margin_right = 502.0
+margin_bottom = 45.0
+text = "Make Auth Request"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AuthRequest" type="HTTPRequest" parent="HBoxContainer/AuthButton"]
+script = ExtResource( 1 )
+_response_label_path = NodePath("../../../Response")
+
+[node name="FetchButton" type="Button" parent="HBoxContainer"]
+margin_left = 517.0
+margin_right = 658.0
+margin_bottom = 45.0
+text = "Make Fetch Request"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FetchRequest" type="HTTPRequest" parent="HBoxContainer/FetchButton"]
+script = ExtResource( 2 )
+_response_label_path = NodePath("../../../Response")
+[connection signal="pressed" from="HBoxContainer/AuthButton" to="HBoxContainer/AuthButton/AuthRequest" method="_on_Button_pressed"]
+[connection signal="request_completed" from="HBoxContainer/AuthButton/AuthRequest" to="HBoxContainer/AuthButton/AuthRequest" method="_on_LoginRequest_request_completed"]
+[connection signal="pressed" from="HBoxContainer/FetchButton" to="HBoxContainer/FetchButton/FetchRequest" method="_on_FetchButton_pressed"]
+[connection signal="request_completed" from="HBoxContainer/FetchButton/FetchRequest" to="HBoxContainer/FetchButton/FetchRequest" method="_on_LoginRequest_request_completed"]
