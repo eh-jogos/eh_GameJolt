@@ -9,18 +9,21 @@ extends HTTPRequest
 const api_url = "https://api.gamejolt.com/api/game/"
 const api_version = "v1_2"
 const api_game = "?game_id="
-const game_id = "513246"
-const game_private_key = ""
+var game_id #= "513246"
+var game_private_key #= "635bb6bcf9af8253ff9c93516deed4d2"
 
 # public variables - order: export > normal var > onready 
 # private variables - order: export > normal var > onready
 export var _response_label_path: = NodePath()
 onready var _response_label = get_node(_response_label_path)
+onready var _gj_game_credential: eh_GJGameCredentials = \
+		preload("res://addons/eh_jogos_game_jolt_api/gj_game_credentials.res")
 ### ---------------------------------------
-
 
 ### Built in Engine Methods ---------------
 func _ready():
+	game_id = _gj_game_credential.game_id
+	game_private_key = _gj_game_credential.private_key
 	pass
 
 ### ---------------------------------------

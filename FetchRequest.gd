@@ -46,7 +46,6 @@ func _on_FetchButton_pressed():
 	var url = api_url+api_version+_endpoint
 	url += api_game+game_id
 	url += "&username=eh_jogos"
-	url += "&game_private_key=" + (url+game_private_key).sha1_text()
-	print(url)
+	url += "&signature=" + (url+game_private_key).sha1_text()
 	request(url)
 ### ---------------------------------------
