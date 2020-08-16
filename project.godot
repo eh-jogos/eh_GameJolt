@@ -36,6 +36,10 @@ config/name="eh_GameJolt"
 run/main_scene="res://Demo.tscn"
 config/icon="res://icon.png"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "eh_jogos_game_jolt_api" )
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
