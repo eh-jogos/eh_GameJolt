@@ -13,9 +13,21 @@ _global_script_classes=[ {
 "class": "GameJoltRequest",
 "language": "GDScript",
 "path": "res://GameJoltRequest.gd"
+}, {
+"base": "Button",
+"class": "InspectorButton",
+"language": "GDScript",
+"path": "res://addons/eh_jogos_game_jolt_api/inspector_button.gd"
+}, {
+"base": "Resource",
+"class": "eh_GJGameCredentials",
+"language": "GDScript",
+"path": "res://addons/eh_jogos_game_jolt_api/custom_resources/eh_gj_game_credentials.gd"
 } ]
 _global_script_class_icons={
-"GameJoltRequest": ""
+"GameJoltRequest": "",
+"InspectorButton": "",
+"eh_GJGameCredentials": ""
 }
 
 [application]

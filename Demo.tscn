@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://LoginRequest.gd" type="Script" id=1]
+[ext_resource path="res://AuthRequest.gd" type="Script" id=1]
 [ext_resource path="res://FetchRequest.gd" type="Script" id=2]
 
 [node name="Demo" type="Control"]
@@ -63,6 +63,7 @@ __meta__ = {
 [node name="AuthRequest" type="HTTPRequest" parent="HBoxContainer/AuthButton"]
 script = ExtResource( 1 )
 _response_label_path = NodePath("../../../Response")
+_endpoint = "/users/auth/"
 
 [node name="FetchButton" type="Button" parent="HBoxContainer"]
 margin_left = 517.0
