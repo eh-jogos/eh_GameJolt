@@ -14,20 +14,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://GameJoltRequest.gd"
 }, {
-"base": "Button",
-"class": "InspectorButton",
-"language": "GDScript",
-"path": "res://addons/eh_jogos_game_jolt_api/inspector_button.gd"
-}, {
 "base": "Resource",
 "class": "eh_GJGameCredentials",
 "language": "GDScript",
-"path": "res://addons/eh_jogos_game_jolt_api/custom_resources/eh_gj_game_credentials.gd"
+"path": "res://addons/eh_jogos_game_jolt_api/custom_resources/eh_GJGameCredentials.gd"
+}, {
+"base": "Resource",
+"class": "eh_GJUserCredentials",
+"language": "GDScript",
+"path": "res://addons/eh_jogos_game_jolt_api/custom_resources/eh_GJUserCredentials.gd"
 } ]
 _global_script_class_icons={
 "GameJoltRequest": "",
-"InspectorButton": "",
-"eh_GJGameCredentials": ""
+"eh_GJGameCredentials": "",
+"eh_GJUserCredentials": ""
 }
 
 [application]

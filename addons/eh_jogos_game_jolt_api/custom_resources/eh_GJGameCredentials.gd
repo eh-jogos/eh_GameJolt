@@ -6,4 +6,3 @@ class_name eh_GJGameCredentials
 
 export var game_id: String 
 export var private_key: String 
-
