@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://AuthRequest.gd" type="Script" id=1]
+[ext_resource path="res://addons/eh_jogos_game_jolt_api/custom_nodes/Node/eh_GJUSersAuth.gd" type="Script" id=1]
 [ext_resource path="res://FetchRequest.gd" type="Script" id=2]
+[ext_resource path="res://Response.gd" type="Script" id=3]
+[ext_resource path="res://AuthButton.gd" type="Script" id=4]
 
 [node name="Demo" type="Control"]
 anchor_right = 1.0
@@ -35,6 +37,7 @@ margin_top = -7.0
 margin_right = -60.0
 margin_bottom = 256.0
 autowrap = true
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -56,14 +59,13 @@ margin_left = 366.0
 margin_right = 502.0
 margin_bottom = 45.0
 text = "Make Auth Request"
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AuthRequest" type="HTTPRequest" parent="HBoxContainer/AuthButton"]
+[node name="eh_GJUsersAuth" type="Node" parent="HBoxContainer/AuthButton"]
 script = ExtResource( 1 )
-_response_label_path = NodePath("../../../Response")
-_endpoint = "/users/auth/"
 
 [node name="FetchButton" type="Button" parent="HBoxContainer"]
 margin_left = 517.0
@@ -77,7 +79,6 @@ __meta__ = {
 [node name="FetchRequest" type="HTTPRequest" parent="HBoxContainer/FetchButton"]
 script = ExtResource( 2 )
 _response_label_path = NodePath("../../../Response")
-[connection signal="pressed" from="HBoxContainer/AuthButton" to="HBoxContainer/AuthButton/AuthRequest" method="_on_Button_pressed"]
-[connection signal="request_completed" from="HBoxContainer/AuthButton/AuthRequest" to="HBoxContainer/AuthButton/AuthRequest" method="_on_LoginRequest_request_completed"]
+[connection signal="gj_auth_completed" from="HBoxContainer/AuthButton/eh_GJUsersAuth" to="Response" method="_on_eh_GJUsersAuth_gj_auth_completed"]
 [connection signal="pressed" from="HBoxContainer/FetchButton" to="HBoxContainer/FetchButton/FetchRequest" method="_on_FetchButton_pressed"]
 [connection signal="request_completed" from="HBoxContainer/FetchButton/FetchRequest" to="HBoxContainer/FetchButton/FetchRequest" method="_on_LoginRequest_request_completed"]
