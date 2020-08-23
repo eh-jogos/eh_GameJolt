@@ -6,7 +6,7 @@ extends Resource
 var success: = false
 var message: = ""
 
-func _init(p_success: = false, p_message: = "") -> void:
+func _init(p_success: bool, p_message: String) -> void:
 	success = p_success
 	message = p_message
 
