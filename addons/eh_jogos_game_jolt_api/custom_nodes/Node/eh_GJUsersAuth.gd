@@ -6,6 +6,7 @@ extends Node
 ### Member Variables and Dependencies -----
 # signals 
 signal gj_auth_completed(eh_gj_users_auth_data)
+signal gj_auth_failed(error_dictionary)
 
 # enums
 # constants
@@ -24,7 +25,7 @@ func _ready():
 	_auto_set_user_credentials()
 	
 	if _username != "" and _user_token != "":
-		make_request(_username, _user_token)
+		request(_username, _user_token)
 	else:
 		pass
 	pass
@@ -33,13 +34,17 @@ func _ready():
 
 
 ### Public Methods ------------------------
-func make_request(p_username: String, p_user_token: String) -> void:
+func request(p_username: String, p_user_token: String) -> void:
 	var request = eh_GJUsersAuthRequest.new()
 	add_child(request, true)
+	request.connect("gj_auth_data_received", self, "_on_gj_auth_data_received")
+	request.connect("gj_request_failed", self, "_on_gj_request_failed")
 	
-	request.auth_user_credentials(p_username, p_user_token)
-	var auth_data: eh_GJUsersAuthData = yield(request, "gj_auth_data_received")
-	emit_signal("gj_auth_completed", auth_data)
+	var error: int = request.auth_user_credentials(p_username, p_user_token)
+	if error != OK:
+		var error_msg = "Request failed with Error Code: %s"%[error]
+		error_msg += "\nCheck @GlobalScope in the documentation for a bit more info."
+		emit_signal("gj_auth_completed", eh_GJUsersAuthData.new(false, error_msg))
 	
 ### ---------------------------------------
 
@@ -71,4 +76,11 @@ func _set_user_credentials_based_on_gj_file(credentials_file: File, credentials_
 		var user_credentials: eh_GJUserCredentials = eh_GJUserCredentials.new(_username, _user_token)
 		ResourceSaver.save(USER_CREDENTIALS_PATH, user_credentials)
 
+
+func _on_gj_auth_data_received(auth_data: eh_GJUsersAuthData) -> void:
+	emit_signal("gj_auth_completed", auth_data)
+
+
+func _on_gj_request_failed(error_dict: Dictionary) -> void:
+	emit_signal("gj_auth_failed", error_dict)
 ### ---------------------------------------
