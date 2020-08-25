@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://addons/eh_jogos_game_jolt_api/editor_uis/game_jolt_tab.gd" type="Script" id=1]
+[ext_resource path="res://addons/eh_jogos_game_jolt_api/editor_uis/GamejoltProjectSettingsTab.gd" type="Script" id=1]
 
-[node name="GameJoltTab" type="Control"]
+[node name="Gamejolt" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -19,27 +19,28 @@ __meta__ = {
 
 [node name="GameIdLine" type="HBoxContainer" parent="PropertyList"]
 margin_right = 1024.0
-margin_bottom = 25.0
+margin_bottom = 26.0
 rect_min_size = Vector2( 0, 25 )
 
 [node name="Label" type="Label" parent="PropertyList/GameIdLine"]
-margin_top = 5.0
+margin_top = 6.0
 margin_right = 510.0
-margin_bottom = 19.0
+margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "Game ID"
 
 [node name="GameIdLineEdit" type="LineEdit" parent="PropertyList/GameIdLine"]
 margin_left = 514.0
 margin_right = 1024.0
-margin_bottom = 25.0
+margin_bottom = 26.0
 size_flags_horizontal = 3
+text = "513246"
 clear_button_enabled = true
 
 [node name="PrivateKeyLine" type="HBoxContainer" parent="PropertyList"]
-margin_top = 29.0
+margin_top = 30.0
 margin_right = 1024.0
-margin_bottom = 55.0
+margin_bottom = 56.0
 rect_min_size = Vector2( 0, 25 )
 
 [node name="Label" type="Label" parent="PropertyList/PrivateKeyLine"]

@@ -1,7 +1,7 @@
 tool
 extends EditorPlugin
 
-const GAMEJOLT_TAB_PATH = "res://addons/eh_jogos_game_jolt_api/editor_uis/gamejolt_project_settings_tab.tscn"
+const GAMEJOLT_TAB_PATH = "res://addons/eh_jogos_game_jolt_api/editor_uis/GamejoltProjectSettingsTab.tscn"
 
 var gamejolt_tab: Control
 
