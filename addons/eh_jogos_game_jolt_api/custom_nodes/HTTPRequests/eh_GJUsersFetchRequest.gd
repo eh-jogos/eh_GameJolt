@@ -1,7 +1,7 @@
 class_name eh_GJUsersFetchRequest
 extends _eh_GJBaseRequest
 # This class decribes the Fetch api endpoint https://gamejolt.com/game-api/doc/users/fetch
-# It's responde is modeled in the custom resource of eh_GJUsersFetchData.gd
+# It's response is modeled in the custom resource of eh_GJUsersFetchData.gd
 #
 # It is possible to request data for a single user with `fetch_user` or for multiple users with
 # `fetch_users`. These methods return the request Error Code, so that you can check
@@ -10,9 +10,8 @@ extends _eh_GJBaseRequest
 # Each has it's own signal with the response data, so be sure to listen for the corresponding 
 # signal.
 #
-# If the request fails, the same signals will be emitted but the 
-# `success` parameter in each eh_GJUsersFetchData Object will be set to `false` and the
-# `message` parameter will contain an error message from gamejolt, if possible.
+# If the request fails, the signal `gj_request_failed` will be emitted with an error dict 
+# as its parameter.
 
 ### Member Variables and Dependencies -----
 # signals 

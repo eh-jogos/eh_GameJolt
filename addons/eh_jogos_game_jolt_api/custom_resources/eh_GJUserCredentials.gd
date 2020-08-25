@@ -1,6 +1,6 @@
 extends Resource
 class_name eh_GJUserCredentials
-# Just a basic struct to hold game credentials information and be able to save it in disk 
+# Just a basic struct to hold user credentials information and be able to save it in disk 
 # as a Resource
 
 export var username: String 

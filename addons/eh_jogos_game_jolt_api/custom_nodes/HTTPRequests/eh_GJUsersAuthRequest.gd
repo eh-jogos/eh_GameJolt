@@ -1,10 +1,13 @@
 class_name eh_GJUsersAuthRequest
 extends _eh_GJBaseRequest
 # This class decribes the Auth api endpoint https://gamejolt.com/game-api/doc/users/auth
-# It's responde is modeled in the custom resource of eh_GJUsersAuthData.gd
+# It's response is modeled in the custom resource of eh_GJUsersAuthData.gd
 #
 # It's a simple class to help with login in the user, but should be the first thing the 
 # game does or check for. 
+#
+# If the request fails, the signal `gj_request_failed` will be emitted with an error dict 
+# as its parameter.
 
 ### Member Variables and Dependencies -----
 # signals 

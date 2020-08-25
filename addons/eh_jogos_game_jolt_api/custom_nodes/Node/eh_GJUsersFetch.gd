@@ -1,6 +1,7 @@
 class_name eh_GJUsersFetch
 extends Node
-# Write your doc striing for this file here
+# Class to Manage Requests to the `users` endpoint.
+# 
 
 ### Member Variables and Dependencies -----
 # signals 
