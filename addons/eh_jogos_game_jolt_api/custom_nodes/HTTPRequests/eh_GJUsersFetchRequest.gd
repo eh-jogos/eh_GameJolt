@@ -85,9 +85,7 @@ func _on_request_completed(result: int, code: int, headers: PoolStringArray, bod
 			else:
 				emit_signal("gj_user_fetch_data_received", fetch_data[0])
 		else:
-			var failed_data: = eh_GJUsersFetchData.new(success_dict.success, success_dict.message, body_dict)
-			emit_signal("gj_user_fetch_data_received", failed_data)
-			emit_signal("gj_users_fetch_data_received", [failed_data])
+			emit_signal("gj_request_failed", body_dict)
 	else:
 		emit_signal("gj_request_failed", body_dict)
 	
