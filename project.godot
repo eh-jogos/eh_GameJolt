@@ -9,10 +9,10 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "HTTPRequest",
-"class": "GameJoltRequest",
+"base": "Button",
+"class": "InspectorButton",
 "language": "GDScript",
-"path": "res://GameJoltRequest.gd"
+"path": "res://addons/eh_jogos_game_jolt_api/inspector_button.gd"
 }, {
 "base": "HTTPRequest",
 "class": "_eh_GJBaseRequest",
@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "eh_GJUsersAuth",
 "language": "GDScript",
-"path": "res://addons/eh_jogos_game_jolt_api/custom_nodes/Node/eh_GJUSersAuth.gd"
+"path": "res://addons/eh_jogos_game_jolt_api/custom_nodes/Node/eh_GJUsersAuth.gd"
 }, {
 "base": "Resource",
 "class": "eh_GJUsersAuthData",
@@ -43,15 +43,33 @@ _global_script_classes=[ {
 "class": "eh_GJUsersAuthRequest",
 "language": "GDScript",
 "path": "res://addons/eh_jogos_game_jolt_api/custom_nodes/HTTPRequests/eh_GJUsersAuthRequest.gd"
+}, {
+"base": "Node",
+"class": "eh_GJUsersFetch",
+"language": "GDScript",
+"path": "res://addons/eh_jogos_game_jolt_api/custom_nodes/Node/eh_GJUsersFetch.gd"
+}, {
+"base": "Resource",
+"class": "eh_GJUsersFetchData",
+"language": "GDScript",
+"path": "res://addons/eh_jogos_game_jolt_api/custom_resources/request_responses/eh_GJUsersFetchData.gd"
+}, {
+"base": "_eh_GJBaseRequest",
+"class": "eh_GJUsersFetchRequest",
+"language": "GDScript",
+"path": "res://addons/eh_jogos_game_jolt_api/custom_nodes/HTTPRequests/eh_GJUsersFetchRequest.gd"
 } ]
 _global_script_class_icons={
-"GameJoltRequest": "",
+"InspectorButton": "",
 "_eh_GJBaseRequest": "",
 "eh_GJGameCredentials": "",
 "eh_GJUserCredentials": "",
 "eh_GJUsersAuth": "",
 "eh_GJUsersAuthData": "",
-"eh_GJUsersAuthRequest": ""
+"eh_GJUsersAuthRequest": "",
+"eh_GJUsersFetch": "",
+"eh_GJUsersFetchData": "",
+"eh_GJUsersFetchRequest": ""
 }
 
 [application]
