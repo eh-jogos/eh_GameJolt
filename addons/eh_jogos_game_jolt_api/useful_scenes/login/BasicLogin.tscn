@@ -1,11 +1,24 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://addons/eh_jogos_game_jolt_api/useful_scenes/login/feedback_label_positive.tres" type="Theme" id=1]
 [ext_resource path="res://addons/eh_jogos_game_jolt_api/useful_scenes/login/feedback_label_negative.tres" type="Theme" id=2]
 [ext_resource path="res://addons/eh_jogos_game_jolt_api/custom_nodes/Node/eh_GJUsersAuth.gd" type="Script" id=3]
+[ext_resource path="res://addons/eh_jogos_game_jolt_api/useful_scenes/login/BasicLogin.gd" type="Script" id=4]
+[ext_resource path="res://addons/eh_jogos_game_jolt_api/useful_scenes/login/LoginPopup.gd" type="Script" id=5]
+[ext_resource path="res://addons/eh_jogos_game_jolt_api/useful_scenes/login/FeedbackPanel.gd" type="Script" id=6]
 
-[sub_resource type="Animation" id=1]
-resource_name = "base"
+[sub_resource type="GDScript" id=1]
+script/source = "extends ColorRect
+
+func _on_Popup_about_to_show():
+	show()
+
+
+func _on_Popup_popup_hide():
+	hide()
+"
+
+[sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Label:text")
@@ -45,7 +58,6 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-resource_name = "fade_out"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -60,8 +72,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "open_failed"
-length = 0.5
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
 tracks/0/interp = 2
@@ -69,7 +80,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.5 ),
+"times": PoolRealArray( 0, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( -144, 35 ), Vector2( -144, 100 ), Vector2( -144, 83 ) ]
@@ -81,7 +92,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -93,7 +104,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 2, 1 ),
 "update": 0,
 "values": [ Vector2( 0.8, 0.8 ), Vector2( 1, 1 ) ]
@@ -111,9 +122,8 @@ tracks/3/keys = {
 "values": [ ExtResource( 2 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "open_success"
-length = 0.5
+[sub_resource type="Animation" id=5]
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Label:text")
 tracks/0/interp = 1
@@ -133,7 +143,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3, 0.5 ),
+"times": PoolRealArray( 0, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( -144, 35 ), Vector2( -144, 100 ), Vector2( -144, 83 ) ]
@@ -145,7 +155,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.3 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -157,7 +167,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 2, 1 ),
 "update": 0,
 "values": [ Vector2( 0.8, 0.8 ), Vector2( 1, 1 ) ]
@@ -178,6 +188,7 @@ tracks/4/keys = {
 [node name="BasicLogin" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -189,20 +200,38 @@ script = ExtResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.2, 0.17, 0.24, 0.4 )
+script = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PanelRoot" type="Control" parent="."]
+[node name="LoginPopup" type="Popup" parent="."]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+margin_left = -143.0
+margin_top = -70.0
+margin_right = 145.0
+margin_bottom = 70.0
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FeedbackPanel" type="PanelContainer" parent="PanelRoot"]
+[node name="PanelRoot" type="Control" parent="LoginPopup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1.0
+margin_right = -1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FeedbackPanel" type="PanelContainer" parent="LoginPopup/PanelRoot"]
 modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -214,66 +243,70 @@ margin_right = 144.0
 margin_bottom = 89.0005
 rect_scale = Vector2( 0.8, 0.8 )
 rect_pivot_offset = Vector2( 144, 27 )
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="PanelRoot/FeedbackPanel"]
+[node name="Label" type="Label" parent="LoginPopup/PanelRoot/FeedbackPanel"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 281.0
 margin_bottom = 47.0005
 size_flags_vertical = 1
-theme = ExtResource( 2 )
+theme = ExtResource( 1 )
 text = "Success!"
 align = 1
 valign = 1
 autowrap = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PanelRoot/FeedbackPanel"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LoginPopup/PanelRoot/FeedbackPanel"]
 autoplay = "base"
-anims/base = SubResource( 1 )
+anims/base = SubResource( 2 )
 anims/fade_out = SubResource( 3 )
 anims/open_failed = SubResource( 4 )
-anims/open_success = SubResource( 2 )
+anims/open_success = SubResource( 5 )
 next/fade_out = "base"
 
-[node name="LoginPanel" type="PanelContainer" parent="."]
+[node name="SuccessCloseTimer" type="Timer" parent="LoginPopup/PanelRoot/FeedbackPanel"]
+one_shot = true
+
+[node name="LoginPanel" type="PanelContainer" parent="LoginPopup"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -143.0
+margin_left = -144.0
 margin_top = -70.0
-margin_right = 145.0
+margin_right = 144.0
 margin_bottom = 70.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LoginContent" type="VBoxContainer" parent="LoginPanel"]
+[node name="LoginContent" type="VBoxContainer" parent="LoginPopup/LoginPanel"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 281.0
 margin_bottom = 133.0
 custom_constants/separation = 20
 
-[node name="LoginTitle" type="Label" parent="LoginPanel/LoginContent"]
+[node name="LoginTitle" type="Label" parent="LoginPopup/LoginPanel/LoginContent"]
 margin_right = 274.0
 margin_bottom = 14.0
 text = "Gamejolt Login"
 align = 1
 
-[node name="LoginFields" type="VBoxContainer" parent="LoginPanel/LoginContent"]
+[node name="LoginFields" type="VBoxContainer" parent="LoginPopup/LoginPanel/LoginContent"]
 margin_top = 34.0
 margin_right = 274.0
 margin_bottom = 86.0
 
-[node name="UsenameLine" type="HBoxContainer" parent="LoginPanel/LoginContent/LoginFields"]
+[node name="UsenameLine" type="HBoxContainer" parent="LoginPopup/LoginPanel/LoginContent/LoginFields"]
 margin_right = 274.0
 margin_bottom = 24.0
 
-[node name="Label" type="Label" parent="LoginPanel/LoginContent/LoginFields/UsenameLine"]
+[node name="Label" type="Label" parent="LoginPopup/LoginPanel/LoginContent/LoginFields/UsenameLine"]
 margin_top = 5.0
 margin_right = 108.0
 margin_bottom = 19.0
@@ -282,19 +315,19 @@ size_flags_stretch_ratio = 2.0
 text = "Username:"
 align = 2
 
-[node name="LineEdit" type="LineEdit" parent="LoginPanel/LoginContent/LoginFields/UsenameLine"]
+[node name="LineEdit" type="LineEdit" parent="LoginPopup/LoginPanel/LoginContent/LoginFields/UsenameLine"]
 margin_left = 112.0
 margin_right = 274.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 
-[node name="GameTokenLine" type="HBoxContainer" parent="LoginPanel/LoginContent/LoginFields"]
+[node name="GameTokenLine" type="HBoxContainer" parent="LoginPopup/LoginPanel/LoginContent/LoginFields"]
 margin_top = 28.0
 margin_right = 274.0
 margin_bottom = 52.0
 
-[node name="Label" type="Label" parent="LoginPanel/LoginContent/LoginFields/GameTokenLine"]
+[node name="Label" type="Label" parent="LoginPopup/LoginPanel/LoginContent/LoginFields/GameTokenLine"]
 margin_top = 5.0
 margin_right = 108.0
 margin_bottom = 19.0
@@ -303,17 +336,40 @@ size_flags_stretch_ratio = 2.0
 text = "Game Token:"
 align = 2
 
-[node name="LineEdit" type="LineEdit" parent="LoginPanel/LoginContent/LoginFields/GameTokenLine"]
+[node name="LineEdit" type="LineEdit" parent="LoginPopup/LoginPanel/LoginContent/LoginFields/GameTokenLine"]
 margin_left = 112.0
 margin_right = 274.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
+secret = true
 
-[node name="ConfirmButton" type="Button" parent="LoginPanel/LoginContent"]
-margin_left = 106.0
+[node name="ButtonsLine" type="HBoxContainer" parent="LoginPopup/LoginPanel/LoginContent"]
 margin_top = 106.0
-margin_right = 168.0
+margin_right = 274.0
 margin_bottom = 126.0
+custom_constants/separation = 15
+alignment = 1
+
+[node name="CancelButton" type="Button" parent="LoginPopup/LoginPanel/LoginContent/ButtonsLine"]
+margin_left = 71.0
+margin_right = 125.0
+margin_bottom = 20.0
+size_flags_horizontal = 4
+text = "Cancel"
+
+[node name="ConfirmButton" type="Button" parent="LoginPopup/LoginPanel/LoginContent/ButtonsLine"]
+margin_left = 140.0
+margin_right = 202.0
+margin_bottom = 20.0
 size_flags_horizontal = 4
 text = "Confirm"
+[connection signal="gj_auth_completed" from="eh_GJUsersAuth" to="LoginPopup/PanelRoot/FeedbackPanel" method="_on_eh_GJUsersAuth_gj_auth_completed"]
+[connection signal="gj_auth_completed" from="eh_GJUsersAuth" to="." method="_on_eh_GJUsersAuth_gj_auth_completed"]
+[connection signal="gj_auth_failed" from="eh_GJUsersAuth" to="LoginPopup/PanelRoot/FeedbackPanel" method="_on_eh_GJUsersAuth_gj_auth_failed"]
+[connection signal="about_to_show" from="LoginPopup" to="ColorRect" method="_on_Popup_about_to_show"]
+[connection signal="player_login_confirmed" from="LoginPopup" to="." method="_on_LoginPopup_player_login_confirmed"]
+[connection signal="popup_hide" from="LoginPopup" to="ColorRect" method="_on_Popup_popup_hide"]
+[connection signal="timeout" from="LoginPopup/PanelRoot/FeedbackPanel/SuccessCloseTimer" to="LoginPopup" method="_on_SuccessCloseTimer_timeout"]
+[connection signal="pressed" from="LoginPopup/LoginPanel/LoginContent/ButtonsLine/CancelButton" to="LoginPopup" method="_on_CancelButton_pressed"]
+[connection signal="pressed" from="LoginPopup/LoginPanel/LoginContent/ButtonsLine/ConfirmButton" to="LoginPopup" method="_on_ConfirmButton_pressed"]
