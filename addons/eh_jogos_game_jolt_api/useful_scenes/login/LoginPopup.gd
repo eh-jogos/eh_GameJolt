@@ -46,5 +46,18 @@ func _on_ConfirmButton_pressed() -> void:
 	
 	emit_signal("player_login_confirmed", username, user_token)
 
-### ---------------------------------------
 
+func _on_UsernameLine_LineEdit_text_entered(new_text: String) -> void:
+	var username = new_text
+	var user_token = _game_token_field.text
+	
+	emit_signal("player_login_confirmed", username, user_token)
+
+
+func _on_GameTokenLine_LineEdit_text_entered(new_text: String) -> void:
+	var username = _username_field.text
+	var user_token = new_text
+	
+	emit_signal("player_login_confirmed", username, user_token)
+
+### ---------------------------------------

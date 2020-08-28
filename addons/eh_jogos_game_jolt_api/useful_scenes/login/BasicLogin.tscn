@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://addons/eh_jogos_game_jolt_api/useful_scenes/login/feedback_label_positive.tres" type="Theme" id=1]
 [ext_resource path="res://addons/eh_jogos_game_jolt_api/useful_scenes/login/feedback_label_negative.tres" type="Theme" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://addons/eh_jogos_game_jolt_api/useful_scenes/login/BasicLogin.gd" type="Script" id=4]
 [ext_resource path="res://addons/eh_jogos_game_jolt_api/useful_scenes/login/LoginPopup.gd" type="Script" id=5]
 [ext_resource path="res://addons/eh_jogos_game_jolt_api/useful_scenes/login/FeedbackPanel.gd" type="Script" id=6]
+[ext_resource path="res://addons/eh_jogos_game_jolt_api/fontawesome_icons/eye-slash-solid.svg" type="Texture" id=7]
+[ext_resource path="res://addons/eh_jogos_game_jolt_api/fontawesome_icons/eye-solid.svg" type="Texture" id=8]
+[ext_resource path="res://addons/eh_jogos_game_jolt_api/useful_scenes/login/GameTokenLineEdit.gd" type="Script" id=9]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends ColorRect
@@ -310,8 +313,7 @@ margin_bottom = 24.0
 margin_top = 5.0
 margin_right = 108.0
 margin_bottom = 19.0
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
+rect_min_size = Vector2( 108, 0 )
 text = "Username:"
 align = 2
 
@@ -320,7 +322,6 @@ margin_left = 112.0
 margin_right = 274.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 3.0
 
 [node name="GameTokenLine" type="HBoxContainer" parent="LoginPopup/LoginPanel/LoginContent/LoginFields"]
 margin_top = 28.0
@@ -331,18 +332,29 @@ margin_bottom = 52.0
 margin_top = 5.0
 margin_right = 108.0
 margin_bottom = 19.0
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
+rect_min_size = Vector2( 108, 0 )
 text = "Game Token:"
 align = 2
 
 [node name="LineEdit" type="LineEdit" parent="LoginPopup/LoginPanel/LoginContent/LoginFields/GameTokenLine"]
 margin_left = 112.0
-margin_right = 274.0
+margin_right = 246.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 3.0
 secret = true
+script = ExtResource( 9 )
+
+[node name="Button" type="TextureButton" parent="LoginPopup/LoginPanel/LoginContent/LoginFields/GameTokenLine"]
+margin_left = 250.0
+margin_right = 274.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+toggle_mode = true
+pressed = true
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 7 )
+expand = true
+stretch_mode = 5
 
 [node name="ButtonsLine" type="HBoxContainer" parent="LoginPopup/LoginPanel/LoginContent"]
 margin_top = 106.0
@@ -371,5 +383,8 @@ text = "Confirm"
 [connection signal="player_login_confirmed" from="LoginPopup" to="." method="_on_LoginPopup_player_login_confirmed"]
 [connection signal="popup_hide" from="LoginPopup" to="ColorRect" method="_on_Popup_popup_hide"]
 [connection signal="timeout" from="LoginPopup/PanelRoot/FeedbackPanel/SuccessCloseTimer" to="LoginPopup" method="_on_SuccessCloseTimer_timeout"]
+[connection signal="text_entered" from="LoginPopup/LoginPanel/LoginContent/LoginFields/UsenameLine/LineEdit" to="LoginPopup" method="_on_UsernameLine_LineEdit_text_entered"]
+[connection signal="text_entered" from="LoginPopup/LoginPanel/LoginContent/LoginFields/GameTokenLine/LineEdit" to="LoginPopup" method="_on_GameTokenLine_LineEdit_text_entered"]
+[connection signal="toggled" from="LoginPopup/LoginPanel/LoginContent/LoginFields/GameTokenLine/Button" to="LoginPopup/LoginPanel/LoginContent/LoginFields/GameTokenLine/LineEdit" method="_on_Button_toggled"]
 [connection signal="pressed" from="LoginPopup/LoginPanel/LoginContent/ButtonsLine/CancelButton" to="LoginPopup" method="_on_CancelButton_pressed"]
 [connection signal="pressed" from="LoginPopup/LoginPanel/LoginContent/ButtonsLine/ConfirmButton" to="LoginPopup" method="_on_ConfirmButton_pressed"]
