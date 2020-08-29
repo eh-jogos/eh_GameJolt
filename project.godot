@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Button",
-"class": "InspectorButton",
-"language": "GDScript",
-"path": "res://addons/eh_jogos_game_jolt_api/inspector_button.gd"
-}, {
 "base": "HTTPRequest",
 "class": "_eh_GJBaseRequest",
 "language": "GDScript",
@@ -60,7 +55,6 @@ _global_script_classes=[ {
 "path": "res://addons/eh_jogos_game_jolt_api/custom_nodes/HTTPRequests/eh_GJUsersFetchRequest.gd"
 } ]
 _global_script_class_icons={
-"InspectorButton": "",
 "_eh_GJBaseRequest": "",
 "eh_GJGameCredentials": "",
 "eh_GJUserCredentials": "",
