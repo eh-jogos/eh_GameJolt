@@ -1,0 +1,14 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "eh_jogos Godot GamejoltApi"
+
+# Change the default theme to be use when building the site with Hugo
+theme = "hugo-theme-learn"
+
+# hugo-theme-learn prameters
+[params]
+	themeVariant = "eh-gjapi"
+
+# For search functionality
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
