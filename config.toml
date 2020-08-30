@@ -1,4 +1,4 @@
-baseURL = "http://example.org/"
+baseURL = "https://eh-jogos.github.io/eh_GameJolt/"
 languageCode = "en-us"
 title = "eh_jogos Godot GamejoltApi"
 
