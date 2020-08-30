@@ -25,4 +25,9 @@ data_*/
 .history
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode
+
+# Gamejolt Plugin ignore
 .gj-credentials
+
+# Documentation Site ignore
+.docs-site
