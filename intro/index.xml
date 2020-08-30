@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Intro on eh_jogos Godot GamejoltApi</title>
+    <link>http://example.org/intro/</link>
+    <description>Recent content in Intro on eh_jogos Godot GamejoltApi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 29 Aug 2020 21:34:50 -0300</lastBuildDate>
+    
+	<atom:link href="http://example.org/intro/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>
