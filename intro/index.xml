@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Intro on eh_jogos Godot GamejoltApi</title>
-    <link>http://eh-jogos.github.io/eh_GameJolt/intro/</link>
+    <link>https://eh-jogos.github.io/eh_GameJolt/intro/</link>
     <description>Recent content in Intro on eh_jogos Godot GamejoltApi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 29 Aug 2020 21:34:50 -0300</lastBuildDate>
     
-	<atom:link href="http://eh-jogos.github.io/eh_GameJolt/intro/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://eh-jogos.github.io/eh_GameJolt/intro/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
