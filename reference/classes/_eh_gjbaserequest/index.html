@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/eh_GameJolt/images/favicon.png" type="image/png">
 
-    <title>Intro :: eh_jogos Godot GamejoltApi</title>
+    <title>_eh_GJBaseRequest :: eh_jogos Godot GamejoltApi</title>
 
     
     <link href="/eh_GameJolt/css/nucleus.css?1598928742" rel="stylesheet">
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/eh_GameJolt/intro/">
+  <body class="" data-url="/eh_GameJolt/reference/classes/_eh_gjbaserequest/">
     <nav id="sidebar" class="">
 
 
@@ -81,8 +81,8 @@
   
     
     <li data-nav-id="/eh_GameJolt/intro/" title="Intro" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/eh_GameJolt/intro/">
@@ -105,7 +105,7 @@
   
     
     <li data-nav-id="/eh_GameJolt/reference/" title="References" class="dd-item 
-        
+        parent
         
         
         ">
@@ -131,7 +131,7 @@
  
   
     
-      <li data-nav-id="/eh_GameJolt/reference/classes/_eh_gjbaserequest/" title="_eh_GJBaseRequest" class="dd-item ">
+      <li data-nav-id="/eh_GameJolt/reference/classes/_eh_gjbaserequest/" title="_eh_GJBaseRequest" class="dd-item active">
         <a href="/eh_GameJolt/reference/classes/_eh_gjbaserequest/">
         _eh_GJBaseRequest
         
@@ -351,6 +351,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -361,7 +363,13 @@
             
           
           
-            <a href='/eh_GameJolt/'>eh_jogos Godot GamejoltApi</a> > Intro
+            
+            
+          
+          
+            <a href='/eh_GameJolt/'>eh_jogos Godot GamejoltApi</a> > <a href='/eh_GameJolt/reference/'>References</a> > _eh_GJBaseRequest
+          
+        
           
         
           
@@ -370,6 +378,32 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#description">Description</a></li>
+    <li><a href="#property-descriptions">Property Descriptions</a>
+      <ul>
+        <li><a href="#game_id">game_id</a></li>
+        <li><a href="#private_key">private_key</a></li>
+        <li><a href="#username">username</a></li>
+        <li><a href="#user_token">user_token</a></li>
+      </ul>
+    </li>
+    <li><a href="#method-descriptions">Method Descriptions</a>
+      <ul>
+        <li><a href="#set_user_credentials">set_user_credentials</a></li>
+      </ul>
+    </li>
+    <li><a href="#public-methods-------------------------">Public Methods &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</a></li>
+    <li><a href="#signals">Signals</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
               </div>
             </div>
             
@@ -377,29 +411,45 @@
         
         </div>
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>
+              
+              _eh_GJBaseRequest
+            </h1>
           
 
         
 
 
+<!-- raw HTML omitted -->
+<p><strong>Extends:</strong> <a href="../HTTPRequest">HTTPRequest</a></p>
+<h2 id="description">Description</h2>
+<h2 id="property-descriptions">Property Descriptions</h2>
+<h3 id="game_id">game_id</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> game_id: <span style="color:#a6e22e">String</span>
+</code></pre></div><p>public variables - order: export &gt; normal var &gt; onready</p>
+<h3 id="private_key">private_key</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> private_key: <span style="color:#a6e22e">String</span>
+</code></pre></div><h3 id="username">username</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> username: <span style="color:#a6e22e">String</span>
+</code></pre></div><h3 id="user_token">user_token</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> user_token: <span style="color:#a6e22e">String</span>
+</code></pre></div><h2 id="method-descriptions">Method Descriptions</h2>
+<h3 id="set_user_credentials">set_user_credentials</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">func</span> set_user_credentials(p_username, p_user_token) <span style="color:#f92672">-&gt;</span> void
+</code></pre></div><h2 id="public-methods-------------------------">Public Methods &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</h2>
+<h2 id="signals">Signals</h2>
+<ul>
+<li>signal gj_request_failed(error_dict): ## Member Variables and Dependencies &mdash;&ndash;
+signals</li>
+</ul>
 
-	<h3 id="chapter-x">Chapter X</h3>
-<h1 id="some-chapter-title">Some Chapter title</h1>
-<p>Lorem Ipsum.</p>
 
-
-
-
-
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
-        
-            </div> 
         
         </div> 
         
@@ -431,6 +481,39 @@
             
                 
                     
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
                     
                 
                 
@@ -450,35 +533,6 @@
                     
                         
                         
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -615,10 +669,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/eh_GameJolt/" title="eh_jogos Godot GamejoltApi"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/eh_GameJolt/reference/" title="References"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/eh_GameJolt/reference/" title="References" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/eh_GameJolt/reference/classes/eh_gjgamecredentials/" title="eh_GJGameCredentials" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -648,3 +702,4 @@
 
   </body>
 </html>
+

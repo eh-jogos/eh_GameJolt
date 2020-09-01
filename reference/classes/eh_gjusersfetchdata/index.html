@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/eh_GameJolt/images/favicon.png" type="image/png">
 
-    <title>Intro :: eh_jogos Godot GamejoltApi</title>
+    <title>eh_GJUsersFetchData :: eh_jogos Godot GamejoltApi</title>
 
     
     <link href="/eh_GameJolt/css/nucleus.css?1598928742" rel="stylesheet">
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/eh_GameJolt/intro/">
+  <body class="" data-url="/eh_GameJolt/reference/classes/eh_gjusersfetchdata/">
     <nav id="sidebar" class="">
 
 
@@ -81,8 +81,8 @@
   
     
     <li data-nav-id="/eh_GameJolt/intro/" title="Intro" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/eh_GameJolt/intro/">
@@ -105,7 +105,7 @@
   
     
     <li data-nav-id="/eh_GameJolt/reference/" title="References" class="dd-item 
-        
+        parent
         
         
         ">
@@ -278,7 +278,7 @@
  
   
     
-      <li data-nav-id="/eh_GameJolt/reference/classes/eh_gjusersfetchdata/" title="eh_GJUsersFetchData" class="dd-item ">
+      <li data-nav-id="/eh_GameJolt/reference/classes/eh_gjusersfetchdata/" title="eh_GJUsersFetchData" class="dd-item active">
         <a href="/eh_GameJolt/reference/classes/eh_gjusersfetchdata/">
         eh_GJUsersFetchData
         
@@ -351,6 +351,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -361,7 +363,13 @@
             
           
           
-            <a href='/eh_GameJolt/'>eh_jogos Godot GamejoltApi</a> > Intro
+            
+            
+          
+          
+            <a href='/eh_GameJolt/'>eh_jogos Godot GamejoltApi</a> > <a href='/eh_GameJolt/reference/'>References</a> > eh_GJUsersFetchData
+          
+        
           
         
           
@@ -370,6 +378,41 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#description">Description</a></li>
+    <li><a href="#enumerations">Enumerations</a>
+      <ul>
+        <li><a href="#status">Status</a></li>
+        <li><a href="#type">Type</a></li>
+      </ul>
+    </li>
+    <li><a href="#property-descriptions">Property Descriptions</a>
+      <ul>
+        <li><a href="#success">success</a></li>
+        <li><a href="#message">message</a></li>
+        <li><a href="#id">id</a></li>
+        <li><a href="#type-1">type</a></li>
+        <li><a href="#username">username</a></li>
+        <li><a href="#avatar_url">avatar_url</a></li>
+        <li><a href="#signed_up">signed_up</a></li>
+        <li><a href="#signed_up_timestamp">signed_up_timestamp</a></li>
+        <li><a href="#last_logged_in">last_logged_in</a></li>
+        <li><a href="#last_logged_in_timestamp">last_logged_in_timestamp</a></li>
+        <li><a href="#status-1">status</a></li>
+        <li><a href="#developer_name">developer_name</a></li>
+        <li><a href="#developer_website">developer_website</a></li>
+        <li><a href="#developer_description">developer_description</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
               </div>
             </div>
             
@@ -377,29 +420,60 @@
         
         </div>
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>
+              
+              eh_GJUsersFetchData
+            </h1>
           
 
         
 
 
+<!-- raw HTML omitted -->
+<p><strong>Extends:</strong> <a href="../Resource">Resource</a></p>
+<h2 id="description">Description</h2>
+<h2 id="enumerations">Enumerations</h2>
+<h3 id="status">Status</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">const</span> Status: <span style="color:#a6e22e">Dictionary</span> <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;Active&#34;</span>:<span style="color:#ae81ff">0</span>,<span style="color:#e6db74">&#34;Banned&#34;</span>:<span style="color:#ae81ff">1</span>}
+</code></pre></div><h3 id="type">Type</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">const</span> Type: <span style="color:#a6e22e">Dictionary</span> <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;Administrator&#34;</span>:<span style="color:#ae81ff">3</span>,<span style="color:#e6db74">&#34;Developer&#34;</span>:<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#34;Moderator&#34;</span>:<span style="color:#ae81ff">2</span>,<span style="color:#e6db74">&#34;User&#34;</span>:<span style="color:#ae81ff">0</span>}
+</code></pre></div><h2 id="property-descriptions">Property Descriptions</h2>
+<h3 id="success">success</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> success: <span style="color:#a6e22e">bool</span>
+</code></pre></div><h3 id="message">message</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> message: <span style="color:#a6e22e">String</span>
+</code></pre></div><h3 id="id">id</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> id: <span style="color:#a6e22e">int</span>
+</code></pre></div><h3 id="type-1">type</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> type: <span style="color:#a6e22e">int</span>
+</code></pre></div><h3 id="username">username</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> username: <span style="color:#a6e22e">String</span>
+</code></pre></div><h3 id="avatar_url">avatar_url</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> avatar_url: <span style="color:#a6e22e">String</span>
+</code></pre></div><h3 id="signed_up">signed_up</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> signed_up: <span style="color:#a6e22e">String</span>
+</code></pre></div><h3 id="signed_up_timestamp">signed_up_timestamp</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> signed_up_timestamp: <span style="color:#a6e22e">int</span>
+</code></pre></div><h3 id="last_logged_in">last_logged_in</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> last_logged_in: <span style="color:#a6e22e">String</span>
+</code></pre></div><h3 id="last_logged_in_timestamp">last_logged_in_timestamp</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> last_logged_in_timestamp: <span style="color:#a6e22e">int</span>
+</code></pre></div><h3 id="status-1">status</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> status: <span style="color:#a6e22e">int</span>
+</code></pre></div><h3 id="developer_name">developer_name</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> developer_name: <span style="color:#a6e22e">String</span>
+</code></pre></div><h3 id="developer_website">developer_website</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> developer_website: <span style="color:#a6e22e">String</span>
+</code></pre></div><h3 id="developer_description">developer_description</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> developer_description: <span style="color:#a6e22e">String</span>
+</code></pre></div>
 
-	<h3 id="chapter-x">Chapter X</h3>
-<h1 id="some-chapter-title">Some Chapter title</h1>
-<p>Lorem Ipsum.</p>
-
-
-
-
-
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
-        
-            </div> 
         
         </div> 
         
@@ -431,6 +505,8 @@
             
                 
                     
+                        
+                        
                     
                 
                 
@@ -448,8 +524,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -464,21 +538,8 @@
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
+                        
                     
                 
                 
@@ -591,6 +652,26 @@
             
             
                 
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -615,10 +696,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/eh_GameJolt/" title="eh_jogos Godot GamejoltApi"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/eh_GameJolt/reference/classes/eh_gjusersfetch/" title="eh_GJUsersFetch"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/eh_GameJolt/reference/" title="References" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/eh_GameJolt/reference/classes/eh_gjusersfetchrequest/" title="eh_GJUsersFetchRequest" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -648,3 +729,4 @@
 
   </body>
 </html>
+

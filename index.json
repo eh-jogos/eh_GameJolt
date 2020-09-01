@@ -7,8 +7,96 @@
 	"content": "Chapter X Some Chapter title Lorem Ipsum.\n"
 },
 {
+	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/classes/_eh_gjbaserequest/",
+	"title": "_eh_GJBaseRequest",
+	"tags": [],
+	"description": "",
+	"content": "Extends: HTTPRequest\nDescription Property Descriptions game_id var game_id: String public variables - order: export \u0026gt; normal var \u0026gt; onready\nprivate_key var private_key: String username var username: String user_token var user_token: String Method Descriptions set_user_credentials func set_user_credentials(p_username, p_user_token) -\u0026gt; void Public Methods \u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash; Signals  signal gj_request_failed(error_dict): ## Member Variables and Dependencies \u0026mdash;\u0026ndash; signals  "
+},
+{
+	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjgamecredentials/",
+	"title": "eh_GJGameCredentials",
+	"tags": [],
+	"description": "",
+	"content": "Extends: Resource\nDescription Property Descriptions game_id export var game_id: String = \u0026#34;\u0026#34; private_key export var private_key: String = \u0026#34;\u0026#34; "
+},
+{
+	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusercredentials/",
+	"title": "eh_GJUserCredentials",
+	"tags": [],
+	"description": "",
+	"content": "Extends: Resource\nDescription Property Descriptions username export var username: String = \u0026#34;\u0026#34; user_game_token export var user_game_token: String = \u0026#34;\u0026#34; "
+},
+{
+	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusersauth/",
+	"title": "eh_GJUsersAuth",
+	"tags": [],
+	"description": "",
+	"content": "Extends: Node\nDescription Property Descriptions is_logged_in var is_logged_in: bool public variables - order: export \u0026gt; normal var \u0026gt; onready\nMethod Descriptions get_player_username func get_player_username() -\u0026gt; String Public Methods \u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash; get_player_user_token func get_player_user_token() -\u0026gt; String has_player_credentials func has_player_credentials() -\u0026gt; bool self_login func self_login(p_username: String, p_user_token: String) -\u0026gt; void request func request(p_username: String, p_user_token: String) -\u0026gt; void Signals  signal gj_auth_completed(eh_gj_users_auth_data): ## Member Variables and Dependencies \u0026mdash;\u0026ndash; signals signal gj_auth_failed(error_dictionary):  "
+},
+{
+	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusersauthdata/",
+	"title": "eh_GJUsersAuthData",
+	"tags": [],
+	"description": "",
+	"content": "Extends: Resource\nDescription Property Descriptions success var success: bool message var message: String "
+},
+{
+	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusersauthrequest/",
+	"title": "eh_GJUsersAuthRequest",
+	"tags": [],
+	"description": "This class decribes the [Auth api endpoint](https://gamejolt.com/game-api/doc/users/auth).
+It&#39;s response is modeled in the custom resource of [eh_GJUsersAuthData](../eh_gjusersauthdata/)
+
+It&#39;s a simple class to help with login in the user, but should be the first thing the
+game does or check for.
+
+If the request fails, the signal `gj_request_failed` will be emitted with an error dict
+as its parameter.",
+	"content": "Extends: _eh_GJBaseRequest \u0026lt; HTTPRequest\nDescription This class decribes the Auth api endpoint. It\u0026rsquo;s response is modeled in the custom resource of eh_GJUsersAuthData\nIt\u0026rsquo;s a simple class to help with login in the user, but should be the first thing the game does or check for.\nIf the request fails, the signal gj_request_failed will be emitted with an error dict as its parameter.\nMethod Descriptions auth_user_credentials func auth_user_credentials(p_username: String, p_user_token: String) -\u0026gt; int Builds url and send request to the auth Endpoint. Return an int which is the request error code.\nSignals  signal gj_auth_data_received(eh_gj_users_auth_data): Signal sent with Auth Data response. Sends the eh_GJUsersAuthRequest resource as paremeter.  "
+},
+{
+	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusersfetch/",
+	"title": "eh_GJUsersFetch",
+	"tags": [],
+	"description": "",
+	"content": "Extends: Node\nDescription Method Descriptions request_user func request_user(p_username: String, is_user_id: bool = false) -\u0026gt; void Public Methods \u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash; request_users func request_users(p_user_ids: Array) -\u0026gt; void Signals  signal gj_fetch_user_completed(eh_gj_users_fetch_data): ## Member Variables and Dependencies \u0026mdash;\u0026ndash; signals signal gj_fetch_users_completed(array_of_eh_gj_users_fetch_data): signal gj_fetch_failed(error_dict):  "
+},
+{
+	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusersfetchdata/",
+	"title": "eh_GJUsersFetchData",
+	"tags": [],
+	"description": "",
+	"content": "Extends: Resource\nDescription Enumerations Status const Status: Dictionary = {\u0026#34;Active\u0026#34;:0,\u0026#34;Banned\u0026#34;:1} Type const Type: Dictionary = {\u0026#34;Administrator\u0026#34;:3,\u0026#34;Developer\u0026#34;:1,\u0026#34;Moderator\u0026#34;:2,\u0026#34;User\u0026#34;:0} Property Descriptions success var success: bool message var message: String id var id: int type var type: int username var username: String avatar_url var avatar_url: String signed_up var signed_up: String signed_up_timestamp var signed_up_timestamp: int last_logged_in var last_logged_in: String last_logged_in_timestamp var last_logged_in_timestamp: int status var status: int developer_name var developer_name: String developer_website var developer_website: String developer_description var developer_description: String "
+},
+{
+	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusersfetchrequest/",
+	"title": "eh_GJUsersFetchRequest",
+	"tags": [],
+	"description": "This class decribes the Fetch api endpoint https://gamejolt.com/game-api/doc/users/fetch
+It&#39;s response is modeled in the custom resource of eh_GJUsersFetchData.gd
+
+It is possible to request data for a single user with `fetch_user` or for multiple users with
+`fetch_users`. These methods return the request Error Code, so that you can check
+if for connection errors.
+
+Each has it&#39;s own signal with the response data, so be sure to listen for the corresponding
+signal.
+
+If the request fails, the signal `gj_request_failed` will be emitted with an error dict
+as its parameter.",
+	"content": "Extends: _eh_GJBaseRequest \u0026lt; HTTPRequest\nDescription This class decribes the Fetch api endpoint https://gamejolt.com/game-api/doc/users/fetch It\u0026rsquo;s response is modeled in the custom resource of eh_GJUsersFetchData.gd\nIt is possible to request data for a single user with fetch_user or for multiple users with fetch_users. These methods return the request Error Code, so that you can check if for connection errors.\nEach has it\u0026rsquo;s own signal with the response data, so be sure to listen for the corresponding signal.\nIf the request fails, the signal gj_request_failed will be emitted with an error dict as its parameter.\nMethod Descriptions fetch_user func fetch_user(p_username: String, is_user_id: bool = false) -\u0026gt; int Public Methods \u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash; Request for a single user\nfetch_users func fetch_users(p_array_of_ids: Array) -\u0026gt; int Request for multiple users\nSignals  signal gj_users_fetch_data_received(array_of_eh_gj_users_fetch_data): Multi User Request Response. Sends an array of eh_GJUsersFetchData as parameter signal gj_user_fetch_data_received(eh_gj_users_fetch_data): Single User Request Response. Send an eh_GJUsersFetchData Resource as parameter  "
+},
+{
 	"uri": "https://eh-jogos.github.io/eh_GameJolt/",
 	"title": "eh_jogos Godot GamejoltApi",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/",
+	"title": "References",
 	"tags": [],
 	"description": "",
 	"content": ""
