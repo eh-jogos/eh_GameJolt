@@ -1,10 +1,13 @@
-class_name _eh_GJBaseRequest
-extends HTTPRequest
 # This Class is not to be used directly, rather it is the base class for all of GameJolt's 
 # Endpoint Requests. This will contain the base to build urls and manage responses
-
+# @category: HTTPRequests
+# @tags: abstract
+class_name eh_GJBaseRequest
+extends HTTPRequest
 ### Member Variables and Dependencies -----
 # signals 
+
+# Signal sent when requests fail. Sends an dictionary with details about the error.
 signal gj_request_failed(error_dict)
 
 # enums
@@ -17,9 +20,18 @@ const API_VERSION = "v1_2"
 const API_GAME_ID_PARAMETER = "?game_id="
 
 # public variables - order: export > normal var > onready 
+
+# The game_id in Gamejolt. Should be set in the "GameJolt" Tab that appears in Project Settings
+# after enabling the plugin.
 var game_id: String
+# The game's private_key in Gamejolt. Should be set in the "GameJolt" Tab that appears in Project 
+# Settings after enabling the plugin.
 var private_key: String
+# The player's username. Will be aquired automatically if the game was downloaded through GameJolt's
+# client. Otherwise, will be set by a login screen, but player only needs to login once.
 var username: String
+# The player's game_token. Will be aquired automatically if the game was downloaded through 
+# GameJolt's client. Otherwise, will be set by a login screen, but player only needs to login once.
 var user_token: String
 
 # private variables - order: export > normal var > onready 
@@ -38,9 +50,6 @@ func _ready() -> void:
 
 
 ### Public Methods ------------------------
-func set_user_credentials(p_username, p_user_token) -> void:
-	username = p_username
-	user_token = p_user_token
 
 ### ---------------------------------------
 
@@ -151,7 +160,7 @@ func _auto_set_user_credentials() -> void :
 
 func _set_user_credentials_based_on_resource() -> void:
 	var user_credentials: eh_GJUserCredentials = ResourceLoader.load(USER_CREDENTIALS_PATH)
-	set_user_credentials(user_credentials.username, user_credentials.user_game_token)
+	_set_user_credentials(user_credentials.username, user_credentials.user_game_token)
 
 
 func _set_user_credentials_based_on_gj_file(credentials_file: File, credentials_path: String) -> void:
@@ -160,10 +169,15 @@ func _set_user_credentials_based_on_gj_file(credentials_file: File, credentials_
 		var content = credentials_file.get_as_text()
 		var lines = content.split("\n")
 		
-		set_user_credentials(lines[1], lines[2])
+		_set_user_credentials(lines[1], lines[2])
 		
 		var user_credentials: eh_GJUserCredentials = eh_GJUserCredentials.new(username, user_token)
 		ResourceSaver.save(USER_CREDENTIALS_PATH, user_credentials)
+
+
+func _set_user_credentials(p_username, p_user_token) -> void:
+	username = p_username
+	user_token = p_user_token
 
 ### ---------------------------------------
 

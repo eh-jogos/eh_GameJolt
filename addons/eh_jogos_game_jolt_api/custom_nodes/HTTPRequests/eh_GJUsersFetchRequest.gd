@@ -1,25 +1,30 @@
-class_name eh_GJUsersFetchRequest
-extends _eh_GJBaseRequest
-# This class decribes the Fetch api endpoint https://gamejolt.com/game-api/doc/users/fetch
-# It's response is modeled in the custom resource of eh_GJUsersFetchData.gd
+# This class decribes the [Fetch api endpoint](https://gamejolt.com/game-api/doc/users/fetch)
+# It's response is modeled in the custom resource of [eh_GJUsersFetchData]
 #
-# It is possible to request data for a single user with `fetch_user` or for multiple users with
-# `fetch_users`. These methods return the request Error Code, so that you can check
+# It is possible to request data for a single user with [fetch_user] or for multiple users with
+# [fetch_users]. These methods return the request Error Code, so that you can check
 # if for connection errors.
 #
 # Each has it's own signal with the response data, so be sure to listen for the corresponding 
 # signal.
 #
-# If the request fails, the signal `gj_request_failed` will be emitted with an error dict 
+# If the request fails, the signal [eh_GJBaseRequest.gj_request_failed] will be emitted with an error dict 
 # as its parameter.
+class_name eh_GJUsersFetchRequest
+extends eh_GJBaseRequest
 
 ### Member Variables and Dependencies -----
 # signals 
-signal gj_users_fetch_data_received(array_of_eh_gj_users_fetch_data) # Multi User Request Response
-signal gj_user_fetch_data_received(eh_gj_users_fetch_data) # Single User Request Response
+
+# Multi User Request Response. Sends an array of [eh_GJUsersFetchData] as parameter
+signal gj_users_fetch_data_received(array_of_eh_gj_users_fetch_data)
+# Single User Request Response. Send an [eh_GJUsersFetchData] Resource as parameter
+signal gj_user_fetch_data_received(eh_gj_users_fetch_data) 
 
 # enums
 # constants
+
+# Address for this endpoint.
 const URL_ENDPOINT = "/users/"
 
 # public variables - order: export > normal var > onready 
@@ -35,7 +40,9 @@ func _ready() -> void:
 
 
 ### Public Methods ------------------------
-# Request for a single user
+
+# Request for a single user. Returns request error code. The user data will be sent either by
+# the signal [gj_user_fetch_data_received] or [eh_GJBaseRequest.gj_request_failed] will be emitted
 func fetch_user(p_username: String, is_user_id: bool = false) -> int:
 	var url = _get_base_url(URL_ENDPOINT)
 	
@@ -49,7 +56,8 @@ func fetch_user(p_username: String, is_user_id: bool = false) -> int:
 	return request(url)
 
 
-# Request for multiple users
+# Request for multiple users Returns request error code. The user data will be sent either by
+# the signal [gj_users_fetch_data_received] or [eh_GJBaseRequest.gj_request_failed] will be emitted
 func fetch_users(p_array_of_ids: Array) -> int:
 	var url = _get_base_url(URL_ENDPOINT)
 	var user_ids: String = str(p_array_of_ids).lstrip("[").rstrip("]").replace(" ","")
