@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.74.3" />
     <meta name="description" content="This class decribes the [Auth api endpoint](https://gamejolt.com/game-api/doc/users/auth).
-It&#39;s response is modeled in the custom resource of [eh_GJUsersAuthData](../eh_gjusersauthdata/)
+It&#39;s response is modeled in the custom resource of [eh_GJUsersAuthData]
 
 It&#39;s a simple class to help with login in the user, but should be the first thing the
 game does or check for.
 
-If the request fails, the signal `gj_request_failed` will be emitted with an error dict
-as its parameter.">
+If the request fails, the signal [eh_GJBaseRequest.gj_request_failed] will be emitted with an
+error dict as its parameter.
+category: HTTPRequests">
 
 
     <link rel="icon" href="/eh_GameJolt/images/favicon.png" type="image/png">
@@ -19,21 +20,21 @@ as its parameter.">
     <title>eh_GJUsersAuthRequest :: eh_jogos Godot GamejoltApi</title>
 
     
-    <link href="/eh_GameJolt/css/nucleus.css?1598928742" rel="stylesheet">
-    <link href="/eh_GameJolt/css/fontawesome-all.min.css?1598928742" rel="stylesheet">
-    <link href="/eh_GameJolt/css/hybrid.css?1598928742" rel="stylesheet">
-    <link href="/eh_GameJolt/css/featherlight.min.css?1598928742" rel="stylesheet">
-    <link href="/eh_GameJolt/css/perfect-scrollbar.min.css?1598928742" rel="stylesheet">
-    <link href="/eh_GameJolt/css/auto-complete.css?1598928742" rel="stylesheet">
-    <link href="/eh_GameJolt/css/atom-one-dark-reasonable.css?1598928742" rel="stylesheet">
-    <link href="/eh_GameJolt/css/theme.css?1598928742" rel="stylesheet">
-    <link href="/eh_GameJolt/css/hugo-theme.css?1598928742" rel="stylesheet">
+    <link href="/eh_GameJolt/css/nucleus.css?1599007603" rel="stylesheet">
+    <link href="/eh_GameJolt/css/fontawesome-all.min.css?1599007603" rel="stylesheet">
+    <link href="/eh_GameJolt/css/hybrid.css?1599007603" rel="stylesheet">
+    <link href="/eh_GameJolt/css/featherlight.min.css?1599007603" rel="stylesheet">
+    <link href="/eh_GameJolt/css/perfect-scrollbar.min.css?1599007603" rel="stylesheet">
+    <link href="/eh_GameJolt/css/auto-complete.css?1599007603" rel="stylesheet">
+    <link href="/eh_GameJolt/css/atom-one-dark-reasonable.css?1599007603" rel="stylesheet">
+    <link href="/eh_GameJolt/css/theme.css?1599007603" rel="stylesheet">
+    <link href="/eh_GameJolt/css/hugo-theme.css?1599007603" rel="stylesheet">
     
-    <link href="/eh_GameJolt/css/theme-eh-gjapi.css?1598928742" rel="stylesheet">
+    <link href="/eh_GameJolt/css/theme-eh-gjapi.css?1599007603" rel="stylesheet">
     
     
 
-    <script src="/eh_GameJolt/js/jquery-3.3.1.min.js?1598928742"></script>
+    <script src="/eh_GameJolt/js/jquery-3.3.1.min.js?1599007603"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -62,14 +63,14 @@ as its parameter.">
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/eh_GameJolt/js/lunr.min.js?1598928742"></script>
-<script type="text/javascript" src="/eh_GameJolt/js/auto-complete.js?1598928742"></script>
+<script type="text/javascript" src="/eh_GameJolt/js/lunr.min.js?1599007603"></script>
+<script type="text/javascript" src="/eh_GameJolt/js/auto-complete.js?1599007603"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/eh-jogos.github.io\/eh_GameJolt\/";
     
 </script>
-<script type="text/javascript" src="/eh_GameJolt/js/search.js?1598928742"></script>
+<script type="text/javascript" src="/eh_GameJolt/js/search.js?1599007603"></script>
 
     
   </div>
@@ -138,9 +139,9 @@ as its parameter.">
  
   
     
-      <li data-nav-id="/eh_GameJolt/reference/classes/_eh_gjbaserequest/" title="_eh_GJBaseRequest" class="dd-item ">
-        <a href="/eh_GameJolt/reference/classes/_eh_gjbaserequest/">
-        _eh_GJBaseRequest
+      <li data-nav-id="/eh_GameJolt/reference/classes/eh_gjbaserequest/" title="eh_GJBaseRequest" class="dd-item ">
+        <a href="/eh_GameJolt/reference/classes/eh_gjbaserequest/">
+        eh_GJBaseRequest
         
         </a>
     </li>
@@ -421,21 +422,22 @@ as its parameter.">
 
 
 <!-- raw HTML omitted -->
-<p><strong>Extends:</strong> <a href="../_eh_GJBaseRequest">_eh_GJBaseRequest</a> &lt; <a href="../HTTPRequest">HTTPRequest</a></p>
+<p><strong>Extends:</strong> <a href="../eh_GJBaseRequest">eh_GJBaseRequest</a> &lt; <a href="../HTTPRequest">HTTPRequest</a></p>
 <h2 id="description">Description</h2>
 <p>This class decribes the <a href="https://gamejolt.com/game-api/doc/users/auth">Auth api endpoint</a>.
-It&rsquo;s response is modeled in the custom resource of <a href="../eh_gjusersauthdata/">eh_GJUsersAuthData</a></p>
+It&rsquo;s response is modeled in the custom resource of [eh_GJUsersAuthData]</p>
 <p>It&rsquo;s a simple class to help with login in the user, but should be the first thing the
 game does or check for.</p>
-<p>If the request fails, the signal <code>gj_request_failed</code> will be emitted with an error dict
-as its parameter.</p>
+<p>If the request fails, the signal [eh_GJBaseRequest.gj_request_failed] will be emitted with an
+error dict as its parameter.
+category: HTTPRequests</p>
 <h2 id="method-descriptions">Method Descriptions</h2>
 <h3 id="auth_user_credentials">auth_user_credentials</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">func</span> auth_user_credentials(p_username: <span style="color:#a6e22e">String</span>, p_user_token: <span style="color:#a6e22e">String</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">int</span>
 </code></pre></div><p>Builds url and send request to the auth Endpoint. Return an int which is the request error code.</p>
 <h2 id="signals">Signals</h2>
 <ul>
-<li>signal gj_auth_data_received(eh_gj_users_auth_data): Signal sent with Auth Data response. Sends the <code>eh_GJUsersAuthRequest</code> resource as paremeter.</li>
+<li>signal gj_auth_data_received(eh_gj_users_auth_data): Signal sent with Auth Data response. Sends the [eh_GJUsersAuthData] resource as paremeter.</li>
 </ul>
 
 
@@ -678,19 +680,19 @@ as its parameter.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/eh_GameJolt/js/clipboard.min.js?1598928742"></script>
-    <script src="/eh_GameJolt/js/perfect-scrollbar.min.js?1598928742"></script>
-    <script src="/eh_GameJolt/js/perfect-scrollbar.jquery.min.js?1598928742"></script>
-    <script src="/eh_GameJolt/js/jquery.sticky.js?1598928742"></script>
-    <script src="/eh_GameJolt/js/featherlight.min.js?1598928742"></script>
-    <script src="/eh_GameJolt/js/highlight.pack.js?1598928742"></script>
+    <script src="/eh_GameJolt/js/clipboard.min.js?1599007603"></script>
+    <script src="/eh_GameJolt/js/perfect-scrollbar.min.js?1599007603"></script>
+    <script src="/eh_GameJolt/js/perfect-scrollbar.jquery.min.js?1599007603"></script>
+    <script src="/eh_GameJolt/js/jquery.sticky.js?1599007603"></script>
+    <script src="/eh_GameJolt/js/featherlight.min.js?1599007603"></script>
+    <script src="/eh_GameJolt/js/highlight.pack.js?1599007603"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/eh_GameJolt/js/modernizr.custom-3.6.0.js?1598928742"></script>
-    <script src="/eh_GameJolt/js/learn.js?1598928742"></script>
-    <script src="/eh_GameJolt/js/hugo-learn.js?1598928742"></script>
+    <script src="/eh_GameJolt/js/modernizr.custom-3.6.0.js?1599007603"></script>
+    <script src="/eh_GameJolt/js/learn.js?1599007603"></script>
+    <script src="/eh_GameJolt/js/hugo-learn.js?1599007603"></script>
 
-    <link href="/eh_GameJolt/mermaid/mermaid.css?1598928742" rel="stylesheet" />
-    <script src="/eh_GameJolt/mermaid/mermaid.js?1598928742"></script>
+    <link href="/eh_GameJolt/mermaid/mermaid.css?1599007603" rel="stylesheet" />
+    <script src="/eh_GameJolt/mermaid/mermaid.js?1599007603"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.74.3" />
-    <meta name="description" content="This class decribes the Fetch api endpoint https://gamejolt.com/game-api/doc/users/fetch
-It&#39;s response is modeled in the custom resource of eh_GJUsersFetchData.gd
+    <meta name="description" content="This class decribes the [Fetch api endpoint](https://gamejolt.com/game-api/doc/users/fetch)
+It&#39;s response is modeled in the custom resource of [eh_GJUsersFetchData]
 
-It is possible to request data for a single user with `fetch_user` or for multiple users with
-`fetch_users`. These methods return the request Error Code, so that you can check
+It is possible to request data for a single user with [fetch_user] or for multiple users with
+[fetch_users]. These methods return the request Error Code, so that you can check
 if for connection errors.
 
 Each has it&#39;s own signal with the response data, so be sure to listen for the corresponding
 signal.
 
-If the request fails, the signal `gj_request_failed` will be emitted with an error dict
+If the request fails, the signal [eh_GJBaseRequest.gj_request_failed] will be emitted with an error dict
 as its parameter.">
 
 
@@ -23,21 +23,21 @@ as its parameter.">
     <title>eh_GJUsersFetchRequest :: eh_jogos Godot GamejoltApi</title>
 
     
-    <link href="/eh_GameJolt/css/nucleus.css?1598928742" rel="stylesheet">
-    <link href="/eh_GameJolt/css/fontawesome-all.min.css?1598928742" rel="stylesheet">
-    <link href="/eh_GameJolt/css/hybrid.css?1598928742" rel="stylesheet">
-    <link href="/eh_GameJolt/css/featherlight.min.css?1598928742" rel="stylesheet">
-    <link href="/eh_GameJolt/css/perfect-scrollbar.min.css?1598928742" rel="stylesheet">
-    <link href="/eh_GameJolt/css/auto-complete.css?1598928742" rel="stylesheet">
-    <link href="/eh_GameJolt/css/atom-one-dark-reasonable.css?1598928742" rel="stylesheet">
-    <link href="/eh_GameJolt/css/theme.css?1598928742" rel="stylesheet">
-    <link href="/eh_GameJolt/css/hugo-theme.css?1598928742" rel="stylesheet">
+    <link href="/eh_GameJolt/css/nucleus.css?1599007603" rel="stylesheet">
+    <link href="/eh_GameJolt/css/fontawesome-all.min.css?1599007603" rel="stylesheet">
+    <link href="/eh_GameJolt/css/hybrid.css?1599007603" rel="stylesheet">
+    <link href="/eh_GameJolt/css/featherlight.min.css?1599007603" rel="stylesheet">
+    <link href="/eh_GameJolt/css/perfect-scrollbar.min.css?1599007603" rel="stylesheet">
+    <link href="/eh_GameJolt/css/auto-complete.css?1599007603" rel="stylesheet">
+    <link href="/eh_GameJolt/css/atom-one-dark-reasonable.css?1599007603" rel="stylesheet">
+    <link href="/eh_GameJolt/css/theme.css?1599007603" rel="stylesheet">
+    <link href="/eh_GameJolt/css/hugo-theme.css?1599007603" rel="stylesheet">
     
-    <link href="/eh_GameJolt/css/theme-eh-gjapi.css?1598928742" rel="stylesheet">
+    <link href="/eh_GameJolt/css/theme-eh-gjapi.css?1599007603" rel="stylesheet">
     
     
 
-    <script src="/eh_GameJolt/js/jquery-3.3.1.min.js?1598928742"></script>
+    <script src="/eh_GameJolt/js/jquery-3.3.1.min.js?1599007603"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -66,14 +66,14 @@ as its parameter.">
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/eh_GameJolt/js/lunr.min.js?1598928742"></script>
-<script type="text/javascript" src="/eh_GameJolt/js/auto-complete.js?1598928742"></script>
+<script type="text/javascript" src="/eh_GameJolt/js/lunr.min.js?1599007603"></script>
+<script type="text/javascript" src="/eh_GameJolt/js/auto-complete.js?1599007603"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/eh-jogos.github.io\/eh_GameJolt\/";
     
 </script>
-<script type="text/javascript" src="/eh_GameJolt/js/search.js?1598928742"></script>
+<script type="text/javascript" src="/eh_GameJolt/js/search.js?1599007603"></script>
 
     
   </div>
@@ -142,9 +142,9 @@ as its parameter.">
  
   
     
-      <li data-nav-id="/eh_GameJolt/reference/classes/_eh_gjbaserequest/" title="_eh_GJBaseRequest" class="dd-item ">
-        <a href="/eh_GameJolt/reference/classes/_eh_gjbaserequest/">
-        _eh_GJBaseRequest
+      <li data-nav-id="/eh_GameJolt/reference/classes/eh_gjbaserequest/" title="eh_GJBaseRequest" class="dd-item ">
+        <a href="/eh_GameJolt/reference/classes/eh_gjbaserequest/">
+        eh_GJBaseRequest
         
         </a>
     </li>
@@ -397,10 +397,6 @@ as its parameter.">
     <li><a href="#method-descriptions">Method Descriptions</a>
       <ul>
         <li><a href="#fetch_user">fetch_user</a></li>
-      </ul>
-    </li>
-    <li><a href="#public-methods-------------------------">Public Methods &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</a>
-      <ul>
         <li><a href="#fetch_users">fetch_users</a></li>
       </ul>
     </li>
@@ -430,29 +426,30 @@ as its parameter.">
 
 
 <!-- raw HTML omitted -->
-<p><strong>Extends:</strong> <a href="../_eh_GJBaseRequest">_eh_GJBaseRequest</a> &lt; <a href="../HTTPRequest">HTTPRequest</a></p>
+<p><strong>Extends:</strong> <a href="../eh_GJBaseRequest">eh_GJBaseRequest</a> &lt; <a href="../HTTPRequest">HTTPRequest</a></p>
 <h2 id="description">Description</h2>
-<p>This class decribes the Fetch api endpoint <a href="https://gamejolt.com/game-api/doc/users/fetch">https://gamejolt.com/game-api/doc/users/fetch</a>
-It&rsquo;s response is modeled in the custom resource of eh_GJUsersFetchData.gd</p>
-<p>It is possible to request data for a single user with <code>fetch_user</code> or for multiple users with
-<code>fetch_users</code>. These methods return the request Error Code, so that you can check
+<p>This class decribes the <a href="https://gamejolt.com/game-api/doc/users/fetch">Fetch api endpoint</a>
+It&rsquo;s response is modeled in the custom resource of [eh_GJUsersFetchData]</p>
+<p>It is possible to request data for a single user with <a href="../#fetch-user">fetch_user</a> or for multiple users with
+<a href="../#fetch-users">fetch_users</a>. These methods return the request Error Code, so that you can check
 if for connection errors.</p>
 <p>Each has it&rsquo;s own signal with the response data, so be sure to listen for the corresponding
 signal.</p>
-<p>If the request fails, the signal <code>gj_request_failed</code> will be emitted with an error dict
+<p>If the request fails, the signal [eh_GJBaseRequest.gj_request_failed] will be emitted with an error dict
 as its parameter.</p>
 <h2 id="method-descriptions">Method Descriptions</h2>
 <h3 id="fetch_user">fetch_user</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">func</span> fetch_user(p_username: <span style="color:#a6e22e">String</span>, is_user_id: <span style="color:#a6e22e">bool</span> <span style="color:#f92672">=</span> false) <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">int</span>
-</code></pre></div><h2 id="public-methods-------------------------">Public Methods &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</h2>
-<p>Request for a single user</p>
+</code></pre></div><p>Request for a single user. Returns request error code. The user data will be sent either by
+the signal <a href="../#gj-user-fetch-data-received">gj_user_fetch_data_received</a> will be emitted</p>
 <h3 id="fetch_users">fetch_users</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">func</span> fetch_users(p_array_of_ids: <span style="color:#a6e22e">Array</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">int</span>
-</code></pre></div><p>Request for multiple users</p>
+</code></pre></div><p>Request for multiple users Returns request error code. The user data will be sent either by
+the signal <a href="../#gj-users-fetch-data-received">gj_users_fetch_data_received</a> will be emitted</p>
 <h2 id="signals">Signals</h2>
 <ul>
-<li>signal gj_users_fetch_data_received(array_of_eh_gj_users_fetch_data): Multi User Request Response. Sends an array of <code>eh_GJUsersFetchData</code> as parameter</li>
-<li>signal gj_user_fetch_data_received(eh_gj_users_fetch_data): Single User Request Response. Send an <code>eh_GJUsersFetchData</code> Resource as parameter</li>
+<li>signal gj_users_fetch_data_received(array_of_eh_gj_users_fetch_data): Multi User Request Response. Sends an array of [eh_GJUsersFetchData] as parameter</li>
+<li>signal gj_user_fetch_data_received(eh_gj_users_fetch_data): Single User Request Response. Send an [eh_GJUsersFetchData] Resource as parameter</li>
 </ul>
 
 
@@ -682,7 +679,7 @@ as its parameter.</p>
 			<a class="nav nav-prev" href="/eh_GameJolt/reference/classes/eh_gjusersfetchdata/" title="eh_GJUsersFetchData"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/eh_GameJolt/reference/classes/_eh_gjbaserequest/" title="_eh_GJBaseRequest" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/eh_GameJolt/reference/classes/eh_gjbaserequest/" title="eh_GJBaseRequest" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -692,19 +689,19 @@ as its parameter.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/eh_GameJolt/js/clipboard.min.js?1598928742"></script>
-    <script src="/eh_GameJolt/js/perfect-scrollbar.min.js?1598928742"></script>
-    <script src="/eh_GameJolt/js/perfect-scrollbar.jquery.min.js?1598928742"></script>
-    <script src="/eh_GameJolt/js/jquery.sticky.js?1598928742"></script>
-    <script src="/eh_GameJolt/js/featherlight.min.js?1598928742"></script>
-    <script src="/eh_GameJolt/js/highlight.pack.js?1598928742"></script>
+    <script src="/eh_GameJolt/js/clipboard.min.js?1599007603"></script>
+    <script src="/eh_GameJolt/js/perfect-scrollbar.min.js?1599007603"></script>
+    <script src="/eh_GameJolt/js/perfect-scrollbar.jquery.min.js?1599007603"></script>
+    <script src="/eh_GameJolt/js/jquery.sticky.js?1599007603"></script>
+    <script src="/eh_GameJolt/js/featherlight.min.js?1599007603"></script>
+    <script src="/eh_GameJolt/js/highlight.pack.js?1599007603"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/eh_GameJolt/js/modernizr.custom-3.6.0.js?1598928742"></script>
-    <script src="/eh_GameJolt/js/learn.js?1598928742"></script>
-    <script src="/eh_GameJolt/js/hugo-learn.js?1598928742"></script>
+    <script src="/eh_GameJolt/js/modernizr.custom-3.6.0.js?1599007603"></script>
+    <script src="/eh_GameJolt/js/learn.js?1599007603"></script>
+    <script src="/eh_GameJolt/js/hugo-learn.js?1599007603"></script>
 
-    <link href="/eh_GameJolt/mermaid/mermaid.css?1598928742" rel="stylesheet" />
-    <script src="/eh_GameJolt/mermaid/mermaid.js?1598928742"></script>
+    <link href="/eh_GameJolt/mermaid/mermaid.css?1599007603" rel="stylesheet" />
+    <script src="/eh_GameJolt/mermaid/mermaid.js?1599007603"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

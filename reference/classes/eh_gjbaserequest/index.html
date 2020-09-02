@@ -4,12 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.74.3" />
-    <meta name="description" content="">
+    <meta name="description" content="This Class is not to be used directly, rather it is the base class for all of GameJolt&#39;s
+Endpoint Requests. This will contain the base to build urls and manage responses">
 
 
     <link rel="icon" href="/eh_GameJolt/images/favicon.png" type="image/png">
 
-    <title>Intro :: eh_jogos Godot GamejoltApi</title>
+    <title>eh_GJBaseRequest :: eh_jogos Godot GamejoltApi</title>
 
     
     <link href="/eh_GameJolt/css/nucleus.css?1599007603" rel="stylesheet">
@@ -36,7 +37,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/eh_GameJolt/intro/">
+  <body class="" data-url="/eh_GameJolt/reference/classes/eh_gjbaserequest/">
     <nav id="sidebar" class="">
 
 
@@ -81,8 +82,8 @@
   
     
     <li data-nav-id="/eh_GameJolt/intro/" title="Intro" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/eh_GameJolt/intro/">
@@ -105,7 +106,7 @@
   
     
     <li data-nav-id="/eh_GameJolt/reference/" title="References" class="dd-item 
-        
+        parent
         
         
         ">
@@ -131,7 +132,7 @@
  
   
     
-      <li data-nav-id="/eh_GameJolt/reference/classes/eh_gjbaserequest/" title="eh_GJBaseRequest" class="dd-item ">
+      <li data-nav-id="/eh_GameJolt/reference/classes/eh_gjbaserequest/" title="eh_GJBaseRequest" class="dd-item active">
         <a href="/eh_GameJolt/reference/classes/eh_gjbaserequest/">
         eh_GJBaseRequest
         
@@ -351,6 +352,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -361,7 +364,13 @@
             
           
           
-            <a href='/eh_GameJolt/'>eh_jogos Godot GamejoltApi</a> > Intro
+            
+            
+          
+          
+            <a href='/eh_GameJolt/'>eh_jogos Godot GamejoltApi</a> > <a href='/eh_GameJolt/reference/'>References</a> > eh_GJBaseRequest
+          
+        
           
         
           
@@ -370,6 +379,26 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#description">Description</a></li>
+    <li><a href="#property-descriptions">Property Descriptions</a>
+      <ul>
+        <li><a href="#game_id">game_id</a></li>
+        <li><a href="#private_key">private_key</a></li>
+        <li><a href="#username">username</a></li>
+        <li><a href="#user_token">user_token</a></li>
+      </ul>
+    </li>
+    <li><a href="#signals">Signals</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
               </div>
             </div>
             
@@ -377,29 +406,49 @@
         
         </div>
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>
+              
+              eh_GJBaseRequest
+            </h1>
           
 
         
 
 
+<!-- raw HTML omitted -->
+<p><strong>Extends:</strong> <a href="../HTTPRequest">HTTPRequest</a></p>
+<h2 id="description">Description</h2>
+<p>This Class is not to be used directly, rather it is the base class for all of GameJolt&rsquo;s
+Endpoint Requests. This will contain the base to build urls and manage responses</p>
+<h2 id="property-descriptions">Property Descriptions</h2>
+<h3 id="game_id">game_id</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> game_id: <span style="color:#a6e22e">String</span>
+</code></pre></div><p>The game_id in Gamejolt. Should be set in the &ldquo;GameJolt&rdquo; Tab that appears in Project Settings
+after enabling the plugin.</p>
+<h3 id="private_key">private_key</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> private_key: <span style="color:#a6e22e">String</span>
+</code></pre></div><p>The game&rsquo;s private_key in Gamejolt. Should be set in the &ldquo;GameJolt&rdquo; Tab that appears in Project
+Settings after enabling the plugin.</p>
+<h3 id="username">username</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> username: <span style="color:#a6e22e">String</span>
+</code></pre></div><p>The player&rsquo;s username. Will be aquired automatically if the game was downloaded through GameJolt&rsquo;s
+client. Otherwise, will be set by a login screen, but player only needs to login once.</p>
+<h3 id="user_token">user_token</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gdscript" data-lang="gdscript"><span style="color:#66d9ef">var</span> user_token: <span style="color:#a6e22e">String</span>
+</code></pre></div><p>The player&rsquo;s game_token. Will be aquired automatically if the game was downloaded through
+GameJolt&rsquo;s client. Otherwise, will be set by a login screen, but player only needs to login once.</p>
+<h2 id="signals">Signals</h2>
+<ul>
+<li>signal gj_request_failed(error_dict): Signal sent when requests fail. Sends an dictionary with details about the error.</li>
+</ul>
 
-	<h3 id="chapter-x">Chapter X</h3>
-<h1 id="some-chapter-title">Some Chapter title</h1>
-<p>Lorem Ipsum.</p>
 
-
-
-
-
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
-        
-            </div> 
         
         </div> 
         
@@ -431,6 +480,39 @@
             
                 
                     
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
                     
                 
                 
@@ -450,35 +532,6 @@
                     
                         
                         
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -615,10 +668,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/eh_GameJolt/" title="eh_jogos Godot GamejoltApi"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/eh_GameJolt/reference/" title="References"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/eh_GameJolt/reference/" title="References" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/eh_GameJolt/reference/classes/eh_gjgamecredentials/" title="eh_GJGameCredentials" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -648,3 +701,4 @@
 
   </body>
 </html>
+

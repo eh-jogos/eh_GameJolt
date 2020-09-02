@@ -7,11 +7,12 @@
 	"content": "Chapter X Some Chapter title Lorem Ipsum.\n"
 },
 {
-	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/classes/_eh_gjbaserequest/",
-	"title": "_eh_GJBaseRequest",
+	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjbaserequest/",
+	"title": "eh_GJBaseRequest",
 	"tags": [],
-	"description": "",
-	"content": "Extends: HTTPRequest\nDescription Property Descriptions game_id var game_id: String public variables - order: export \u0026gt; normal var \u0026gt; onready\nprivate_key var private_key: String username var username: String user_token var user_token: String Method Descriptions set_user_credentials func set_user_credentials(p_username, p_user_token) -\u0026gt; void Public Methods \u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash; Signals  signal gj_request_failed(error_dict): ## Member Variables and Dependencies \u0026mdash;\u0026ndash; signals  "
+	"description": "This Class is not to be used directly, rather it is the base class for all of GameJolt&#39;s
+Endpoint Requests. This will contain the base to build urls and manage responses",
+	"content": "Extends: HTTPRequest\nDescription This Class is not to be used directly, rather it is the base class for all of GameJolt\u0026rsquo;s Endpoint Requests. This will contain the base to build urls and manage responses\nProperty Descriptions game_id var game_id: String The game_id in Gamejolt. Should be set in the \u0026ldquo;GameJolt\u0026rdquo; Tab that appears in Project Settings after enabling the plugin.\nprivate_key var private_key: String The game\u0026rsquo;s private_key in Gamejolt. Should be set in the \u0026ldquo;GameJolt\u0026rdquo; Tab that appears in Project Settings after enabling the plugin.\nusername var username: String The player\u0026rsquo;s username. Will be aquired automatically if the game was downloaded through GameJolt\u0026rsquo;s client. Otherwise, will be set by a login screen, but player only needs to login once.\nuser_token var user_token: String The player\u0026rsquo;s game_token. Will be aquired automatically if the game was downloaded through GameJolt\u0026rsquo;s client. Otherwise, will be set by a login screen, but player only needs to login once.\nSignals  signal gj_request_failed(error_dict): Signal sent when requests fail. Sends an dictionary with details about the error.  "
 },
 {
 	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjgamecredentials/",
@@ -46,14 +47,15 @@
 	"title": "eh_GJUsersAuthRequest",
 	"tags": [],
 	"description": "This class decribes the [Auth api endpoint](https://gamejolt.com/game-api/doc/users/auth).
-It&#39;s response is modeled in the custom resource of [eh_GJUsersAuthData](../eh_gjusersauthdata/)
+It&#39;s response is modeled in the custom resource of [eh_GJUsersAuthData]
 
 It&#39;s a simple class to help with login in the user, but should be the first thing the
 game does or check for.
 
-If the request fails, the signal `gj_request_failed` will be emitted with an error dict
-as its parameter.",
-	"content": "Extends: _eh_GJBaseRequest \u0026lt; HTTPRequest\nDescription This class decribes the Auth api endpoint. It\u0026rsquo;s response is modeled in the custom resource of eh_GJUsersAuthData\nIt\u0026rsquo;s a simple class to help with login in the user, but should be the first thing the game does or check for.\nIf the request fails, the signal gj_request_failed will be emitted with an error dict as its parameter.\nMethod Descriptions auth_user_credentials func auth_user_credentials(p_username: String, p_user_token: String) -\u0026gt; int Builds url and send request to the auth Endpoint. Return an int which is the request error code.\nSignals  signal gj_auth_data_received(eh_gj_users_auth_data): Signal sent with Auth Data response. Sends the eh_GJUsersAuthRequest resource as paremeter.  "
+If the request fails, the signal [eh_GJBaseRequest.gj_request_failed] will be emitted with an
+error dict as its parameter.
+category: HTTPRequests",
+	"content": "Extends: eh_GJBaseRequest \u0026lt; HTTPRequest\nDescription This class decribes the Auth api endpoint. It\u0026rsquo;s response is modeled in the custom resource of [eh_GJUsersAuthData]\nIt\u0026rsquo;s a simple class to help with login in the user, but should be the first thing the game does or check for.\nIf the request fails, the signal [eh_GJBaseRequest.gj_request_failed] will be emitted with an error dict as its parameter. category: HTTPRequests\nMethod Descriptions auth_user_credentials func auth_user_credentials(p_username: String, p_user_token: String) -\u0026gt; int Builds url and send request to the auth Endpoint. Return an int which is the request error code.\nSignals  signal gj_auth_data_received(eh_gj_users_auth_data): Signal sent with Auth Data response. Sends the [eh_GJUsersAuthData] resource as paremeter.  "
 },
 {
 	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusersfetch/",
@@ -73,19 +75,19 @@ as its parameter.",
 	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusersfetchrequest/",
 	"title": "eh_GJUsersFetchRequest",
 	"tags": [],
-	"description": "This class decribes the Fetch api endpoint https://gamejolt.com/game-api/doc/users/fetch
-It&#39;s response is modeled in the custom resource of eh_GJUsersFetchData.gd
+	"description": "This class decribes the [Fetch api endpoint](https://gamejolt.com/game-api/doc/users/fetch)
+It&#39;s response is modeled in the custom resource of [eh_GJUsersFetchData]
 
-It is possible to request data for a single user with `fetch_user` or for multiple users with
-`fetch_users`. These methods return the request Error Code, so that you can check
+It is possible to request data for a single user with [fetch_user] or for multiple users with
+[fetch_users]. These methods return the request Error Code, so that you can check
 if for connection errors.
 
 Each has it&#39;s own signal with the response data, so be sure to listen for the corresponding
 signal.
 
-If the request fails, the signal `gj_request_failed` will be emitted with an error dict
+If the request fails, the signal [eh_GJBaseRequest.gj_request_failed] will be emitted with an error dict
 as its parameter.",
-	"content": "Extends: _eh_GJBaseRequest \u0026lt; HTTPRequest\nDescription This class decribes the Fetch api endpoint https://gamejolt.com/game-api/doc/users/fetch It\u0026rsquo;s response is modeled in the custom resource of eh_GJUsersFetchData.gd\nIt is possible to request data for a single user with fetch_user or for multiple users with fetch_users. These methods return the request Error Code, so that you can check if for connection errors.\nEach has it\u0026rsquo;s own signal with the response data, so be sure to listen for the corresponding signal.\nIf the request fails, the signal gj_request_failed will be emitted with an error dict as its parameter.\nMethod Descriptions fetch_user func fetch_user(p_username: String, is_user_id: bool = false) -\u0026gt; int Public Methods \u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash;\u0026mdash; Request for a single user\nfetch_users func fetch_users(p_array_of_ids: Array) -\u0026gt; int Request for multiple users\nSignals  signal gj_users_fetch_data_received(array_of_eh_gj_users_fetch_data): Multi User Request Response. Sends an array of eh_GJUsersFetchData as parameter signal gj_user_fetch_data_received(eh_gj_users_fetch_data): Single User Request Response. Send an eh_GJUsersFetchData Resource as parameter  "
+	"content": "Extends: eh_GJBaseRequest \u0026lt; HTTPRequest\nDescription This class decribes the Fetch api endpoint It\u0026rsquo;s response is modeled in the custom resource of [eh_GJUsersFetchData]\nIt is possible to request data for a single user with fetch_user or for multiple users with fetch_users. These methods return the request Error Code, so that you can check if for connection errors.\nEach has it\u0026rsquo;s own signal with the response data, so be sure to listen for the corresponding signal.\nIf the request fails, the signal [eh_GJBaseRequest.gj_request_failed] will be emitted with an error dict as its parameter.\nMethod Descriptions fetch_user func fetch_user(p_username: String, is_user_id: bool = false) -\u0026gt; int Request for a single user. Returns request error code. The user data will be sent either by the signal gj_user_fetch_data_received will be emitted\nfetch_users func fetch_users(p_array_of_ids: Array) -\u0026gt; int Request for multiple users Returns request error code. The user data will be sent either by the signal gj_users_fetch_data_received will be emitted\nSignals  signal gj_users_fetch_data_received(array_of_eh_gj_users_fetch_data): Multi User Request Response. Sends an array of [eh_GJUsersFetchData] as parameter signal gj_user_fetch_data_received(eh_gj_users_fetch_data): Single User Request Response. Send an [eh_GJUsersFetchData] Resource as parameter  "
 },
 {
 	"uri": "https://eh-jogos.github.io/eh_GameJolt/",
