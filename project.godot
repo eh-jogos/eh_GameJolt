@@ -9,10 +9,40 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "EditorScript",
-"class": "ReferenceCollector",
+"base": "Resource",
+"class": "BoolVariable",
 "language": "GDScript",
-"path": "res://godot_docs_scripts/ReferenceCollector.gd"
+"path": "res://addons/eh_jogos.docs-exporter/editor_uis/shared_variables/scripts/BoolVariable.gd"
+}, {
+"base": "MarkdownDocsExporter",
+"class": "HugoMarkdownDocsExporter",
+"language": "GDScript",
+"path": "res://addons/eh_jogos.docs-exporter/godot_docs_scripts/HugoMarkdownDocsExporter.gd"
+}, {
+"base": "EditorScript",
+"class": "JsonIO",
+"language": "GDScript",
+"path": "res://addons/eh_jogos.docs-exporter/godot_docs_scripts/JsonIO.gd"
+}, {
+"base": "JsonIO",
+"class": "MarkdownDocsExporter",
+"language": "GDScript",
+"path": "res://addons/eh_jogos.docs-exporter/godot_docs_scripts/MarkdownDocsExporter.gd"
+}, {
+"base": "JsonIO",
+"class": "ReferenceFormatter",
+"language": "GDScript",
+"path": "res://addons/eh_jogos.docs-exporter/godot_docs_scripts/ReferenceFormatter.gd"
+}, {
+"base": "Resource",
+"class": "StringVariable",
+"language": "GDScript",
+"path": "res://addons/eh_jogos.docs-exporter/editor_uis/shared_variables/scripts/StringVariable.gd"
+}, {
+"base": "Resource",
+"class": "StringVariableArray",
+"language": "GDScript",
+"path": "res://addons/eh_jogos.docs-exporter/editor_uis/shared_variables/scripts/StringVariableArray.gd"
 }, {
 "base": "HTTPRequest",
 "class": "eh_GJBaseRequest",
@@ -60,7 +90,13 @@ _global_script_classes=[ {
 "path": "res://addons/eh_jogos_game_jolt_api/custom_nodes/HTTPRequests/eh_GJUsersFetchRequest.gd"
 } ]
 _global_script_class_icons={
-"ReferenceCollector": "",
+"BoolVariable": "",
+"HugoMarkdownDocsExporter": "",
+"JsonIO": "",
+"MarkdownDocsExporter": "",
+"ReferenceFormatter": "",
+"StringVariable": "",
+"StringVariableArray": "",
 "eh_GJBaseRequest": "",
 "eh_GJGameCredentials": "",
 "eh_GJUserCredentials": "",
@@ -77,10 +113,11 @@ _global_script_class_icons={
 config/name="eh_GameJolt"
 run/main_scene="res://Demo.tscn"
 config/icon="res://icon.png"
+config/version="0.2.0"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "eh_jogos_game_jolt_api" )
+enabled=PoolStringArray( "eh_jogos.docs-exporter", "eh_jogos_game_jolt_api" )
 
 [rendering]
 
