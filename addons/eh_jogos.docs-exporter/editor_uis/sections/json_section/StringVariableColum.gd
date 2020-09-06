@@ -7,10 +7,14 @@ extends VBoxContainer
 # enums
 # constants
 # public variables - order: export > normal var > onready 
+
+export var button_text = ""
+
 # private variables - order: export > normal var > onready
 var _editor_field_packed_scene: PackedScene = null
 
 onready var _resource_preloader: ResourcePreloader = $ResourcePreloader
+onready var _field_container: VBoxContainer = $Fields
 ### ---------------------------------------
 
 
@@ -25,13 +29,10 @@ func _ready():
 ### Public Methods ------------------------
 
 func populate_editor_fields(fields: StringVariableArray) -> void:
-	print("POPULATING")
 	for field in fields.value:
-		print("field: %s | field_value: %s"%[field, field.value])
 		var string_variable = field as StringVariable
 		var editor_field = _editor_field_packed_scene.instance()
-		add_child(editor_field, true)
-		move_child(editor_field, 1)
+		_field_container.add_child(editor_field, true)
 		
 		if editor_field.has_method("set_string_variable"):
 			editor_field.set_string_variable(string_variable)
