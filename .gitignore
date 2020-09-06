@@ -31,3 +31,4 @@ data_*/
 
 # Documentation Site ignore
 .docs-site
+reference.json
