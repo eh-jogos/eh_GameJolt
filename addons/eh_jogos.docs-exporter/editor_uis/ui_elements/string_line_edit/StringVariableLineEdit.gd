@@ -20,7 +20,6 @@ var _string_variable: StringVariable = null
 
 ### Public Methods ------------------------
 func set_string_variable(resource: StringVariable) -> void:
-	print("set_string_variable on StringVariableLineEdit | %s"%[resource])
 	_string_variable = resource
 	text = _string_variable.value
 ### ---------------------------------------

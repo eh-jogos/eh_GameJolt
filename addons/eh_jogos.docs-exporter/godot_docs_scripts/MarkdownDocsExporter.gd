@@ -33,7 +33,7 @@ const MD_BLOCK_PROPERTY = ""\
 
 
 # public variables - order: export > normal var > onready 
-var reference_json: = "res://formated_reference.json"
+var reference_json: = "res://reference.json"
 var export_path: = "res://.github-wiki/"
 # private variables - order: export > normal var > onready 
 ### ---------------------------------------
