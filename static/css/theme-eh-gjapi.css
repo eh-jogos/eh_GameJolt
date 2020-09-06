@@ -24,10 +24,12 @@
 	--MENU-VISITED-color: #ff447d; /* Color of 'page visited' icons in menu */
 	--MENU-SECTION-HR-color: #ff447d; /* Color of <hr> separator in menu */
 	
+	--BODY-BACKGROUND-color: #303030;
+	--TR-EVEN-BACKGROUND-color:#c8ec3820;
 }
 
 body {
-	background-color: #303030;
+	background-color: var(--BODY-BACKGROUND-color);
 	color: var(--MAIN-TEXT-color) !important;
 	font-size: 20px !important;
 	font-family: "Work Sans", sans-serif;
@@ -43,12 +45,40 @@ h1 {
 	color: var(--MAIN-TITLES-TEXT-color);
 	font-family: "Maven Pro", "Work Sans", sans-serif;
 	font-weight: 400;
+	text-transform: none;
 }
 
 h2, h3, h4, h5 {
 	color: var(--MAIN-TITLES-TEXT-color) !important;
 	font-family: "Maven Pro", "Work Sans", sans-serif;
 	font-weight: 700;
+}
+
+hr {
+	border-bottom: 1px solid var(--MENU-HEADER-BORDER-color)
+}
+
+table {
+	table-layout: auto;
+	width: auto;
+	border-color: var(--MENU-HEADER-BG-color);
+}
+
+th {
+	background-color: var(--MENU-HEADER-BG-color);
+}
+
+tr:nth-child(even){
+	background-color: var(--TR-EVEN-BACKGROUND-color);
+}
+
+td {
+	border-color: var(--MENU-HEADER-BG-color);
+}
+
+td span.copy-to-clipboard {
+	visibility: hidden;
+	width: 0;
 }
 
 a {

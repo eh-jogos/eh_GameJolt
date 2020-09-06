@@ -8,6 +8,7 @@ theme = "hugo-theme-learn"
 # hugo-theme-learn prameters
 [params]
 	themeVariant = "eh-gjapi"
+	#themeVariant = "green"
 
 # For search functionality
 [outputs]
