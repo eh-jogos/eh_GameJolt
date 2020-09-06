@@ -5,17 +5,23 @@ extends Resource
 
 ### Member Variables and Dependencies -----
 # signals 
+
+signal value_updated
+
 # enums
 # constants
 # public variables - order: export > normal var > onready 
 
-export var value: String = ""
+export var value: String = "" setget _set_value
 
 # private variables - order: export > normal var > onready 
 ### ---------------------------------------
 
 
 ### Built in Engine Methods ---------------
+
+func _init(string: = "") -> void:
+	value = string
 
 ### ---------------------------------------
 
@@ -25,6 +31,11 @@ export var value: String = ""
 
 
 ### Private Methods -----------------------
+
+func _set_value(p_value: String) -> void:
+	value = p_value
+	emit_signal("value_updated")
+
 ### ---------------------------------------
 
 
