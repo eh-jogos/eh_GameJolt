@@ -33,8 +33,6 @@ const MD_BLOCK_PROPERTY = ""\
 
 
 # public variables - order: export > normal var > onready 
-var reference_json: = "res://reference.json"
-var export_path: = "res://.github-wiki/"
 # private variables - order: export > normal var > onready 
 ### ---------------------------------------
 
@@ -44,14 +42,22 @@ func _ready():
 	pass
 
 func _run() -> void:
-	var reference_dict : = _get_dictionary_from_file(reference_json)
+	export_github_wiki_pages("res://reference.json", "res://.github-wiki/")
+
+### ---------------------------------------
+
+
+### Public Methods ------------------------
+
+func export_github_wiki_pages(reference_json_path: String, export_path: String) -> void:
+	var reference_dict : = _get_dictionary_from_file(reference_json_path)
 	if reference_dict.has("error"):
 		push_error(reference_dict.error)
 		return
 	
 	for entry in reference_dict.classes:
 		var md_filename: = "%s.md" % [entry.name.to_lower()]
-		var md_file_path: = "%s/%s"%[export_path.get_base_dir(), md_filename]
+		var md_file_path: = _get_md_filepath(export_path, md_filename)
 		
 		var md_content: = _get_inheritance_block(entry)
 		md_content += MD_BLOCK_TITLE.format({title=entry.name})
@@ -62,15 +68,17 @@ func _run() -> void:
 		_write_documentation_file(md_content, md_file_path)
 		
 	print("Success!")
-	pass
-### ---------------------------------------
 
-
-### Public Methods ------------------------
 ### ---------------------------------------
 
 
 ### Private Methods -----------------------
+
+func _get_md_filepath(export_path: String, filename: String) -> String:
+	if not export_path.ends_with("/"):
+		export_path += "/"
+	var filepath: = "%s%s"%[export_path, filename]
+	return filepath
 
 func _get_inheritance_block(docs_entry: Dictionary) -> String:
 	var content: = ""
