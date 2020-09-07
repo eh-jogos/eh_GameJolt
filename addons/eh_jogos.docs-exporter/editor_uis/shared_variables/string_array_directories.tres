@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
-value = "res://addons/eh_jogos_game_jolt_api"
+value = "res://"
 
 [resource]
 script = ExtResource( 1 )

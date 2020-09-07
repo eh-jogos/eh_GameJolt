@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/eh_jogos.docs-exporter/editor_uis/shared_variables/scripts/StringVariable.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+value = "/mnt/24847D5F847D3500/Daniel/ProjetosGames/_00_MyToolsAndLibraries/GameJoltApi/test_export"

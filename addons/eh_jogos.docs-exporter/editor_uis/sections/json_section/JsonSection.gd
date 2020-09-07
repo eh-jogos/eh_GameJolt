@@ -29,11 +29,7 @@ func _ready() -> void:
 	_reference_formatter = ReferenceFormatter.new()
 	
 	_directories = _resource_preloader.get_resource("directories")
-	_directories.connect("value_updated", self, "_on_directories_updated")
-	
 	_filters = _resource_preloader.get_resource("filters")
-	_filters.connect("value_updated", self, "_on_filters_updated")
-	
 	_is_recursive = _resource_preloader.get_resource("is_recursive")
 	_save_path = _resource_preloader.get_resource("save_path")
 	
@@ -57,18 +53,5 @@ func _on_ExportJson_pressed() -> void:
 			_is_recursive.value,
 			_save_path.value
 	)
-
-
-func _save_string_variable_array(path, resource) -> void:
-	if visible:
-		ResourceSaver.save(path, resource)
-
-
-func _on_directories_updated() -> void:
-	_save_string_variable_array(_directories.resource_path, _directories)
-
-
-func _on_filters_updated() -> void:
-	_save_string_variable_array(_filters.resource_path, _filters)
 
 ### ---------------------------------------

@@ -5,6 +5,7 @@ extends Resource
 
 ### Member Variables and Dependencies -----
 # signals
+
 signal value_updated
 
 # enums
@@ -82,6 +83,7 @@ func _get_value() -> Array:
 
 
 func _on_array_element_updated() -> void:
+	ResourceSaver.save(resource_path, self)
 	emit_signal("value_updated")
 
 ### ---------------------------------------

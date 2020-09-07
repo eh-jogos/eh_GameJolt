@@ -35,6 +35,7 @@ func _init(string: = "") -> void:
 func _set_value(p_value: String) -> void:
 	value = p_value
 	emit_signal("value_updated")
+	ResourceSaver.save(resource_path, self)
 
 ### ---------------------------------------
 
