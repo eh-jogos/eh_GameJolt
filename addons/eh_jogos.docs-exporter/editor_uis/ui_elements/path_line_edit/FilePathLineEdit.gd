@@ -7,23 +7,30 @@ extends HBoxContainer
 # enums
 # constants
 # public variables - order: export > normal var > onready 
+export var file_dialog_filter: = ""
 
 # private variables - order: export > normal var > onready 
 var _path_variable: StringVariable = null
 
 onready var _line_edit: LineEdit = $PathLineEdit
+onready var _file_dialog: FileDialog = $FileExplorerButton/FileDialog
+
 ### ---------------------------------------
 
 
 ### Built in Engine Methods ---------------
 
+func _ready() -> void:
+	if file_dialog_filter != "":
+		_file_dialog.add_filter(file_dialog_filter)
+
 ### ---------------------------------------
 
 
 ### Public Methods ------------------------
-func set_string_variable	(resource: StringVariable) -> void:
+func set_string_variable(resource: StringVariable) -> void:
 	_path_variable = resource
-	_line_edit.text = _path_variable.value
+	_line_edit.set_text(_path_variable.value)
 
 ### ---------------------------------------
 

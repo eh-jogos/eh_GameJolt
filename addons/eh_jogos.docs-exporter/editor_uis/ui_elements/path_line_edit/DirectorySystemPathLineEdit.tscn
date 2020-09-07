@@ -10,7 +10,7 @@ content_margin_left = 8.0
 content_margin_right = 8.0
 bg_color = Color( 0, 0, 0, 0.376471 )
 
-[node name="DirectoryPathLineEdit" type="HBoxContainer"]
+[node name="DirectorySystemPathLineEdit" type="HBoxContainer"]
 margin_left = 511.0
 margin_right = 1018.0
 margin_bottom = 22.0
@@ -57,8 +57,11 @@ margin_bottom = 451.0
 window_title = "Select directory to scan"
 mode_overrides_title = false
 mode = 2
+access = 2
 show_hidden_files = true
+current_dir = "/mnt/24847D5F847D3500/Daniel/ProjetosGames/_00_MyToolsAndLibraries/GameJoltApi/demo-project"
+current_path = "/mnt/24847D5F847D3500/Daniel/ProjetosGames/_00_MyToolsAndLibraries/GameJoltApi/demo-project/"
 [connection signal="text_changed" from="PathLineEdit" to="." method="_on_LineEdit_text_changed"]
 [connection signal="text_entered" from="PathLineEdit" to="." method="_on_LineEdit_text_entered"]
-[connection signal="dir_selected" from="FileExplorerButton/FileDialog" to="." method="_on_FileDialog_dir_selected"]
 [connection signal="dir_selected" from="FileExplorerButton/FileDialog" to="PathLineEdit" method="_on_FileDialog_dir_selected"]
+[connection signal="dir_selected" from="FileExplorerButton/FileDialog" to="." method="_on_FileDialog_dir_selected"]

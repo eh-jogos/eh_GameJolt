@@ -12,23 +12,27 @@ extends LineEdit
 
 
 ### Built in Engine Methods ---------------
-func _ready():
-	pass
 
 ### ---------------------------------------
 
 
 ### Public Methods ------------------------
+
+func set_text(string: String) -> void:
+	text = string
+	var total_chars = text.length()
+	caret_position = total_chars-1
+
 ### ---------------------------------------
 
 
 ### Private Methods -----------------------
 func _on_FileDialog_file_selected(path):
-	text = path
+	set_text(path)
 
 
 func _on_FileDialog_dir_selected(dir):
-	text = dir
+	set_text(dir)
 
 ### ---------------------------------------
 

@@ -27,6 +27,7 @@ margin_bottom = 22.0
 size_flags_horizontal = 3
 custom_styles/focus = SubResource( 1 )
 custom_styles/normal = SubResource( 1 )
+clear_button_enabled = true
 script = ExtResource( 3 )
 
 [node name="FileExplorerButton" type="Button" parent="."]
@@ -57,9 +58,10 @@ window_title = "Select where to save json reference"
 mode_overrides_title = false
 mode = 0
 access = 2
+show_hidden_files = true
 current_dir = "/mnt/24847D5F847D3500/Daniel/ProjetosGames/_00_MyToolsAndLibraries/GameJoltApi/demo-project"
 current_path = "/mnt/24847D5F847D3500/Daniel/ProjetosGames/_00_MyToolsAndLibraries/GameJoltApi/demo-project/"
 [connection signal="text_changed" from="PathLineEdit" to="." method="_on_LineEdit_text_changed"]
 [connection signal="text_entered" from="PathLineEdit" to="." method="_on_LineEdit_text_entered"]
-[connection signal="file_selected" from="FileExplorerButton/FileDialog" to="PathLineEdit" method="_on_FileDialog_file_selected"]
 [connection signal="file_selected" from="FileExplorerButton/FileDialog" to="." method="_on_FileDialog_file_selected"]
+[connection signal="file_selected" from="FileExplorerButton/FileDialog" to="PathLineEdit" method="_on_FileDialog_file_selected"]
