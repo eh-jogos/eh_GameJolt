@@ -33,16 +33,22 @@ var date: = ""
 
 ### Built in Engine Methods ---------------
 func _run() -> void:
-	export_path = "res://.docs-site/content/reference/"
-	var reference_dict : = _get_dictionary_from_file(reference_json)
+	export_hugo_site_pages("res://reference.json", "res://.docs-site/content/reference/")
+
+### ---------------------------------------
+
+
+### Public Methods ------------------------
+
+func export_hugo_site_pages(reference_json_path: String, export_path: String) -> void:
+	var reference_dict : = _get_dictionary_from_file(reference_json_path)
 	if reference_dict.has("error"):
 		push_error(reference_dict.error)
 		return
 	
 	for entry in reference_dict.classes:
 		var md_filename: = "%s.md" % [entry.name.to_lower()]
-		var md_file_path: = "%s/%s"%[export_path.get_base_dir(), md_filename]
-		
+		var md_file_path: = _get_md_filepath(export_path, md_filename)
 		
 		var md_content: = _get_hugo_front_matter(entry.name)
 		md_content += _get_inheritance_block(entry)
@@ -53,11 +59,7 @@ func _run() -> void:
 		_write_documentation_file(md_content, md_file_path)
 		
 	print("Success!")
-	pass
-### ---------------------------------------
 
-
-### Public Methods ------------------------
 ### ---------------------------------------
 
 
