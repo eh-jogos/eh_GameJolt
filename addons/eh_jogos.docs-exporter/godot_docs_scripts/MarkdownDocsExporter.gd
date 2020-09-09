@@ -57,7 +57,8 @@ func export_github_wiki_pages(reference_json_path: String, export_path: String) 
 	
 	for entry in reference_dict.classes:
 		var md_filename: = "%s.md" % [entry.name.to_lower()]
-		var md_file_path: = _get_md_filepath(export_path, md_filename)
+		var category: String = entry.category if entry.has("category") else ""
+		var md_file_path: = _get_md_filepath(export_path, md_filename, category)
 		
 		var md_content: = _get_inheritance_block(entry)
 		md_content += MD_BLOCK_TITLE.format({title=entry.name})
@@ -74,10 +75,14 @@ func export_github_wiki_pages(reference_json_path: String, export_path: String) 
 
 ### Private Methods -----------------------
 
-func _get_md_filepath(export_path: String, filename: String) -> String:
+func _get_md_filepath(export_path: String, filename: String, category: = "") -> String:
 	if not export_path.ends_with("/"):
 		export_path += "/"
-	var filepath: = "%s%s"%[export_path, filename]
+	
+	if not category.ends_with("/") and category != "":
+		category += "/"
+	
+	var filepath: = "%s%s%s"%[export_path, category, filename]
 	return filepath
 
 func _get_inheritance_block(docs_entry: Dictionary) -> String:
