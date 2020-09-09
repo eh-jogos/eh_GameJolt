@@ -62,7 +62,9 @@ func export_hugo_site_pages(reference_json_path: String, export_path: String) ->
 		var md_filename: = "%s.md" % [entry.name.to_lower()]
 		var category: String = entry.category if entry.has("category") else ""
 		var md_file_path: = _get_md_filepath(export_path, md_filename, category.to_lower())
+		
 		_add_category_to_db(category)
+		_update_links_db(entry.name, category)
 		
 		var md_content: = _get_hugo_front_matter(entry.name)
 		md_content += _get_inheritance_block(entry)

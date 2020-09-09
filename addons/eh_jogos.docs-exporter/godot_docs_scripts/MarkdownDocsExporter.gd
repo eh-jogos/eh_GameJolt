@@ -33,6 +33,9 @@ const MD_BLOCK_PROPERTY = ""\
 
 
 # public variables - order: export > normal var > onready 
+
+var links_db: = {}
+
 # private variables - order: export > normal var > onready 
 ### ---------------------------------------
 
@@ -60,6 +63,8 @@ func export_github_wiki_pages(reference_json_path: String, export_path: String) 
 		var category: String = entry.category if entry.has("category") else ""
 		var md_file_path: = _get_md_filepath(export_path, md_filename, category)
 		
+		_update_links_db(entry.name, category)
+		
 		var md_content: = _get_inheritance_block(entry)
 		md_content += MD_BLOCK_TITLE.format({title=entry.name})
 		md_content += MD_BLOCK_DESCRIPTION.format({description=entry.description})
@@ -67,7 +72,9 @@ func export_github_wiki_pages(reference_json_path: String, export_path: String) 
 		md_content += _get_properties_block(entry)
 		
 		_write_documentation_file(md_content, md_file_path)
-		
+	
+	print(JSON.print(links_db," "))
+	
 	print("Success!")
 
 ### ---------------------------------------
@@ -84,6 +91,28 @@ func _get_md_filepath(export_path: String, filename: String, category: = "") -> 
 	
 	var filepath: = "%s%s%s"%[export_path, category, filename]
 	return filepath
+
+
+func _update_links_db(entry_name: String, category: String) -> void:
+	var lowercase_name = entry_name.to_lower()
+	
+	var sanitized_category = ""
+	if category.ends_with("/"):
+		sanitized_category = category.rstrip("/").to_lower()
+	else:
+		sanitized_category = category.to_lower()
+	
+	var full_path = ""
+	if sanitized_category == "":
+		full_path = lowercase_name
+	else:
+		full_path = "/%s/%s/"%[sanitized_category, lowercase_name]
+	
+	links_db[entry_name] = {
+			local_path = lowercase_name,
+			full_path = full_path
+	}
+
 
 func _get_inheritance_block(docs_entry: Dictionary) -> String:
 	var content: = ""
