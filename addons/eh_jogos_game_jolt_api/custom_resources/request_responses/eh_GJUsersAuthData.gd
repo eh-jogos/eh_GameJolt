@@ -1,7 +1,8 @@
-class_name eh_GJUsersAuthData
-extends Resource
 # Data Struct that describes the response from `/users/auth/` endpoint
 # Documentation for member variables at https://gamejolt.com/game-api/doc/users/auth/
+# @category: User/ResponseData
+class_name eh_GJUsersAuthData
+extends Resource
 
 var success: = false
 var message: = ""

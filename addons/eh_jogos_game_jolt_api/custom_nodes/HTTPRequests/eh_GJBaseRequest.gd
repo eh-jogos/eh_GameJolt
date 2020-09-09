@@ -1,7 +1,5 @@
 # This Class is not to be used directly, rather it is the base class for all of GameJolt's 
 # Endpoint Requests. This will contain the base to build urls and manage responses
-# @category: HTTPRequests
-# @tags: abstract
 class_name eh_GJBaseRequest
 extends HTTPRequest
 ### Member Variables and Dependencies -----
@@ -21,12 +19,14 @@ const API_GAME_ID_PARAMETER = "?game_id="
 
 # public variables - order: export > normal var > onready 
 
+# Test variable to test doc hugo export
+var test_int: int = 1
 # The game_id in Gamejolt. Should be set in the "GameJolt" Tab that appears in Project Settings
 # after enabling the plugin.
-var game_id: String
+var game_id: String = "joaozinho" setget , get_game_id
 # The game's private_key in Gamejolt. Should be set in the "GameJolt" Tab that appears in Project 
 # Settings after enabling the plugin.
-var private_key: String
+var private_key: String setget set_private_key
 # The player's username. Will be aquired automatically if the game was downloaded through GameJolt's
 # client. Otherwise, will be set by a login screen, but player only needs to login once.
 var username: String
@@ -37,6 +37,11 @@ var user_token: String
 # private variables - order: export > normal var > onready 
 ### ---------------------------------------
 
+func set_private_key(value: String) -> void:
+	private_key = value
+
+func get_game_id() -> String:
+	return game_id
 
 ### Built in Engine Methods ---------------
 func _ready() -> void:

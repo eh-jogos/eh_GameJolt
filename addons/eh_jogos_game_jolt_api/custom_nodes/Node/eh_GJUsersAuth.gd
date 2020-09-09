@@ -1,7 +1,7 @@
+# Class to Manage Requests to the `users/auth` endpoint.
+# @category: User/Endpoints/
 class_name eh_GJUsersAuth
 extends Node
-# Class to Manage Requests to the `users/auth` endpoint.
-# 
 
 ### Member Variables and Dependencies -----
 # signals 

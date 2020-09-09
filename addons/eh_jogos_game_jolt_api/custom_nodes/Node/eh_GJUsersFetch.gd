@@ -1,7 +1,7 @@
+# Class to Manage Requests to the `users` endpoint.
+# @category: User/Endpoints/
 class_name eh_GJUsersFetch
 extends Node
-# Class to Manage Requests to the `users` endpoint.
-# 
 
 ### Member Variables and Dependencies -----
 # signals 

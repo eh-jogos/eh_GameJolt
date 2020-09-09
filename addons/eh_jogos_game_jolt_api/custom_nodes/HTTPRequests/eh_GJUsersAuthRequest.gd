@@ -6,7 +6,7 @@
 #
 # If the request fails, the signal [eh_GJBaseRequest.gj_request_failed] will be emitted with an 
 # error dict as its parameter.
-# category: HTTPRequests
+# @category: User/Requests
 class_name eh_GJUsersAuthRequest
 extends eh_GJBaseRequest
 

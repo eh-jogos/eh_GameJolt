@@ -1,7 +1,8 @@
-class_name eh_GJUsersFetchData
-extends Resource
 # Data Struct that describes the user_response from `/users/` endpoint
 # Documentation for member variables at https://gamejolt.com/game-api/doc/users/fetch
+# @category: User/ResponseData
+class_name eh_GJUsersFetchData
+extends Resource
 
 enum Type {
 	User,
