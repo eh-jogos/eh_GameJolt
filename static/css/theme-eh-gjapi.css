@@ -166,3 +166,23 @@ a:hover {
 	background: #252525;
 	border-radius: 5px;
 }
+
+#sidebar .collapsible {
+	float: left;
+	font-size: 20px;
+	width: 32px;
+	height: 32px;
+	line-height: 24px;
+	margin: auto 0 auto 0;
+	padding: 4px 0;
+	background-color: transparent;
+	font-family: "Maven Pro", "Work Sans", sans-serif;
+}
+
+#sidebar .collapsible:hover {
+	background-color: var(--MAIN-LINK-color);
+}
+
+#sidebar ul li.active > .collapsible {
+	height: 40px;
+}

@@ -9,6 +9,7 @@ theme = "hugo-theme-learn"
 [params]
 	themeVariant = "eh-gjapi"
 	#themeVariant = "green"
+	disableShortcutsTitle = true
 
 # For search functionality
 [outputs]
