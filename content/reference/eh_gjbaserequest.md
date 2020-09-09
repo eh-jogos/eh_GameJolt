@@ -1,7 +1,7 @@
 ---  
 title: eh_GJBaseRequest  
 author: eh-jogos  
-date: 2020-09-05T10:11:41-03:00  
+date: 2020-09-07T20:45:11-03:00  
 summary:   
 ---  
 **Inherits:** _HTTPRequest > Node > Object_  
@@ -10,8 +10,6 @@ summary:
 ## Description  
  This Class is not to be used directly, rather it is the base class for all of GameJolt's 
  Endpoint Requests. This will contain the base to build urls and manage responses
- @category: HTTPRequests
- @tags: abstract
 
 ## Properties Description  
 

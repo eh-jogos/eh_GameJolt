@@ -1,7 +1,7 @@
 ---  
 title: eh_GJUsersAuthRequest  
 author: eh-jogos  
-date: 2020-09-05T10:11:41-03:00  
+date: 2020-09-07T20:45:11-03:00  
 summary:   
 ---  
 **Inherits:** _eh_GJBaseRequest > HTTPRequest > Node > Object_  
@@ -14,7 +14,6 @@ summary:
 
  If the request fails, the signal [eh_GJBaseRequest.gj_request_failed] will be emitted with an 
  error dict as its parameter.
- category: HTTPRequests
 
 ## Properties Description  
 

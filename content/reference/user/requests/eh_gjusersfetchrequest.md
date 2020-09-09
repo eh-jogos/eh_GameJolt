@@ -1,7 +1,7 @@
 ---  
 title: eh_GJUsersFetchRequest  
 author: eh-jogos  
-date: 2020-09-05T10:11:41-03:00  
+date: 2020-09-07T20:45:11-03:00  
 summary:   
 ---  
 **Inherits:** _eh_GJBaseRequest > HTTPRequest > Node > Object_  
