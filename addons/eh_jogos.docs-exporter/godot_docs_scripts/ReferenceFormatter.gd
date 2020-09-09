@@ -7,6 +7,10 @@ extends JsonIO
 # signals 
 # enums
 # constants
+const METADATA = {
+	category = "\n @category:"
+}
+
 # public variables - order: export > normal var > onready 
 
 # A list of directories to collect files from.
@@ -19,8 +23,8 @@ var patterns := ["*.gd"]
 var save_path := "res://formated_reference.json"
 
 # private variables - order: export > normal var > onready 
-var custom_class_db : = {}
-var custom_inheritance_db : = {}
+var _custom_class_db : = {}
+var _custom_inheritance_db : = {}
 
 ### ---------------------------------------
 
@@ -43,7 +47,7 @@ func export_formatted_reference_json(
 		is_recursive: bool, 
 		save_path: String
 ) -> void:
-	_build_custom_class_dbs()
+	_build__custom_class_dbs()
 	
 	var reference_dict : = _build_reference_dictionary_from_source_code(
 			directories, 
@@ -66,8 +70,11 @@ func export_formatted_reference_json(
 		var full_inheritance : Array = _get_inheritance(parent_class)
 		class_entry.extends_class = full_inheritance
 		
-		if custom_inheritance_db.has(class_entry.name):
-			class_entry["inherited_by"] = custom_inheritance_db[class_entry.name]
+		if _custom_inheritance_db.has(class_entry.name):
+			class_entry["inherited_by"] = _custom_inheritance_db[class_entry.name]
+		
+		if class_entry.has("description"):
+			_handle_metadata(class_entry)
 		
 		formatted_reference.classes.append(class_entry)
 	
@@ -77,6 +84,25 @@ func export_formatted_reference_json(
 
 
 ### Private Methods -----------------------
+
+func _build__custom_class_dbs() -> void:
+	_custom_class_db.clear()
+	_custom_inheritance_db.clear()
+	
+	var custom_classes_array : = []
+	var config = ConfigFile.new()
+	var err = config.load("res://project.godot")
+	if err != OK:
+		return
+	
+	custom_classes_array = config.get_value("", "_global_script_classes")
+	for custom_class in custom_classes_array:
+		_custom_class_db[custom_class.class] = custom_class.base
+		if not ClassDB.class_exists(custom_class.base):
+			if not _custom_inheritance_db.has(custom_class.base):
+				_custom_inheritance_db[custom_class.base] = []
+			_custom_inheritance_db[custom_class.base].append(custom_class.class)
+
 
 func _build_reference_dictionary_from_source_code(
 		directories: Array, 
@@ -101,8 +127,8 @@ func _get_inheritance(p_class: String) -> Array:
 	var parent_class = ""
 	if ClassDB.class_exists(p_class):
 		parent_class = ClassDB.get_parent_class(p_class)
-	elif custom_class_db.has(p_class):
-		parent_class = custom_class_db[p_class]
+	elif _custom_class_db.has(p_class):
+		parent_class = _custom_class_db[p_class]
 	
 	if parent_class != "":
 		var class_array: = _get_inheritance(parent_class)
@@ -111,21 +137,17 @@ func _get_inheritance(p_class: String) -> Array:
 	return inheritance_array
 
 
-func _build_custom_class_dbs() -> void:
-	var custom_classes_array : = []
-	var config = ConfigFile.new()
-	var err = config.load("res://project.godot")
-	if err != OK:
-		return
+func _handle_metadata(class_entry: Dictionary) -> void:
+	var description: String = class_entry.description
 	
-	custom_classes_array = config.get_value("", "_global_script_classes")
-	for custom_class in custom_classes_array:
-		custom_class_db[custom_class.class] = custom_class.base
-		if not ClassDB.class_exists(custom_class.base):
-			if not custom_inheritance_db.has(custom_class.base):
-				custom_inheritance_db[custom_class.base] = []
-			custom_inheritance_db[custom_class.base].append(custom_class.class)
+	for key in METADATA:
+		var metadata_index = description.find(METADATA[key])
+		if metadata_index != -1:
+			var end_index = description.find("\n", metadata_index+1)
+			var metadata_substring = description.substr(metadata_index, end_index-metadata_index)
+			var metadata_value = metadata_substring.lstrip(METADATA[key])
+			
+			class_entry[key] = metadata_value
+			class_entry.description = class_entry.description.replace(metadata_substring, "")
 
 ### ---------------------------------------
-
-
