@@ -59,21 +59,20 @@ func export_github_wiki_pages(reference_json_path: String, export_path: String) 
 		return
 	
 	for entry in reference_dict.classes:
+		_update_links_db(entry, export_path)
+	
+	for entry in reference_dict.classes:
 		var md_filename: = "%s.md" % [entry.name.to_lower()]
 		var category: String = entry.category if entry.has("category") else ""
 		var md_file_path: = _get_md_filepath(export_path, md_filename, category)
 		
-		_update_links_db(entry.name, category)
-		
 		var md_content: = _get_inheritance_block(entry)
 		md_content += MD_BLOCK_TITLE.format({title=entry.name})
-		md_content += MD_BLOCK_DESCRIPTION.format({description=entry.description})
+		md_content += _get_description_block(entry)
 		md_content += MD_BLOCK_PROPERTIES_DESCRIPTION
 		md_content += _get_properties_block(entry)
 		
 		_write_documentation_file(md_content, md_file_path)
-	
-	print(JSON.print(links_db," "))
 	
 	print("Success!")
 
@@ -93,8 +92,9 @@ func _get_md_filepath(export_path: String, filename: String, category: = "") -> 
 	return filepath
 
 
-func _update_links_db(entry_name: String, category: String) -> void:
-	var lowercase_name = entry_name.to_lower()
+func _update_links_db(class_entry: Dictionary, export_path: String) -> void:
+	var category: String = class_entry.category if class_entry.has("category") else ""
+	var lowercase_name = class_entry.name.to_lower()
 	
 	var sanitized_category = ""
 	if category.ends_with("/"):
@@ -102,16 +102,47 @@ func _update_links_db(entry_name: String, category: String) -> void:
 	else:
 		sanitized_category = category.to_lower()
 	
+	if export_path.ends_with("/"):
+			export_path = export_path.left(export_path.length()-1)
+	
 	var full_path = ""
 	if sanitized_category == "":
-		full_path = lowercase_name
+		if export_path.get_file() == "content":
+			full_path = lowercase_name
+		else:
+			full_path = "/%s/%s"%[export_path.get_file(), lowercase_name]
 	else:
-		full_path = "/%s/%s/"%[sanitized_category, lowercase_name]
+		if export_path.get_file() == "content":
+			full_path = "/%s/%s"%[sanitized_category, lowercase_name]
+		else:
+			full_path = "/%s/%s/%s"%[export_path.get_file(),sanitized_category, lowercase_name]
 	
-	links_db[entry_name] = {
+	var objects: = _get_objects_for_links_db(class_entry)
+	
+	links_db[class_entry.name] = {
 			local_path = lowercase_name,
-			full_path = full_path
+			full_path = full_path,
+			objects = objects,
 	}
+	
+	print(JSON.print(links_db, " "))
+
+
+func _get_objects_for_links_db(class_entry: Dictionary) -> Array:
+	var objects: = []
+	for object in class_entry.sub_classes:
+		objects.push_back(object.name)
+	for object in class_entry.constants:
+		objects.push_back(object.name)
+	for object in class_entry.members:
+		objects.push_back(object.name)
+	for object in class_entry.signals:
+		objects.push_back(object.name)
+	for object in class_entry.methods:
+		objects.push_back(object.name)
+	for object in class_entry.static_functions:
+		objects.push_back(object.name)
+	return objects
 
 
 func _get_inheritance_block(docs_entry: Dictionary) -> String:
@@ -127,6 +158,91 @@ func _get_inheritance_block(docs_entry: Dictionary) -> String:
 		})
 	
 	return content
+
+
+func _get_description_block(docs_entry: Dictionary) -> String:
+	var text = MD_BLOCK_DESCRIPTION.format({description=docs_entry.description})
+	text = _check_for_links(text, docs_entry)
+	
+	return text
+
+
+func _check_for_links(text: String, docs_entry: Dictionary) -> String:
+	if not text.match("*[*]*"):
+		return text
+	
+	var search_index = 0
+	while search_index > -1:
+		var start_index = text.find("[", search_index)
+		var end_index = text.find("]", start_index)
+		
+		if start_index == -1 or end_index == -1 or end_index < start_index:
+			search_index = -1
+			break
+		
+		search_index = end_index
+		
+		var keyword = _get_link_keyword(text, start_index + 1, end_index)
+		var nested_link = _get_nested_link(keyword)
+		
+		text = _handle_links_in_text(text, end_index + 1, keyword, nested_link, docs_entry.name)
+	
+	return text 
+
+
+func _get_link_keyword(text: String, start_index: int, end_index: int) -> String:
+	var length = end_index - start_index
+	var keyword = text.substr(start_index, length)
+	return keyword
+
+
+func _get_nested_link(keyword: String) -> Array:
+	var nested_link = []
+	if keyword.find("."):
+		nested_link = keyword.split(".")
+	return nested_link
+
+
+func _add_link_to_keyword(text: String, split_index: int, link: String) -> String:
+	var left = text.left(split_index)
+	var right = text.right(split_index)
+	text = "%s(%s)%s"%[left, link, right]
+	return text
+
+
+func _add_link_to_keyword_section(text: String, split_index: int, 
+		link: String, hash_link: String, keyword: String = "") -> String:
+	var left = text.left(split_index)
+	var right = text.right(split_index)
+	
+	if keyword != "":
+		left = left.replace(keyword, hash_link)
+	
+	text = "%s(%s#%s)%s"%[left, link, hash_link, right]
+	return text
+
+
+func _handle_links_in_text(text: String, split_index: int, 
+		keyword: String, nested_link: Array, page_name: String) -> String:
+	if links_db.has(keyword):
+		text = _add_link_to_keyword(text, split_index, links_db[keyword].local_path)
+	elif not nested_link.empty() and links_db.has(nested_link[0]):
+		text = _add_link_to_keyword_section(
+				text, 
+				split_index, 
+				links_db[nested_link[0]].local_path, 
+				nested_link[1], 
+				keyword
+		)
+	elif links_db[page_name].objects.has(keyword):
+		text = _add_link_to_keyword_section(
+				text, 
+				split_index, 
+				links_db[page_name].local_path, 
+				keyword
+		)
+	
+	return text
 
 
 func _get_properties_block(docs_entry: Dictionary) -> String:

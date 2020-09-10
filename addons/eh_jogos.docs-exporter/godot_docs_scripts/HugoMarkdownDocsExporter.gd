@@ -59,16 +59,18 @@ func export_hugo_site_pages(reference_json_path: String, export_path: String) ->
 		return
 	
 	for entry in reference_dict.classes:
+		_update_links_db(entry, export_path)
+	
+	for entry in reference_dict.classes:
 		var md_filename: = "%s.md" % [entry.name.to_lower()]
 		var category: String = entry.category if entry.has("category") else ""
 		var md_file_path: = _get_md_filepath(export_path, md_filename, category.to_lower())
 		
 		_add_category_to_db(category)
-		_update_links_db(entry.name, category)
 		
 		var md_content: = _get_hugo_front_matter(entry.name)
 		md_content += _get_inheritance_block(entry)
-		md_content += MD_BLOCK_DESCRIPTION.format({description=entry.description})
+		md_content += _get_description_block(entry)
 		md_content += MD_BLOCK_PROPERTIES_DESCRIPTION
 		md_content += _get_properties_block(entry)
 		
@@ -83,7 +85,6 @@ func export_hugo_site_pages(reference_json_path: String, export_path: String) ->
 		
 		_write_documentation_file(md_content, md_file_path)
 	
-	print(JSON.print(_category_db, "  "))
 	print("Success!")
 
 ### ---------------------------------------
@@ -146,6 +147,47 @@ func _add_category_to_db(category: String) -> void:
 				description = ""
 			}
 
+
+func _handle_links_in_text(text: String, split_index: int, 
+		keyword: String, nested_link: Array, page_name: String) -> String:
+	if links_db.has(keyword):
+		text = _add_link_to_keyword(text, split_index, links_db[keyword].full_path)
+	elif not nested_link.empty() and links_db.has(nested_link[0]):
+		text = _add_link_to_keyword_section(
+				text, 
+				split_index, 
+				links_db[nested_link[0]].full_path, 
+				nested_link[1], 
+				keyword
+		)
+	elif links_db[page_name].objects.has(keyword):
+		text = _add_link_to_keyword_section(
+				text, 
+				split_index, 
+				links_db[page_name].full_path, 
+				keyword
+		)
+	
+	return text
+
+
+func _add_link_to_keyword(text: String, split_index: int, link: String) -> String:
+	var left = text.left(split_index)
+	var right = text.right(split_index)
+	text = "%s({{< ref \"%s\" >}})%s"%[left, link, right]
+	return text
+
+
+func _add_link_to_keyword_section(text: String, split_index: int, 
+		link: String, hash_link: String, keyword: String = "") -> String:
+	var left = text.left(split_index)
+	var right = text.right(split_index)
+	
+	if keyword != "":
+		left = left.replace(keyword, hash_link)
+	
+	text = "%s({{< ref \"%s#%s\" >}})%s"%[left, link, hash_link, right]
+	return text
 
 
 func _get_properties_block(docs_entry: Dictionary) -> String:
