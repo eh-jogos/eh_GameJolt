@@ -23,15 +23,19 @@ var patterns := ["*.gd"]
 var save_path := "res://formated_reference.json"
 
 # private variables - order: export > normal var > onready 
-var _custom_class_db : = {}
-var _custom_inheritance_db : = {}
+
+var _shared_variables_path = "res://addons/eh_jogos.docs-exporter/editor_uis/shared_variables/"
+var _custom_class_db : DictionaryVariable
+var _custom_inheritance_db : DictionaryVariable
 
 ### ---------------------------------------
 
 
 ### Built in Engine Methods ---------------
-func _ready():
-	pass
+func _init():
+	_custom_class_db = load(_shared_variables_path + "dict_custom_class_db.tres")
+	_custom_inheritance_db = load(_shared_variables_path + "dict_custom_inheritance_db.tres")
+
 
 func _run() -> void:
 	export_formatted_reference_json(directories, patterns, is_recursive, save_path)
@@ -47,7 +51,7 @@ func export_formatted_reference_json(
 		is_recursive: bool, 
 		save_path: String
 ) -> void:
-	_build__custom_class_dbs()
+	_build_custom_class_dbs()
 	
 	var reference_dict : = _build_reference_dictionary_from_source_code(
 			directories, 
@@ -70,8 +74,8 @@ func export_formatted_reference_json(
 		var full_inheritance : Array = _get_inheritance(parent_class)
 		class_entry.extends_class = full_inheritance
 		
-		if _custom_inheritance_db.has(class_entry.name):
-			class_entry["inherited_by"] = _custom_inheritance_db[class_entry.name]
+		if _custom_inheritance_db.value.has(class_entry.name):
+			class_entry["inherited_by"] = _custom_inheritance_db.value[class_entry.name]
 		
 		if class_entry.has("description"):
 			_handle_metadata(class_entry)
@@ -85,9 +89,9 @@ func export_formatted_reference_json(
 
 ### Private Methods -----------------------
 
-func _build__custom_class_dbs() -> void:
-	_custom_class_db.clear()
-	_custom_inheritance_db.clear()
+func _build_custom_class_dbs() -> void:
+	_custom_class_db.value.clear()
+	_custom_inheritance_db.value.clear()
 	
 	var custom_classes_array : = []
 	var config = ConfigFile.new()
@@ -97,11 +101,11 @@ func _build__custom_class_dbs() -> void:
 	
 	custom_classes_array = config.get_value("", "_global_script_classes")
 	for custom_class in custom_classes_array:
-		_custom_class_db[custom_class.class] = custom_class.base
+		_custom_class_db.value[custom_class.class] = custom_class.base
 		if not ClassDB.class_exists(custom_class.base):
-			if not _custom_inheritance_db.has(custom_class.base):
-				_custom_inheritance_db[custom_class.base] = []
-			_custom_inheritance_db[custom_class.base].append(custom_class.class)
+			if not _custom_inheritance_db.value.has(custom_class.base):
+				_custom_inheritance_db.value[custom_class.base] = []
+			_custom_inheritance_db.value[custom_class.base].append(custom_class.class)
 
 
 func _build_reference_dictionary_from_source_code(
@@ -127,8 +131,8 @@ func _get_inheritance(p_class: String) -> Array:
 	var parent_class = ""
 	if ClassDB.class_exists(p_class):
 		parent_class = ClassDB.get_parent_class(p_class)
-	elif _custom_class_db.has(p_class):
-		parent_class = _custom_class_db[p_class]
+	elif _custom_class_db.value.has(p_class):
+		parent_class = _custom_class_db.value[p_class]
 	
 	if parent_class != "":
 		var class_array: = _get_inheritance(parent_class)
