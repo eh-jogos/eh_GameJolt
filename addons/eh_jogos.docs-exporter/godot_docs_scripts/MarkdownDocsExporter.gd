@@ -124,8 +124,6 @@ func _update_links_db(class_entry: Dictionary, export_path: String) -> void:
 	
 	var objects: = _get_objects_for_links_db(class_entry)
 	
-	print(objects)
-	
 	links_db[class_entry.name] = {
 			local_path = lowercase_name,
 			full_path = full_path,
