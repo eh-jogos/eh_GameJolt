@@ -23,26 +23,31 @@ const MD_BLOCK_PROPERTIES_DESCRIPTION = ""\
 		+"## Properties Description  \n"\
 		+"\n"
 const MD_BLOCK_PROPERTY = ""\
-		+"- {type} **{name}**  \n"\
+		+"- ### _{type}_ {name}  \n"\
 		+"{table}"\
 		+"{description}  \n"\
-		+"```gdscript  \n"\
-		+"{signature}  \n"\
-		+"```  \n"\
 		+"---------\n"
 
+const GODOT_DOCS_BASE_URL = "https://docs.godotengine.org/en/stable/classes/class_%s.html"
 
 # public variables - order: export > normal var > onready 
 
 var links_db: = {}
 
 # private variables - order: export > normal var > onready 
+
+var _shared_variables_path = "res://addons/eh_jogos.docs-exporter/editor_uis/shared_variables/"
+var _custom_class_db : DictionaryVariable
+var _custom_inheritance_db : DictionaryVariable
+
 ### ---------------------------------------
 
 
 ### Built in Engine Methods ---------------
-func _ready():
-	pass
+func _init():
+	_custom_class_db = load(_shared_variables_path + "dict_custom_class_db.tres")
+	_custom_inheritance_db = load(_shared_variables_path + "dict_custom_inheritance_db.tres")
+
 
 func _run() -> void:
 	export_github_wiki_pages("res://reference.json", "res://.github-wiki/")
@@ -119,13 +124,13 @@ func _update_links_db(class_entry: Dictionary, export_path: String) -> void:
 	
 	var objects: = _get_objects_for_links_db(class_entry)
 	
+	print(objects)
+	
 	links_db[class_entry.name] = {
 			local_path = lowercase_name,
 			full_path = full_path,
 			objects = objects,
 	}
-	
-	print(JSON.print(links_db, " "))
 
 
 func _get_objects_for_links_db(class_entry: Dictionary) -> Array:
@@ -147,27 +152,44 @@ func _get_objects_for_links_db(class_entry: Dictionary) -> Array:
 
 func _get_inheritance_block(docs_entry: Dictionary) -> String:
 	var content: = ""
+	
+	var inheritance_string: = _format_array_into_string(
+			docs_entry.extends_class, " > ", docs_entry.name)
+	
 	content += MD_BLOCK_INHERITANCE.format({
-				inheritance=str(docs_entry.extends_class)\
-					.replace("[","").replace("]","").replacen(", "," > "), 
+				inheritance=inheritance_string, 
 		})
 		
 	if docs_entry.has("inherited_by"):
+		var inherited_by_string = _format_array_into_string(
+				docs_entry.inherited_by, ", ", docs_entry.name)
+		
 		content += MD_BLOCK_INHERITED_BY.format({
-				inherited_by=str(docs_entry.inherited_by).replace("[","").replace("]","")
+				inherited_by=inherited_by_string
 		})
 	
 	return content
 
 
+func _format_array_into_string(p_array: Array, delimiter: String, p_class_name: String) -> String:
+	var formatted_string: = ""
+	for entry in p_array:
+		var keyword = "[%s]"%[entry]
+		var treated_text = _check_for_links(keyword, p_class_name)
+		formatted_string += "%s%s"%[treated_text, delimiter]
+	
+	formatted_string = formatted_string.left(formatted_string.length()-delimiter.length())
+	return formatted_string
+
+
 func _get_description_block(docs_entry: Dictionary) -> String:
 	var text = MD_BLOCK_DESCRIPTION.format({description=docs_entry.description})
-	text = _check_for_links(text, docs_entry)
+	text = _check_for_links(text, docs_entry.name)
 	
 	return text
 
 
-func _check_for_links(text: String, docs_entry: Dictionary) -> String:
+func _check_for_links(text: String, p_class_name: String) -> String:
 	if not text.match("*[*]*"):
 		return text
 	
@@ -185,7 +207,7 @@ func _check_for_links(text: String, docs_entry: Dictionary) -> String:
 		var keyword = _get_link_keyword(text, start_index + 1, end_index)
 		var nested_link = _get_nested_link(keyword)
 		
-		text = _handle_links_in_text(text, end_index + 1, keyword, nested_link, docs_entry.name)
+		text = _handle_links_in_text(text, end_index + 1, keyword, nested_link, p_class_name)
 	
 	return text 
 
@@ -210,6 +232,13 @@ func _add_link_to_keyword(text: String, split_index: int, link: String) -> Strin
 	return text
 
 
+func _add_external_link_to_keyword(text: String, split_index: int, link: String) -> String:
+	var left = text.left(split_index)
+	var right = text.right(split_index)
+	text = "%s(%s)%s"%[left, link, right]
+	return text
+
+
 func _add_link_to_keyword_section(text: String, split_index: int, 
 		link: String, hash_link: String, keyword: String = "") -> String:
 	var left = text.left(split_index)
@@ -224,7 +253,10 @@ func _add_link_to_keyword_section(text: String, split_index: int,
 
 func _handle_links_in_text(text: String, split_index: int, 
 		keyword: String, nested_link: Array, page_name: String) -> String:
-	if links_db.has(keyword):
+	if ClassDB.class_exists(keyword):
+		var link = GODOT_DOCS_BASE_URL%[keyword.to_lower()]
+		text = _add_external_link_to_keyword(text, split_index, link)
+	elif links_db.has(keyword):
 		text = _add_link_to_keyword(text, split_index, links_db[keyword].local_path)
 	elif not nested_link.empty() and links_db.has(nested_link[0]):
 		text = _add_link_to_keyword_section(

@@ -25,7 +25,7 @@ const HUGO_CHAPTER_FRONT_MATTER = ""\
 		+"---  \n"  
 
 const HUGO_BLOCK_PROPERTY = ""\
-		+"- ### **{type}** {name}  \n"\
+		+"- ### _{type}_ {name}  \n"\
 		+"{table}"\
 		+"{description}  \n"\
 		+"---------\n"
@@ -150,7 +150,10 @@ func _add_category_to_db(category: String) -> void:
 
 func _handle_links_in_text(text: String, split_index: int, 
 		keyword: String, nested_link: Array, page_name: String) -> String:
-	if links_db.has(keyword):
+	if ClassDB.class_exists(keyword):
+		var link = GODOT_DOCS_BASE_URL%[keyword.to_lower()]
+		text = _add_external_link_to_keyword(text, split_index, link)
+	elif links_db.has(keyword):
 		text = _add_link_to_keyword(text, split_index, links_db[keyword].full_path)
 	elif not nested_link.empty() and links_db.has(nested_link[0]):
 		text = _add_link_to_keyword_section(
