@@ -99,12 +99,14 @@
  {{with .sect}}
   {{if and .IsSection (or (not .Params.hidden) $.showhidden)}}
     {{safeHTML .Params.head}}
-    <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item teste
+    <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item
         {{if .IsAncestor $currentNode }}parent{{end}}
         {{if eq .File.UniqueID $currentFileUniqueID}}active{{end}}
         {{if .Params.alwaysopen}}parent{{end}}
         ">
+        
         <button type="button" class="collapsible active">+</button>
+        
         <a href="{{.RelPermalink}}">
           {{safeHTML .Params.Pre}}{{or .Params.menuTitle .LinkTitle .Title}}{{safeHTML .Params.Post}}
           {{ if $showvisitedlinks}}
