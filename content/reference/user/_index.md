@@ -1,7 +1,6 @@
 ---  
 title: User  
 author: eh-jogos  
-date: 2020-09-07T20:45:11-03:00
-weight: 10 
+date: 2020-09-12T08:29:27-03:00  
 summary:   
 ---  

@@ -1,55 +1,55 @@
 ---  
 title: eh_GJUsersFetchData  
 author: eh-jogos  
-date: 2020-09-07T20:45:11-03:00  
+date: 2020-09-12T08:29:27-03:00  
 summary:   
 ---  
-**Inherits:** _Resource > Reference > Object_  
+**Inherits:** _[Resource](https://docs.godotengine.org/en/stable/classes/class_resource.html) > [Reference](https://docs.godotengine.org/en/stable/classes/class_reference.html) > [Object](https://docs.godotengine.org/en/stable/classes/class_object.html)_  
 ## Description  
  Data Struct that describes the user_response from `/users/` endpoint
  Documentation for member variables at https://gamejolt.com/game-api/doc/users/fetch
 
 ## Properties Description  
 
-- ### **bool** success  
+- ### _bool_ success  
   
 ---------
-- ### **String** message  
+- ### _String_ message  
   
 ---------
-- ### **int** id  
+- ### _int_ id  
   
 ---------
-- ### **int** type  
+- ### _int_ type  
   
 ---------
-- ### **String** username  
+- ### _String_ username  
   
 ---------
-- ### **String** avatar_url  
+- ### _String_ avatar_url  
   
 ---------
-- ### **String** signed_up  
+- ### _String_ signed_up  
   
 ---------
-- ### **int** signed_up_timestamp  
+- ### _int_ signed_up_timestamp  
   
 ---------
-- ### **String** last_logged_in  
+- ### _String_ last_logged_in  
   
 ---------
-- ### **int** last_logged_in_timestamp  
+- ### _int_ last_logged_in_timestamp  
   
 ---------
-- ### **int** status  
+- ### _int_ status  
   
 ---------
-- ### **String** developer_name  
+- ### _String_ developer_name  
   
 ---------
-- ### **String** developer_website  
+- ### _String_ developer_website  
   
 ---------
-- ### **String** developer_description  
+- ### _String_ developer_description  
   
 ---------
