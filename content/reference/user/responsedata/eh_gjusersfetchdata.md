@@ -1,7 +1,7 @@
 ---  
 title: eh_GJUsersFetchData  
 author: eh-jogos  
-date: 2020-09-12T08:29:27-03:00  
+date: 2020-09-12T21:00:19-03:00  
 summary:   
 ---  
 **Inherits:** _[Resource](https://docs.godotengine.org/en/stable/classes/class_resource.html) > [Reference](https://docs.godotengine.org/en/stable/classes/class_reference.html) > [Object](https://docs.godotengine.org/en/stable/classes/class_object.html)_  
@@ -9,47 +9,77 @@ summary:
  Data Struct that describes the user_response from `/users/` endpoint
  Documentation for member variables at https://gamejolt.com/game-api/doc/users/fetch
 
-## Properties Description  
+## Properties Descriptions 
 
-- ### _bool_ success  
+### success 
+- _[bool](https://docs.godotengine.org/en/stable/classes/class_bool.html)_ **success**  
+  
   
 ---------
-- ### _String_ message  
+### message 
+- _[String](https://docs.godotengine.org/en/stable/classes/class_string.html)_ **message**  
+  
   
 ---------
-- ### _int_ id  
+### id 
+- _[int](https://docs.godotengine.org/en/stable/classes/class_int.html)_ **id**  
+  
   
 ---------
-- ### _int_ type  
+### type 
+- _[int](https://docs.godotengine.org/en/stable/classes/class_int.html)_ **type**  
+  
   
 ---------
-- ### _String_ username  
+### username 
+- _[String](https://docs.godotengine.org/en/stable/classes/class_string.html)_ **username**  
+  
   
 ---------
-- ### _String_ avatar_url  
+### avatar_url 
+- _[String](https://docs.godotengine.org/en/stable/classes/class_string.html)_ **avatar_url**  
+  
   
 ---------
-- ### _String_ signed_up  
+### signed_up 
+- _[String](https://docs.godotengine.org/en/stable/classes/class_string.html)_ **signed_up**  
+  
   
 ---------
-- ### _int_ signed_up_timestamp  
+### signed_up_timestamp 
+- _[int](https://docs.godotengine.org/en/stable/classes/class_int.html)_ **signed_up_timestamp**  
+  
   
 ---------
-- ### _String_ last_logged_in  
+### last_logged_in 
+- _[String](https://docs.godotengine.org/en/stable/classes/class_string.html)_ **last_logged_in**  
+  
   
 ---------
-- ### _int_ last_logged_in_timestamp  
+### last_logged_in_timestamp 
+- _[int](https://docs.godotengine.org/en/stable/classes/class_int.html)_ **last_logged_in_timestamp**  
+  
   
 ---------
-- ### _int_ status  
+### status 
+- _[int](https://docs.godotengine.org/en/stable/classes/class_int.html)_ **status**  
+  
   
 ---------
-- ### _String_ developer_name  
+### developer_name 
+- _[String](https://docs.godotengine.org/en/stable/classes/class_string.html)_ **developer_name**  
+  
   
 ---------
-- ### _String_ developer_website  
+### developer_website 
+- _[String](https://docs.godotengine.org/en/stable/classes/class_string.html)_ **developer_website**  
+  
   
 ---------
-- ### _String_ developer_description  
+### developer_description 
+- _[String](https://docs.godotengine.org/en/stable/classes/class_string.html)_ **developer_description**  
+  
   
 ---------
+## Method Descriptions  
+

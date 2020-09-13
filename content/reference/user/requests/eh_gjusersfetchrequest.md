@@ -1,7 +1,7 @@
 ---  
 title: eh_GJUsersFetchRequest  
 author: eh-jogos  
-date: 2020-09-12T08:29:27-03:00  
+date: 2020-09-12T21:00:19-03:00  
 summary:   
 ---  
 **Inherits:** _[eh_GJBaseRequest]({{< ref "/reference/eh_gjbaserequest" >}}) > [HTTPRequest](https://docs.godotengine.org/en/stable/classes/class_httprequest.html) > [Node](https://docs.godotengine.org/en/stable/classes/class_node.html) > [Object](https://docs.godotengine.org/en/stable/classes/class_object.html)_  
@@ -19,5 +19,21 @@ summary:
  If the request fails, the signal [gj_request_failed]({{< ref "/reference/eh_gjbaserequest#gj_request_failed" >}}) will be emitted with an error dict 
  as its parameter.
 
-## Properties Description  
+## Properties Descriptions 
 
+## Method Descriptions  
+
+### fetch_user 
+- _[int](https://docs.godotengine.org/en/stable/classes/class_int.html)_ **fetch_user**([String](https://docs.godotengine.org/en/stable/classes/class_string.html) p_username, [bool](https://docs.godotengine.org/en/stable/classes/class_bool.html) is_user_id) 
+
+ Request for a single user. Returns request error code. The user data will be sent either by
+ the signal [gj_user_fetch_data_received] or [eh_GJBaseRequest.gj_request_failed] will be emitted
+  
+---------
+### fetch_users 
+- _[int](https://docs.godotengine.org/en/stable/classes/class_int.html)_ **fetch_users**([Array](https://docs.godotengine.org/en/stable/classes/class_array.html) p_array_of_ids) 
+
+ Request for multiple users Returns request error code. The user data will be sent either by
+ the signal [gj_users_fetch_data_received] or [eh_GJBaseRequest.gj_request_failed] will be emitted
+  
+---------

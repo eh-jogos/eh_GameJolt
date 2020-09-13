@@ -1,7 +1,7 @@
 ---  
 title: eh_GJUsersAuthRequest  
 author: eh-jogos  
-date: 2020-09-12T08:29:27-03:00  
+date: 2020-09-12T21:00:19-03:00  
 summary:   
 ---  
 **Inherits:** _[eh_GJBaseRequest]({{< ref "/reference/eh_gjbaserequest" >}}) > [HTTPRequest](https://docs.godotengine.org/en/stable/classes/class_httprequest.html) > [Node](https://docs.godotengine.org/en/stable/classes/class_node.html) > [Object](https://docs.godotengine.org/en/stable/classes/class_object.html)_  
@@ -15,5 +15,13 @@ summary:
  If the request fails, the signal [gj_request_failed]({{< ref "/reference/eh_gjbaserequest#gj_request_failed" >}}) will be emitted with an 
  error dict as its parameter.
 
-## Properties Description  
+## Properties Descriptions 
 
+## Method Descriptions  
+
+### auth_user_credentials 
+- _[int](https://docs.godotengine.org/en/stable/classes/class_int.html)_ **auth_user_credentials**([String](https://docs.godotengine.org/en/stable/classes/class_string.html) p_username, [String](https://docs.godotengine.org/en/stable/classes/class_string.html) p_user_token) 
+
+ Builds url and send request to the auth Endpoint. Return an int which is the request error code.
+  
+---------

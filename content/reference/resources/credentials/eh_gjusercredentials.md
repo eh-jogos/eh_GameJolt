@@ -1,7 +1,7 @@
 ---  
 title: eh_GJUserCredentials  
 author: eh-jogos  
-date: 2020-09-12T08:29:27-03:00  
+date: 2020-09-12T21:00:19-03:00  
 summary:   
 ---  
 **Inherits:** _[Resource](https://docs.godotengine.org/en/stable/classes/class_resource.html) > [Reference](https://docs.godotengine.org/en/stable/classes/class_reference.html) > [Object](https://docs.godotengine.org/en/stable/classes/class_object.html)_  
@@ -9,19 +9,25 @@ summary:
  Just a basic struct to hold user credentials information and be able to save it in disk 
  as a Resource
 
-## Properties Description  
+## Properties Descriptions 
 
-- ### _String_ username  
+### username 
+- _[String](https://docs.godotengine.org/en/stable/classes/class_string.html)_ **username**  
+  
 | | |  
 | - |:-:|  
 | _Default_ | ` "" ` |  
 
   
 ---------
-- ### _String_ user_game_token  
+### user_game_token 
+- _[String](https://docs.godotengine.org/en/stable/classes/class_string.html)_ **user_game_token**  
+  
 | | |  
 | - |:-:|  
 | _Default_ | ` "" ` |  
 
   
 ---------
+## Method Descriptions  
+
