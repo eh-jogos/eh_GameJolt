@@ -20,7 +20,7 @@ const API_GAME_ID_PARAMETER = "?game_id="
 # public variables - order: export > normal var > onready 
 
 # Test variable to test doc hugo export
-var test_int: int = 1
+var test_int = 1
 # The game_id in Gamejolt. Should be set in the "GameJolt" Tab that appears in Project Settings
 # after enabling the plugin.
 var game_id: String = "joaozinho" setget , get_game_id

@@ -25,7 +25,9 @@ const HUGO_CHAPTER_FRONT_MATTER = ""\
 		+"---  \n"  
 
 const HUGO_BLOCK_PROPERTY = ""\
-		+"- ### _{type}_ {name}  \n"\
+		+"### {name} \n"\
+		+"- {property_signature}  \n"\
+		+"  \n"\
 		+"{table}"\
 		+"{description}  \n"\
 		+"---------\n"
@@ -43,6 +45,12 @@ var _category_db: = {}
 
 
 ### Built in Engine Methods ---------------
+
+func _init():
+	key_to_use_for_link = "full_path"
+	property_block = HUGO_BLOCK_PROPERTY
+
+
 func _run() -> void:
 	export_hugo_site_pages("res://reference.json", "res://.docs-site/content/reference/")
 
@@ -62,6 +70,9 @@ func export_hugo_site_pages(reference_json_path: String, export_path: String) ->
 		_update_links_db(entry, export_path)
 	
 	for entry in reference_dict.classes:
+		_update_signatures_db(entry)
+	
+	for entry in reference_dict.classes:
 		var md_filename: = "%s.md" % [entry.name.to_lower()]
 		var category: String = entry.category if entry.has("category") else ""
 		var md_file_path: = _get_md_filepath(export_path, md_filename, category.to_lower())
@@ -73,6 +84,8 @@ func export_hugo_site_pages(reference_json_path: String, export_path: String) ->
 		md_content += _get_description_block(entry)
 		md_content += MD_BLOCK_PROPERTIES_DESCRIPTION
 		md_content += _get_properties_block(entry)
+		md_content += MD_BLOCK_METHOD_DESCRIPTION
+		md_content += _get_method_block(entry)
 		
 		_write_documentation_file(md_content, md_file_path)
 	
@@ -148,32 +161,6 @@ func _add_category_to_db(category: String) -> void:
 			}
 
 
-func _handle_links_in_text(text: String, split_index: int, 
-		keyword: String, nested_link: Array, page_name: String) -> String:
-	if ClassDB.class_exists(keyword):
-		var link = GODOT_DOCS_BASE_URL%[keyword.to_lower()]
-		text = _add_external_link_to_keyword(text, split_index, link)
-	elif links_db.has(keyword):
-		text = _add_link_to_keyword(text, split_index, links_db[keyword].full_path)
-	elif not nested_link.empty() and links_db.has(nested_link[0]):
-		text = _add_link_to_keyword_section(
-				text, 
-				split_index, 
-				links_db[nested_link[0]].full_path, 
-				nested_link[1], 
-				keyword
-		)
-	elif links_db[page_name].objects.has(keyword):
-		text = _add_link_to_keyword_section(
-				text, 
-				split_index, 
-				links_db[page_name].full_path, 
-				keyword
-		)
-	
-	return text
-
-
 func _add_link_to_keyword(text: String, split_index: int, link: String) -> String:
 	var left = text.left(split_index)
 	var right = text.right(split_index)
@@ -193,37 +180,28 @@ func _add_link_to_keyword_section(text: String, split_index: int,
 	return text
 
 
-func _get_properties_block(docs_entry: Dictionary) -> String:
-	var content: = ""
-	if not docs_entry.members.empty():
-		for property in docs_entry.members:
-			if property.name.begins_with("_"):
-				continue
-			
-			var table = "| | |  \n"
-			table +=    "| - |:-:|  \n"
-			if property.default_value != null:
-				var default_value = property.default_value
-				if typeof(default_value) == TYPE_STRING:
-					default_value = "\"%s\""%[default_value]
-				table += "| _Default_ | ` %s ` |  \n"%[default_value]
-			if property.setter != "":
-				table += "| _Setter_ | %s |  \n"%[property.setter]
-			if property.getter != "":
-				table += "| _Getter_ | %s |  \n"%[property.getter]
-			table += "\n"
-			if table == "| | |  \n| - |:-:|  \n\n":
-				table = ""
-			
-			content += HUGO_BLOCK_PROPERTY.format({
-				type = property.data_type,
-				name = property.name,
-				table = table,
-				description = property.description,
-				signature = property.signature
-			})
+func _get_property_details_table(property: Dictionary) -> String:
+	var table = "| | |  \n"
+	table +=    "| - |:-:|  \n"
 	
-	return content
+	if property.default_value != null:
+		var default_value = property.default_value
+		if typeof(default_value) == TYPE_STRING:
+			default_value = "\"%s\""%[default_value]
+		table += "| _Default_ | ` %s ` |  \n"%[default_value]
+	
+	if property.setter != "":
+		table += "| _Setter_ | %s |  \n"%[property.setter]
+	
+	if property.getter != "":
+		table += "| _Getter_ | %s |  \n"%[property.getter]
+	
+	table += "\n"
+	
+	if table == "| | |  \n| - |:-:|  \n\n":
+		table = ""
+	
+	return table
 
 ### ---------------------------------------
 
