@@ -16,6 +16,11 @@ enum Status {
 	Banned
 }
 
+# Descrição da constante
+const TEST: Dictionary = {
+	"teste": "teste"
+}
+
 var success: = false
 var message: = ""
 var id: = 0

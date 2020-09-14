@@ -31,6 +31,22 @@ const MD_BLOCK_METHODS_TABLE_TITLE = ""\
 		+"| ----------- | ---------------- |  \n" 
 const MD_BLOCK_METHOD_TABLE_LINE = ""\
 		+"| {type} | {siganture} |  \n"
+const MD_BLOCK_ENUMS_TITLE = ""\
+		+"  \n"\
+		+"## Enumerations  \n"\
+		+"  \n"
+const MD_BLOCK_ENUM_NAME_LINE = ""\
+		+"  \n"\
+		+"enum **{name}**: \n"\
+		+"  \n"
+const MD_BLOCK_ENUM_KEY_LINE = ""\
+		+"- **{signature}**  \n"
+const MD_BLOCK_CONSTANTS_TITLE = ""\
+		+"  \n"\
+		+"## Constants  \n"\
+		+"  \n"
+const MD_BLOCK_CONSTANTS_LINE = ""\
+		+"- **{signature}** --- {description} \n"
 const MD_BLOCK_PROPERTIES_DESCRIPTION = ""\
 		+"  \n"\
 		+"## Properties Descriptions  \n"\
@@ -245,6 +261,9 @@ func _get_md_content(docs_entry: Dictionary) -> String:
 		md_content += MD_BLOCK_METHODS_TABLE_TITLE
 		md_content += _get_method_table(docs_entry)
 	
+	if not docs_entry.constants.empty():
+		md_content += _get_enums_and_constants_block(docs_entry)
+	
 	if not docs_entry.members.empty() and not _get_properties_block(docs_entry) == "":
 		md_content += MD_BLOCK_PROPERTIES_DESCRIPTION
 		md_content += _get_properties_block(docs_entry)
@@ -434,6 +453,41 @@ func _get_method_table(docs_entry: Dictionary) -> String:
 		
 	return table
 
+
+func _get_enums_and_constants_block(docs_entry: Dictionary) -> String:
+	var block: = ""
+	var block_enums: = ""
+	var block_constants: = ""
+	for constant in docs_entry.constants:
+		if _is_enum(constant):
+			if block_enums == "":
+				block_enums = MD_BLOCK_ENUMS_TITLE
+			block_enums += MD_BLOCK_ENUM_NAME_LINE.format({name = constant.name})
+			for key in constant.value.keys():
+				block_enums += MD_BLOCK_ENUM_KEY_LINE.format({
+					signature = "%s = %s"%[key, constant.value[key]],
+				})
+			
+			block_enums += "---------\n"
+		else:
+			pass
+	
+	block = block_enums + block_constants
+	
+	return block
+
+
+func _is_enum(constant_dict: Dictionary) -> bool:
+	var is_enum: = true
+	if constant_dict.data_type == "Dictionary":
+		for value in constant_dict.value.values():
+			if typeof(value) != TYPE_INT and typeof(value) != TYPE_REAL:
+				is_enum = false
+				break
+	else:
+		is_enum = false
+	
+	return is_enum
 
 func _get_properties_block(docs_entry: Dictionary) -> String:
 	var content: = ""
