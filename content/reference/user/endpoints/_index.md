@@ -1,6 +1,6 @@
 ---  
 title: Endpoints  
 author: eh-jogos  
-date: 2020-09-12T21:00:19-03:00  
+date: 2020-09-14T07:32:33-03:00  
 summary:   
 ---  
