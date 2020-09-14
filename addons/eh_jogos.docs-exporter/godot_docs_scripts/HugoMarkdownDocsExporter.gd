@@ -79,13 +79,7 @@ func export_hugo_site_pages(reference_json_path: String, export_path: String) ->
 		
 		_add_category_to_db(category)
 		
-		var md_content: = _get_hugo_front_matter(entry.name)
-		md_content += _get_inheritance_block(entry)
-		md_content += _get_description_block(entry)
-		md_content += MD_BLOCK_PROPERTIES_DESCRIPTION
-		md_content += _get_properties_block(entry)
-		md_content += MD_BLOCK_METHOD_DESCRIPTION
-		md_content += _get_method_block(entry)
+		var md_content: = _get_md_content(entry)
 		
 		_write_documentation_file(md_content, md_file_path)
 	
@@ -104,6 +98,13 @@ func export_hugo_site_pages(reference_json_path: String, export_path: String) ->
 
 
 ### Private Methods -----------------------
+
+func _get_md_content(docs_entry: Dictionary) -> String:
+	var md_content = _get_hugo_front_matter(docs_entry.name)
+	md_content += ._get_md_content(docs_entry)
+	
+	return md_content
+
 
 func _get_hugo_front_matter(title: String, is_chapter: = false) -> String:
 	var formated_date = date

@@ -11,17 +11,30 @@ const MD_BLOCK_INHERITANCE = ""\
 		+"**Inherits:** _{inheritance}_  \n"
 const MD_BLOCK_INHERITED_BY = ""\
 		+"**Inherited by:** _{inherited_by}_  \n"\
-		+"\n"
-const MD_BLOCK_TITLE = ""\
-		+"# {title}  \n"\
-		+"\n"
+		+"  \n"
 const MD_BLOCK_DESCRIPTION = ""\
 		+"## Description  \n"\
 		+"{description}"\
-		+"\n"
+		+"  \n"
+const MD_BLOCK_PROPERTIES_TABLE_TITLE = ""\
+		+"## Properties \n"\
+		+"  \n"\
+		+"| type | property | default value |  \n"\
+		+"| ---- | -------- | ------------- |  \n" 
+const MD_BLOCK_PROPERTIES_TABLE_LINE = ""\
+		+"| {type} | {name} | {default_value} |  \n"
+const MD_BLOCK_METHODS_TABLE_TITLE = ""\
+		+"  \n"\
+		+"## Methods \n"\
+		+"  \n"\
+		+"| return type | method signature |  \n"\
+		+"| ----------- | ---------------- |  \n" 
+const MD_BLOCK_METHOD_TABLE_LINE = ""\
+		+"| {type} | {siganture} |  \n"
 const MD_BLOCK_PROPERTIES_DESCRIPTION = ""\
-		+"## Properties Descriptions \n"\
-		+"\n"
+		+"  \n"\
+		+"## Properties Descriptions  \n"\
+		+"  \n"
 const MD_BLOCK_PROPERTY = ""\
 		+"### {name} \n"\
 		+"- {property_signature}  \n"\
@@ -31,7 +44,7 @@ const MD_BLOCK_PROPERTY = ""\
 		+"---------\n"
 const MD_BLOCK_METHOD_DESCRIPTION = ""\
 		+"## Method Descriptions  \n"\
-		+"\n"
+		+"  \n"
 const MD_BLOCK_METHOD = ""\
 		+"### {name} \n"\
 		+"- {method_signature} \n"\
@@ -94,13 +107,7 @@ func export_github_wiki_pages(reference_json_path: String, export_path: String) 
 		var category: String = entry.category if entry.has("category") else ""
 		var md_file_path: = _get_md_filepath(export_path, md_filename, category)
 		
-		var md_content: = _get_inheritance_block(entry)
-		md_content += MD_BLOCK_TITLE.format({title=entry.name})
-		md_content += _get_description_block(entry)
-		md_content += MD_BLOCK_PROPERTIES_DESCRIPTION
-		md_content += _get_properties_block(entry)
-		md_content += MD_BLOCK_METHOD_DESCRIPTION
-		md_content += _get_method_block(entry)
+		var md_content: = _get_md_content(entry)
 		
 		_write_documentation_file(md_content, md_file_path)
 	
@@ -191,7 +198,12 @@ func _get_member_formatted_signature(member: Dictionary, class_entry: Dictionary
 	return doc_signature
 
 
-func _get_method_formatted_signature(method: Dictionary, class_entry: Dictionary) -> String:
+func _get_method_formatted_signature(method: Dictionary, class_entry: Dictionary) -> Dictionary:
+	var doc_signature: Dictionary = {
+		full = "",
+		partial = "" 
+	}
+	
 	var return_type: = ""
 	if method.return_type == "null":
 		return_type = "void"
@@ -200,6 +212,8 @@ func _get_method_formatted_signature(method: Dictionary, class_entry: Dictionary
 	else:
 		return_type = "[%s]"%[method.return_type]
 	return_type = _check_for_links(return_type, class_entry.name)
+	
+	var linked_name = _check_for_links("[%s]"%[method.name], class_entry.name)
 	
 	var argument_list: = ""
 	for argument in method.arguments:
@@ -214,8 +228,32 @@ func _get_method_formatted_signature(method: Dictionary, class_entry: Dictionary
 		argument_list += ", "
 	argument_list = argument_list.left(argument_list.length()-", ".length())
 	
-	var doc_signature = "_%s_ **%s**(%s)"%[return_type, method.name, argument_list]
+	doc_signature.full = "_%s_ **%s**(%s)"%[return_type, method.name, argument_list]
+	doc_signature.partial = "**%s**(%s)"%[linked_name, argument_list]
 	return doc_signature
+
+
+func _get_md_content(docs_entry: Dictionary) -> String:
+	var md_content: = _get_inheritance_block(docs_entry)
+	md_content += _get_description_block(docs_entry)
+	
+	if not docs_entry.members.empty() and not _get_properties_table(docs_entry) == "":
+		md_content += MD_BLOCK_PROPERTIES_TABLE_TITLE
+		md_content += _get_properties_table(docs_entry)
+	
+	if not docs_entry.methods.empty() and not _get_method_table(docs_entry) == "":
+		md_content += MD_BLOCK_METHODS_TABLE_TITLE
+		md_content += _get_method_table(docs_entry)
+	
+	if not docs_entry.members.empty() and not _get_properties_block(docs_entry) == "":
+		md_content += MD_BLOCK_PROPERTIES_DESCRIPTION
+		md_content += _get_properties_block(docs_entry)
+	
+	if not docs_entry.methods.empty() and not _get_method_block(docs_entry) == "":
+		md_content += MD_BLOCK_METHOD_DESCRIPTION
+		md_content += _get_method_block(docs_entry)
+	
+	return md_content
 
 
 func _get_inheritance_block(docs_entry: Dictionary) -> String:
@@ -349,6 +387,54 @@ func _handle_links_in_text(text: String, split_index: int,
 	return text
 
 
+func _get_properties_table(docs_entry: Dictionary) -> String:
+	var table = ""
+	for member in docs_entry.members:
+		if member.name.begins_with("_"):
+			continue
+		
+		var type = "[%s]"%[member.data_type]
+		if type == "[var]":
+			type = "[Variant]"
+		type = _check_for_links(type, docs_entry.name)
+	
+		var property_name = _check_for_links("[%s]"%[member.name], docs_entry.name)
+		var default_value = member.default_value
+	
+		table += MD_BLOCK_PROPERTIES_TABLE_LINE.format({
+			type = type,
+			name = property_name,
+			default_value = default_value,
+		})
+		
+	return table
+
+
+func _get_method_table(docs_entry: Dictionary) -> String:
+	var table = ""
+	for method in docs_entry.methods:
+		if method.name.begins_with("_"):
+			continue
+		
+		var type = "[%s]"%[method.return_type]
+		if type == "[var]":
+			type = "[Variant]"
+		type = _check_for_links(type, docs_entry.name)
+	
+		var property_name = ""
+		if signatures_db.has(method.name):
+			property_name = signatures_db[method.name].partial
+		else:
+			property_name = _check_for_links("[%s]"%[method.name], docs_entry.name)
+		
+		table += MD_BLOCK_METHOD_TABLE_LINE.format({
+			type = type,
+			siganture = property_name,
+		})
+		
+	return table
+
+
 func _get_properties_block(docs_entry: Dictionary) -> String:
 	var content: = ""
 	if not docs_entry.members.empty():
@@ -402,7 +488,7 @@ func _get_method_block(docs_entry: Dictionary) -> String:
 			
 			var method_signature = ""
 			if signatures_db.has(method.name):
-				method_signature = signatures_db[method.name]
+				method_signature = signatures_db[method.name].full
 			
 			content += MD_BLOCK_METHOD.format({
 				name = method.name,
