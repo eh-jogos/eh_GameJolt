@@ -6,105 +6,110 @@
     <description>Recent content on eh_jogos Godot GamejoltApi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2020 07:32:33 -0300</lastBuildDate>
     
 	<atom:link href="https://eh-jogos.github.io/eh_GameJolt/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>eh_GJBaseRequest</title>
-      <link>https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjbaserequest/</link>
-      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      <link>https://eh-jogos.github.io/eh_GameJolt/reference/eh_gjbaserequest/</link>
+      <pubDate>Mon, 14 Sep 2020 07:32:33 -0300</pubDate>
       
-      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjbaserequest/</guid>
-      <description>Extends: HTTPRequest
+      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/eh_gjbaserequest/</guid>
+      <description>Inherits: HTTPRequest &amp;gt; Node &amp;gt; Object
+Inherited by: eh_GJUsersAuthRequest, eh_GJUsersFetchRequest
 Description This Class is not to be used directly, rather it is the base class for all of GameJolt&amp;rsquo;s Endpoint Requests. This will contain the base to build urls and manage responses
-Property Descriptions game_id var game_id: String The game_id in Gamejolt. Should be set in the &amp;ldquo;GameJolt&amp;rdquo; Tab that appears in Project Settings after enabling the plugin.
-private_key var private_key: String The game&amp;rsquo;s private_key in Gamejolt. Should be set in the &amp;ldquo;GameJolt&amp;rdquo; Tab that appears in Project Settings after enabling the plugin.</description>
+Properties    type property default value     Variant test_int Null   String game_id joaozinho   String private_key Null   String username Null   String user_token Null    Methods    return type method signature     null set_private_key(String value)   String get_game_id()    Properties Descriptions test_int  Variant test_int  Test variable to test doc hugo export</description>
     </item>
     
     <item>
       <title>eh_GJGameCredentials</title>
-      <link>https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjgamecredentials/</link>
-      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      <link>https://eh-jogos.github.io/eh_GameJolt/reference/resources/credentials/eh_gjgamecredentials/</link>
+      <pubDate>Mon, 14 Sep 2020 07:32:33 -0300</pubDate>
       
-      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjgamecredentials/</guid>
-      <description>Extends: Resource
-Description Property Descriptions game_id export var game_id: String = &amp;#34;&amp;#34; private_key export var private_key: String = &amp;#34;&amp;#34; </description>
+      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/resources/credentials/eh_gjgamecredentials/</guid>
+      <description>Inherits: Resource &amp;gt; Reference &amp;gt; Object
+Description Just a basic struct to hold game credentials information and be able to save it in disk as a Resource
+Properties    type property default value     String game_id    String private_key     Properties Descriptions game_id  String game_id           Default &amp;quot;&amp;quot;     private_key  String private_key           Default &amp;quot;&amp;quot;     </description>
     </item>
     
     <item>
       <title>eh_GJUserCredentials</title>
-      <link>https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusercredentials/</link>
-      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      <link>https://eh-jogos.github.io/eh_GameJolt/reference/resources/credentials/eh_gjusercredentials/</link>
+      <pubDate>Mon, 14 Sep 2020 07:32:33 -0300</pubDate>
       
-      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusercredentials/</guid>
-      <description>Extends: Resource
-Description Property Descriptions username export var username: String = &amp;#34;&amp;#34; user_game_token export var user_game_token: String = &amp;#34;&amp;#34; </description>
+      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/resources/credentials/eh_gjusercredentials/</guid>
+      <description>Inherits: Resource &amp;gt; Reference &amp;gt; Object
+Description Just a basic struct to hold user credentials information and be able to save it in disk as a Resource
+Properties    type property default value     String username    String user_game_token     Properties Descriptions username  String username           Default &amp;quot;&amp;quot;     user_game_token  String user_game_token           Default &amp;quot;&amp;quot;     </description>
     </item>
     
     <item>
       <title>eh_GJUsersAuth</title>
-      <link>https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusersauth/</link>
-      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      <link>https://eh-jogos.github.io/eh_GameJolt/reference/user/endpoints/eh_gjusersauth/</link>
+      <pubDate>Mon, 14 Sep 2020 07:32:33 -0300</pubDate>
       
-      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusersauth/</guid>
-      <description>Extends: Node
-Description Property Descriptions is_logged_in var is_logged_in: bool public variables - order: export &amp;gt; normal var &amp;gt; onready
-Method Descriptions get_player_username func get_player_username() -&amp;gt; String Public Methods &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; get_player_user_token func get_player_user_token() -&amp;gt; String has_player_credentials func has_player_credentials() -&amp;gt; bool self_login func self_login(p_username: String, p_user_token: String) -&amp;gt; void request func request(p_username: String, p_user_token: String) -&amp;gt; void Signals  signal gj_auth_completed(eh_gj_users_auth_data): ## Member Variables and Dependencies &amp;mdash;&amp;ndash; signals signal gj_auth_failed(error_dictionary):  </description>
+      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/user/endpoints/eh_gjusersauth/</guid>
+      <description>Inherits: Node &amp;gt; Object
+Description Class to Manage Requests to the users/auth endpoint.
+Properties    type property default value     bool is_logged_in Null    Methods    return type method signature     String get_player_username()   String get_player_user_token()   bool has_player_credentials()   null self_login(String p_username, String p_user_token)   null request(String p_username, String p_user_token)    Properties Descriptions is_logged_in  bool is_logged_in  public variables - order: export &amp;gt; normal var &amp;gt; onready</description>
     </item>
     
     <item>
       <title>eh_GJUsersAuthData</title>
-      <link>https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusersauthdata/</link>
-      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      <link>https://eh-jogos.github.io/eh_GameJolt/reference/user/responsedata/eh_gjusersauthdata/</link>
+      <pubDate>Mon, 14 Sep 2020 07:32:33 -0300</pubDate>
       
-      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusersauthdata/</guid>
-      <description>Extends: Resource
-Description Property Descriptions success var success: bool message var message: String </description>
+      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/user/responsedata/eh_gjusersauthdata/</guid>
+      <description>Inherits: Resource &amp;gt; Reference &amp;gt; Object
+Description Data Struct that describes the response from /users/auth/ endpoint Documentation for member variables at https://gamejolt.com/game-api/doc/users/auth/
+Properties    type property default value     bool success Null   String message Null    Properties Descriptions success  bool success   message  String message   </description>
     </item>
     
     <item>
       <title>eh_GJUsersAuthRequest</title>
-      <link>https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusersauthrequest/</link>
-      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      <link>https://eh-jogos.github.io/eh_GameJolt/reference/user/requests/eh_gjusersauthrequest/</link>
+      <pubDate>Mon, 14 Sep 2020 07:32:33 -0300</pubDate>
       
-      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusersauthrequest/</guid>
-      <description>Extends: eh_GJBaseRequest &amp;lt; HTTPRequest
-Description This class decribes the Auth api endpoint. It&amp;rsquo;s response is modeled in the custom resource of [eh_GJUsersAuthData]
+      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/user/requests/eh_gjusersauthrequest/</guid>
+      <description>Inherits: eh_GJBaseRequest &amp;gt; HTTPRequest &amp;gt; Node &amp;gt; Object
+Description This class decribes the Auth api endpoint. It&amp;rsquo;s response is modeled in the custom resource of eh_GJUsersAuthData
 It&amp;rsquo;s a simple class to help with login in the user, but should be the first thing the game does or check for.
-If the request fails, the signal [eh_GJBaseRequest.gj_request_failed] will be emitted with an error dict as its parameter. category: HTTPRequests
-Method Descriptions auth_user_credentials func auth_user_credentials(p_username: String, p_user_token: String) -&amp;gt; int Builds url and send request to the auth Endpoint.</description>
+If the request fails, the signal gj_request_failed will be emitted with an error dict as its parameter.
+Methods    return type method signature     int auth_user_credentials(String p_username, String p_user_token)    Method Descriptions auth_user_credentials  int auth_user_credentials(String p_username, String p_user_token)  Builds url and send request to the auth Endpoint.</description>
     </item>
     
     <item>
       <title>eh_GJUsersFetch</title>
-      <link>https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusersfetch/</link>
-      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      <link>https://eh-jogos.github.io/eh_GameJolt/reference/user/endpoints/eh_gjusersfetch/</link>
+      <pubDate>Mon, 14 Sep 2020 07:32:33 -0300</pubDate>
       
-      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusersfetch/</guid>
-      <description>Extends: Node
-Description Method Descriptions request_user func request_user(p_username: String, is_user_id: bool = false) -&amp;gt; void Public Methods &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; request_users func request_users(p_user_ids: Array) -&amp;gt; void Signals  signal gj_fetch_user_completed(eh_gj_users_fetch_data): ## Member Variables and Dependencies &amp;mdash;&amp;ndash; signals signal gj_fetch_users_completed(array_of_eh_gj_users_fetch_data): signal gj_fetch_failed(error_dict):  </description>
+      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/user/endpoints/eh_gjusersfetch/</guid>
+      <description>Inherits: Node &amp;gt; Object
+Description Class to Manage Requests to the users endpoint.
+Methods    return type method signature     null request_user(String p_username, bool is_user_id)   null request_users(Array p_user_ids)    Method Descriptions request_user  void request_user(String p_username, bool is_user_id)  Public Methods &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;  request_users  void request_users(Array p_user_ids)   </description>
     </item>
     
     <item>
       <title>eh_GJUsersFetchData</title>
-      <link>https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusersfetchdata/</link>
-      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      <link>https://eh-jogos.github.io/eh_GameJolt/reference/user/responsedata/eh_gjusersfetchdata/</link>
+      <pubDate>Mon, 14 Sep 2020 07:32:33 -0300</pubDate>
       
-      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusersfetchdata/</guid>
-      <description>Extends: Resource
-Description Enumerations Status const Status: Dictionary = {&amp;#34;Active&amp;#34;:0,&amp;#34;Banned&amp;#34;:1} Type const Type: Dictionary = {&amp;#34;Administrator&amp;#34;:3,&amp;#34;Developer&amp;#34;:1,&amp;#34;Moderator&amp;#34;:2,&amp;#34;User&amp;#34;:0} Property Descriptions success var success: bool message var message: String id var id: int type var type: int username var username: String avatar_url var avatar_url: String signed_up var signed_up: String signed_up_timestamp var signed_up_timestamp: int last_logged_in var last_logged_in: String last_logged_in_timestamp var last_logged_in_timestamp: int status var status: int developer_name var developer_name: String developer_website var developer_website: String developer_description var developer_description: String </description>
+      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/user/responsedata/eh_gjusersfetchdata/</guid>
+      <description>Inherits: Resource &amp;gt; Reference &amp;gt; Object
+Description Data Struct that describes the user_response from /users/ endpoint Documentation for member variables at https://gamejolt.com/game-api/doc/users/fetch
+Properties    type property default value     bool success Null   String message Null   int id Null   int type Null   String username Null   String avatar_url Null   String signed_up Null   int signed_up_timestamp Null   String last_logged_in Null   int last_logged_in_timestamp Null   int status Null   String developer_name Null   String developer_website Null   String developer_description Null    Properties Descriptions success  bool success   message  String message   id  int id   type  int type   username  String username   avatar_url  String avatar_url   signed_up  String signed_up   signed_up_timestamp  int signed_up_timestamp   last_logged_in  String last_logged_in   last_logged_in_timestamp  int last_logged_in_timestamp   status  int status   developer_name  String developer_name   developer_website  String developer_website   developer_description  String developer_description   </description>
     </item>
     
     <item>
       <title>eh_GJUsersFetchRequest</title>
-      <link>https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusersfetchrequest/</link>
-      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      <link>https://eh-jogos.github.io/eh_GameJolt/reference/user/requests/eh_gjusersfetchrequest/</link>
+      <pubDate>Mon, 14 Sep 2020 07:32:33 -0300</pubDate>
       
-      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/classes/eh_gjusersfetchrequest/</guid>
-      <description>Extends: eh_GJBaseRequest &amp;lt; HTTPRequest
-Description This class decribes the Fetch api endpoint It&amp;rsquo;s response is modeled in the custom resource of [eh_GJUsersFetchData]
+      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/user/requests/eh_gjusersfetchrequest/</guid>
+      <description>Inherits: eh_GJBaseRequest &amp;gt; HTTPRequest &amp;gt; Node &amp;gt; Object
+Description This class decribes the Fetch api endpoint It&amp;rsquo;s response is modeled in the custom resource of eh_GJUsersFetchData
 It is possible to request data for a single user with fetch_user or for multiple users with fetch_users. These methods return the request Error Code, so that you can check if for connection errors.
 Each has it&amp;rsquo;s own signal with the response data, so be sure to listen for the corresponding signal.</description>
     </item>

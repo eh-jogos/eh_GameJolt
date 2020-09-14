@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Endpoints on eh_jogos Godot GamejoltApi</title>
+    <link>https://eh-jogos.github.io/eh_GameJolt/reference/user/endpoints/</link>
+    <description>Recent content in Endpoints on eh_jogos Godot GamejoltApi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 14 Sep 2020 07:32:33 -0300</lastBuildDate>
+    
+	<atom:link href="https://eh-jogos.github.io/eh_GameJolt/reference/user/endpoints/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>eh_GJUsersAuth</title>
+      <link>https://eh-jogos.github.io/eh_GameJolt/reference/user/endpoints/eh_gjusersauth/</link>
+      <pubDate>Mon, 14 Sep 2020 07:32:33 -0300</pubDate>
+      
+      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/user/endpoints/eh_gjusersauth/</guid>
+      <description>Inherits: Node &amp;gt; Object
+Description Class to Manage Requests to the users/auth endpoint.
+Properties    type property default value     bool is_logged_in Null    Methods    return type method signature     String get_player_username()   String get_player_user_token()   bool has_player_credentials()   null self_login(String p_username, String p_user_token)   null request(String p_username, String p_user_token)    Properties Descriptions is_logged_in  bool is_logged_in  public variables - order: export &amp;gt; normal var &amp;gt; onready</description>
+    </item>
+    
+    <item>
+      <title>eh_GJUsersFetch</title>
+      <link>https://eh-jogos.github.io/eh_GameJolt/reference/user/endpoints/eh_gjusersfetch/</link>
+      <pubDate>Mon, 14 Sep 2020 07:32:33 -0300</pubDate>
+      
+      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/user/endpoints/eh_gjusersfetch/</guid>
+      <description>Inherits: Node &amp;gt; Object
+Description Class to Manage Requests to the users endpoint.
+Methods    return type method signature     null request_user(String p_username, bool is_user_id)   null request_users(Array p_user_ids)    Method Descriptions request_user  void request_user(String p_username, bool is_user_id)  Public Methods &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;  request_users  void request_users(Array p_user_ids)   </description>
+    </item>
+    
+  </channel>
+</rss>

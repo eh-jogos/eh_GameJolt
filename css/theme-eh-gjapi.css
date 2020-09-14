@@ -24,14 +24,16 @@
 	--MENU-VISITED-color: #ff447d; /* Color of 'page visited' icons in menu */
 	--MENU-SECTION-HR-color: #ff447d; /* Color of <hr> separator in menu */
 	
+	--BODY-BACKGROUND-color: #303030;
+	--TR-EVEN-BACKGROUND-color:#c8ec3820;
 }
 
 body {
-	background-color: #303030;
+	background-color: var(--BODY-BACKGROUND-color);
 	color: var(--MAIN-TEXT-color) !important;
 	font-size: 20px !important;
-	font-family: "Work Sans", sans-serif;
-	font-weight: 300;
+	font-family: "Maven Pro", "Work Sans", sans-serif;
+	font-weight: 400;
 }
 
 textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="text"]:focus, input[type="url"]:focus, input[type="color"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, select[multiple=multiple]:focus {
@@ -43,6 +45,7 @@ h1 {
 	color: var(--MAIN-TITLES-TEXT-color);
 	font-family: "Maven Pro", "Work Sans", sans-serif;
 	font-weight: 400;
+	text-transform: none;
 }
 
 h2, h3, h4, h5 {
@@ -51,8 +54,42 @@ h2, h3, h4, h5 {
 	font-weight: 700;
 }
 
+
+h2 > em, h3 > em, h4 > em, h5 > em {
+	font-weight: 400;
+}
+
+
+hr {
+	border-bottom: 1px solid var(--MENU-HEADER-BORDER-color)
+}
+
+table {
+	table-layout: auto;
+	width: auto;
+	border-color: var(--MENU-HEADER-BG-color);
+}
+
+th {
+	background-color: var(--MENU-HEADER-BG-color);
+}
+
+tr:nth-child(even){
+	background-color: var(--TR-EVEN-BACKGROUND-color);
+}
+
+td {
+	border-color: var(--MENU-HEADER-BG-color);
+}
+
+td span.copy-to-clipboard {
+	visibility: hidden;
+	width: 0;
+}
+
 a {
 	color: var(--MAIN-LINK-color);
+	font-weight: 600;
 }
 
 .anchor {
@@ -135,4 +172,15 @@ a:hover {
 #top-bar {
 	background: #252525;
 	border-radius: 5px;
+}
+ 
+#sidebar .collapsible {
+	float: right;
+	font-size: 24px;
+	background-color: transparent;
+	font-family: "Maven Pro", "Work Sans", sans-serif;
+}
+
+#sidebar .collapsible:hover {
+	background-color: var(--MAIN-LINK-color);
 }

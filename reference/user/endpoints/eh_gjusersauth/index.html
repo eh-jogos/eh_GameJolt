@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/eh_GameJolt/images/favicon.png" type="image/png">
 
-    <title>Tags :: eh_jogos Godot GamejoltApi</title>
+    <title>eh_GJUsersAuth :: eh_jogos Godot GamejoltApi</title>
 
     
     <link href="/eh_GameJolt/css/nucleus.css?1600079788" rel="stylesheet">
@@ -39,7 +39,7 @@
 <link href="https://eh-jogos.github.io/eh_GameJolt//css/theme-eh-gjapi.css" rel="stylesheet"> 
 
   </head>
-  <body class="" data-url="/eh_GameJolt/tags/">
+  <body class="" data-url="/eh_GameJolt/reference/user/endpoints/eh_gjusersauth/">
     <nav id="sidebar" class="">
 
 
@@ -84,8 +84,8 @@
   
     
     <li data-nav-id="/eh_GameJolt/reference/" title="References" class="dd-item
+        parent
         
-        active
         
         ">
         
@@ -262,7 +262,7 @@
   
     
     <li data-nav-id="/eh_GameJolt/reference/user/" title="User" class="dd-item
-        
+        parent
         
         
         ">
@@ -295,7 +295,7 @@
   
     
     <li data-nav-id="/eh_GameJolt/reference/user/endpoints/" title="Endpoints" class="dd-item
-        
+        parent
         
         
         ">
@@ -325,7 +325,7 @@
  
   
     
-      <li data-nav-id="/eh_GameJolt/reference/user/endpoints/eh_gjusersauth/" title="eh_GJUsersAuth" class="dd-item ">
+      <li data-nav-id="/eh_GameJolt/reference/user/endpoints/eh_gjusersauth/" title="eh_GJUsersAuth" class="dd-item active">
         <a href="/eh_GameJolt/reference/user/endpoints/eh_gjusersauth/">
         eh_GJUsersAuth
         
@@ -592,7 +592,25 @@
             
           
           
-            <a href='/eh_GameJolt/'>eh_jogos Godot GamejoltApi</a> > Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/eh_GameJolt/'>eh_jogos Godot GamejoltApi</a> > <a href='/eh_GameJolt/reference/'>References</a> > <a href='/eh_GameJolt/reference/user/'>User</a> > <a href='/eh_GameJolt/reference/user/endpoints/'>Endpoints</a> > eh_GJUsersAuth
+          
+        
+          
+        
+          
+        
           
         
           
@@ -603,7 +621,31 @@
                 
                     <div class="progress">
     <div class="wrapper">
-
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#description">Description</a></li>
+    <li><a href="#properties">Properties</a></li>
+    <li><a href="#methods">Methods</a></li>
+    <li><a href="#properties-descriptions">Properties Descriptions</a>
+      <ul>
+        <li><a href="#is_logged_in">is_logged_in</a></li>
+      </ul>
+    </li>
+    <li><a href="#method-descriptions">Method Descriptions</a>
+      <ul>
+        <li><a href="#get_player_username">get_player_username</a></li>
+      </ul>
+    </li>
+    <li><a href="#public-methods-------------------------">Public Methods &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</a>
+      <ul>
+        <li><a href="#get_player_user_token">get_player_user_token</a></li>
+        <li><a href="#has_player_credentials">has_player_credentials</a></li>
+        <li><a href="#self_login">self_login</a></li>
+        <li><a href="#request">request</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -619,24 +661,101 @@
           
             <h1>
               
-                taxonomy ::
-              
-              Tags
+              eh_GJUsersAuth
             </h1>
           
 
         
 
 
-
-
-
+<p><strong>Inherits:</strong> <em><a href="https://docs.godotengine.org/en/stable/classes/class_node.html" target="_blank">Node</a> &gt; <a href="https://docs.godotengine.org/en/stable/classes/class_object.html" target="_blank">Object</a></em></p>
+<h2 id="description">Description</h2>
+<p>Class to Manage Requests to the <code>users/auth</code> endpoint.</p>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>property</th>
+<th>default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html" target="_blank">bool</a></td>
+<td><a href="/eh_GameJolt/reference/user/endpoints/eh_gjusersauth/#is_logged_in">is_logged_in</a></td>
+<td>Null</td>
+</tr>
+</tbody>
+</table>
+<h2 id="methods">Methods</h2>
+<table>
+<thead>
+<tr>
+<th>return type</th>
+<th>method signature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></td>
+<td><strong><a href="/eh_GameJolt/reference/user/endpoints/eh_gjusersauth/#get_player_username">get_player_username</a></strong>()</td>
+</tr>
+<tr>
+<td><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></td>
+<td><strong><a href="/eh_GameJolt/reference/user/endpoints/eh_gjusersauth/#get_player_user_token">get_player_user_token</a></strong>()</td>
+</tr>
+<tr>
+<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html" target="_blank">bool</a></td>
+<td><strong><a href="/eh_GameJolt/reference/user/endpoints/eh_gjusersauth/#has_player_credentials">has_player_credentials</a></strong>()</td>
+</tr>
+<tr>
+<td><a href="https://docs.godotengine.org/en/stable/classes/class_null.html" target="_blank">null</a></td>
+<td><strong><a href="/eh_GameJolt/reference/user/endpoints/eh_gjusersauth/#self_login">self_login</a></strong>(<a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a> p_username, <a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a> p_user_token)</td>
+</tr>
+<tr>
+<td><a href="https://docs.godotengine.org/en/stable/classes/class_null.html" target="_blank">null</a></td>
+<td><strong><a href="/eh_GameJolt/reference/user/endpoints/eh_gjusersauth/#request">request</a></strong>(<a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a> p_username, <a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a> p_user_token)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="properties-descriptions">Properties Descriptions</h2>
+<h3 id="is_logged_in">is_logged_in</h3>
 <ul>
-	
+<li><em><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html" target="_blank">bool</a></em> <strong>is_logged_in</strong></li>
 </ul>
+<p>public variables - order: export &gt; normal var &gt; onready</p>
+<hr>
+<h2 id="method-descriptions">Method Descriptions</h2>
+<h3 id="get_player_username">get_player_username</h3>
+<ul>
+<li><em><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></em> <strong>get_player_username</strong>()</li>
+</ul>
+<h2 id="public-methods-------------------------">Public Methods &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</h2>
+<hr>
+<h3 id="get_player_user_token">get_player_user_token</h3>
+<ul>
+<li><em><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></em> <strong>get_player_user_token</strong>()</li>
+</ul>
+<hr>
+<h3 id="has_player_credentials">has_player_credentials</h3>
+<ul>
+<li><em><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html" target="_blank">bool</a></em> <strong>has_player_credentials</strong>()</li>
+</ul>
+<hr>
+<h3 id="self_login">self_login</h3>
+<ul>
+<li><em>void</em> <strong>self_login</strong>(<a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a> p_username, <a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a> p_user_token)</li>
+</ul>
+<hr>
+<h3 id="request">request</h3>
+<ul>
+<li><em>void</em> <strong>request</strong>(<a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a> p_username, <a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a> p_user_token)</li>
+</ul>
+<hr>
 
 
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
@@ -671,8 +790,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -688,6 +805,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -771,6 +891,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -786,6 +907,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -798,6 +920,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -814,6 +937,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -940,8 +1066,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/eh_GameJolt/reference/user/endpoints/" title="Endpoints"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/eh_GameJolt/reference/" title="References" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/eh_GameJolt/reference/user/endpoints/eh_gjusersfetch/" title="eh_GJUsersFetch" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -971,3 +1099,4 @@
 <script src="https://eh-jogos.github.io/eh_GameJolt//js/collapsible.js"></script>
   </body>
 </html>
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ResponseData on eh_jogos Godot GamejoltApi</title>
+    <link>https://eh-jogos.github.io/eh_GameJolt/reference/user/responsedata/</link>
+    <description>Recent content in ResponseData on eh_jogos Godot GamejoltApi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 14 Sep 2020 07:32:33 -0300</lastBuildDate>
+    
+	<atom:link href="https://eh-jogos.github.io/eh_GameJolt/reference/user/responsedata/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>eh_GJUsersAuthData</title>
+      <link>https://eh-jogos.github.io/eh_GameJolt/reference/user/responsedata/eh_gjusersauthdata/</link>
+      <pubDate>Mon, 14 Sep 2020 07:32:33 -0300</pubDate>
+      
+      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/user/responsedata/eh_gjusersauthdata/</guid>
+      <description>Inherits: Resource &amp;gt; Reference &amp;gt; Object
+Description Data Struct that describes the response from /users/auth/ endpoint Documentation for member variables at https://gamejolt.com/game-api/doc/users/auth/
+Properties    type property default value     bool success Null   String message Null    Properties Descriptions success  bool success   message  String message   </description>
+    </item>
+    
+    <item>
+      <title>eh_GJUsersFetchData</title>
+      <link>https://eh-jogos.github.io/eh_GameJolt/reference/user/responsedata/eh_gjusersfetchdata/</link>
+      <pubDate>Mon, 14 Sep 2020 07:32:33 -0300</pubDate>
+      
+      <guid>https://eh-jogos.github.io/eh_GameJolt/reference/user/responsedata/eh_gjusersfetchdata/</guid>
+      <description>Inherits: Resource &amp;gt; Reference &amp;gt; Object
+Description Data Struct that describes the user_response from /users/ endpoint Documentation for member variables at https://gamejolt.com/game-api/doc/users/fetch
+Properties    type property default value     bool success Null   String message Null   int id Null   int type Null   String username Null   String avatar_url Null   String signed_up Null   int signed_up_timestamp Null   String last_logged_in Null   int last_logged_in_timestamp Null   int status Null   String developer_name Null   String developer_website Null   String developer_description Null    Properties Descriptions success  bool success   message  String message   id  int id   type  int type   username  String username   avatar_url  String avatar_url   signed_up  String signed_up   signed_up_timestamp  int signed_up_timestamp   last_logged_in  String last_logged_in   last_logged_in_timestamp  int last_logged_in_timestamp   status  int status   developer_name  String developer_name   developer_website  String developer_website   developer_description  String developer_description   </description>
+    </item>
+    
+  </channel>
+</rss>
