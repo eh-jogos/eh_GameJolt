@@ -8,8 +8,8 @@
 # Each has it's own signal with the response data, so be sure to listen for the corresponding 
 # signal.
 #
-# If the request fails, the signal [eh_GJBaseRequest.gj_request_failed] will be emitted with an error dict 
-# as its parameter.
+# If the request fails, the signal [eh_GJBaseRequest.gj_request_failed] will be emitted with an 
+# error dict as its parameter.
 # @category: User/Requests
 class_name eh_GJUsersFetchRequest
 extends eh_GJBaseRequest
@@ -34,6 +34,7 @@ const URL_ENDPOINT = "/users/"
 
 
 ### Built in Engine Methods ---------------
+
 func _ready() -> void:
 	pass
 
@@ -43,7 +44,7 @@ func _ready() -> void:
 ### Public Methods ------------------------
 
 # Request for a single user. Returns request error code. The user data will be sent either by
-# the signal [gj_user_fetch_data_received] or [eh_GJBaseRequest.gj_request_failed] will be emitted
+# the signal [gj_user_fetch_data_received] or [eh_GJBaseRequest.gj_request_failed] will be emitted.
 func fetch_user(p_username: String, is_user_id: bool = false) -> int:
 	var url = _get_base_url(URL_ENDPOINT)
 	
@@ -57,8 +58,8 @@ func fetch_user(p_username: String, is_user_id: bool = false) -> int:
 	return request(url)
 
 
-# Request for multiple users Returns request error code. The user data will be sent either by
-# the signal [gj_users_fetch_data_received] or [eh_GJBaseRequest.gj_request_failed] will be emitted
+# Request for multiple users. Returns request error code. The user data will be sent either by
+# the signal [gj_users_fetch_data_received] or [eh_GJBaseRequest.gj_request_failed] will be emitted.
 func fetch_users(p_array_of_ids: Array) -> int:
 	var url = _get_base_url(URL_ENDPOINT)
 	var user_ids: String = str(p_array_of_ids).lstrip("[").rstrip("]").replace(" ","")
@@ -71,6 +72,7 @@ func fetch_users(p_array_of_ids: Array) -> int:
 
 
 ### Private Methods -----------------------
+
 func _on_request_completed(result: int, code: int, headers: PoolStringArray, body: PoolByteArray) -> void:
 	var response_text = _get_request_resuls_basic_text(result, code, headers)
 	var body_dict :Dictionary = _get_parsed_dict(body)

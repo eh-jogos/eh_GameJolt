@@ -1,9 +1,10 @@
-# Data Struct that describes the user_response from `/users/` endpoint
-# Documentation for member variables at https://gamejolt.com/game-api/doc/users/fetch
+# Data Struct that describes the response from `/users/` endpoint
+# Further details at [gamejolt's api documentation](https://gamejolt.com/game-api/doc/users/fetch)
 # @category: User/ResponseData
 class_name eh_GJUsersFetchData
 extends Resource
 
+# Possible Types defined by GameJolt's documentation.
 enum Type {
 	User,
 	Developer,
@@ -11,29 +12,42 @@ enum Type {
 	Administrator
 }
 
+# Possible user Status defined by GameJolt's documentation.
 enum Status {
 	Active,
 	Banned
 }
 
-# Descrição da constante
-const TEST: Dictionary = {
-	"teste": "teste"
-}
-
+# Status of the request.
 var success: = false
+# Will contain error message if request fails.
 var message: = ""
+# The ID of the user. 
 var id: = 0
+# The type of user. Can be any type defined in the enum Types
 var type: int = Type.User
+# The type of user.
 var username: = ""
+# The URL of the user's avatar. 
 var avatar_url: = ""
+# How long ago the user signed up. 
 var signed_up: = ""
+# The timestamp (in seconds) of when the user signed up. 
 var signed_up_timestamp: = 0
+# How long ago the user was last logged in. Will be \"Online Now\" if the user is currently online. 
 var last_logged_in: = ""
+# The timestamp (in seconds) of when the user was last logged in. 
 var last_logged_in_timestamp: = 0
+# `Status.Active` if the user is still a member of the site. `Status.Banned` if they've been banned. 
 var status: int = Status.Active
+# The user's display name. 
+# (This is available to all users and the `developer_` is there for backwards compatibility)
 var developer_name: = ""
+# The user's website (or empty string if not specified) 
+# (This is available to all users and the `developer_` is there for backwards compatibility)
 var developer_website: = ""
+# The user's profile markdown description. 
+# (This is available to all users and the `developer_` is there for backwards compatibility)
 var developer_description: = ""
 
 

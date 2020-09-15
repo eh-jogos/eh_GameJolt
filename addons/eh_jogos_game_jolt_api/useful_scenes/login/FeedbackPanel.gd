@@ -1,5 +1,6 @@
+# Responsible for showing any feedback messages needed. The [eh_GJUsersAuth] signals are connected
+# here through the editor, to display the messages it sends.
 extends PanelContainer
-# Write your doc striing for this file here
 
 ### Member Variables and Dependencies -----
 # signals 
@@ -7,6 +8,7 @@ extends PanelContainer
 # constants
 # public variables - order: export > normal var > onready 
 # private variables - order: export > normal var > onready 
+
 onready var _label: Label = $Label
 onready var _animator: AnimationPlayer = $AnimationPlayer
 onready var _success_timer: Timer = $SuccessCloseTimer
@@ -14,6 +16,7 @@ onready var _success_timer: Timer = $SuccessCloseTimer
 
 
 ### Built in Engine Methods ---------------
+
 func _ready():
 	pass
 
@@ -25,6 +28,7 @@ func _ready():
 
 
 ### Private Methods -----------------------
+
 func _on_eh_GJUsersAuth_gj_auth_completed(data: eh_GJUsersAuthData):
 	if data.success:
 		_label.text = "Success!"

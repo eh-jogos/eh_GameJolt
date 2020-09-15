@@ -1,5 +1,5 @@
 # This class decribes the [Auth api endpoint](https://gamejolt.com/game-api/doc/users/auth).
-# It's response is modeled in the custom resource of [eh_GJUsersAuthData]
+# It's response is modeled in the custom resource of [eh_GJUsersAuthData].
 #
 # It's a simple class to help with login in the user, but should be the first thing the 
 # game does or check for. 
@@ -11,24 +11,24 @@ class_name eh_GJUsersAuthRequest
 extends eh_GJBaseRequest
 
 
-### Member Variables and Dependencies -----
-# signals 
+### Member Variables and Dependencies -------------------------------------------------------------
+#--- signals --------------------------------------------------------------------------------------
 
 # Signal sent with Auth Data response. Sends the [eh_GJUsersAuthData] resource as paremeter.
 signal gj_auth_data_received(eh_gj_users_auth_data)
 
-# enums
-# constants
+#--- enums ----------------------------------------------------------------------------------------
+#--- constants-------------------------------------------------------------------------------------
 
 # Address for this endpoint.
 const URL_ENDPOINT = "/users/auth/"
 
-# public variables - order: export > normal var > onready 
-# private variables - order: export > normal var > onready 
-### ---------------------------------------
+#--- public variables - order: export > normal var > onready --------------------------------------
+#--- private variables - order: export > normal var > onready -------------------------------------
+### -----------------------------------------------------------------------------------------------
 
 
-### Built in Engine Methods ---------------
+### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
 	pass

@@ -11,7 +11,8 @@
 [ext_resource path="res://addons/eh_jogos_game_jolt_api/useful_scenes/login/GameTokenLineEdit.gd" type="Script" id=9]
 
 [sub_resource type="GDScript" id=1]
-script/source = "extends ColorRect
+script/source = "# Auto shows/hide the background ColorRect as needed.
+extends ColorRect
 
 func _on_Popup_about_to_show():
 	show()
@@ -376,8 +377,8 @@ margin_right = 202.0
 margin_bottom = 20.0
 size_flags_horizontal = 4
 text = "Confirm"
-[connection signal="gj_auth_completed" from="eh_GJUsersAuth" to="LoginPopup/PanelRoot/FeedbackPanel" method="_on_eh_GJUsersAuth_gj_auth_completed"]
 [connection signal="gj_auth_completed" from="eh_GJUsersAuth" to="." method="_on_eh_GJUsersAuth_gj_auth_completed"]
+[connection signal="gj_auth_completed" from="eh_GJUsersAuth" to="LoginPopup/PanelRoot/FeedbackPanel" method="_on_eh_GJUsersAuth_gj_auth_completed"]
 [connection signal="gj_auth_failed" from="eh_GJUsersAuth" to="LoginPopup/PanelRoot/FeedbackPanel" method="_on_eh_GJUsersAuth_gj_auth_failed"]
 [connection signal="about_to_show" from="LoginPopup" to="ColorRect" method="_on_Popup_about_to_show"]
 [connection signal="player_login_confirmed" from="LoginPopup" to="." method="_on_LoginPopup_player_login_confirmed"]

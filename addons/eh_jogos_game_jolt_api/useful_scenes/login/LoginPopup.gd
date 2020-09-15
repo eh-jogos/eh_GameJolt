@@ -1,14 +1,18 @@
+# Handles populating the text fields and the UI functionality
 extends Popup
-# Write your doc striing for this file here
 
 ### Member Variables and Dependencies -----
 # signals 
+
+# Sends Login information when confirm button is clicked, so that whoever owns this logic can
+# perform the login.
 signal player_login_confirmed(username, user_token)
 
 # enums
 # constants
 # public variables - order: export > normal var > onready 
 # private variables - order: export > normal var > onready
+
 onready var _username_field = $LoginPanel/LoginContent/LoginFields/UsenameLine/LineEdit
 onready var _game_token_field = $LoginPanel/LoginContent/LoginFields/GameTokenLine/LineEdit
 
@@ -16,6 +20,7 @@ onready var _game_token_field = $LoginPanel/LoginContent/LoginFields/GameTokenLi
 
 
 ### Built in Engine Methods ---------------
+
 func _ready():
 	pass
 
@@ -23,6 +28,8 @@ func _ready():
 
 
 ### Public Methods ------------------------
+
+# Populates text fields and shows the popup
 func show_login_popup(username: = "", user_token: = "") -> void:
 	_username_field.text = username
 	_game_token_field.text = user_token

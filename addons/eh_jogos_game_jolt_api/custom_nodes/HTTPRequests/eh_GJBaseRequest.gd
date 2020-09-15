@@ -1,32 +1,36 @@
 # This Class is not to be used directly, rather it is the base class for all of GameJolt's 
-# Endpoint Requests. This will contain the base to build urls and manage responses
+# Endpoint Requests. This contains the base to build urls and manage responses
 class_name eh_GJBaseRequest
 extends HTTPRequest
-### Member Variables and Dependencies -----
-# signals 
+
+### Member Variables and Dependencies -------------------------------------------------------------
+#--- signals --------------------------------------------------------------------------------------
 
 # Signal sent when requests fail. Sends an dictionary with details about the error.
 signal gj_request_failed(error_dict)
 
-# enums
-# constants
-const GAME_CREDENTIALS : eh_GJGameCredentials = \
-		preload("res://addons/eh_jogos_game_jolt_api/gj_game_credentials.res")
+#--- enums ----------------------------------------------------------------------------------------
+#--- constants ------------------------------------------------------------------------------------
+
+# Path where game credentials are saved as a binary file custom resource.
+const GAME_CREDENTIALS : String = "res://addons/eh_jogos_game_jolt_api/gj_game_credentials.res"
+# Path where user credentials are saved as a binary file custom resource.
 const USER_CREDENTIALS_PATH: String = "res://addons/eh_jogos_game_jolt_api/gj_user_credentials.res"
+# Base url for api calls.
 const API_URL = "https://api.gamejolt.com/api/game/"
+# API version to use. Will be added to base url to build request urls.
 const API_VERSION = "v1_2"
+# Game Parameter string that will be added to all request urls.
 const API_GAME_ID_PARAMETER = "?game_id="
 
-# public variables - order: export > normal var > onready 
+#--- public variables - order: export > normal var > onready --------------------------------------
 
-# Test variable to test doc hugo export
-var test_int = 1
 # The game_id in Gamejolt. Should be set in the "GameJolt" Tab that appears in Project Settings
 # after enabling the plugin.
-var game_id: String = "joaozinho" setget , get_game_id
+var game_id: String
 # The game's private_key in Gamejolt. Should be set in the "GameJolt" Tab that appears in Project 
 # Settings after enabling the plugin.
-var private_key: String setget set_private_key
+var private_key: String
 # The player's username. Will be aquired automatically if the game was downloaded through GameJolt's
 # client. Otherwise, will be set by a login screen, but player only needs to login once.
 var username: String
@@ -34,32 +38,30 @@ var username: String
 # GameJolt's client. Otherwise, will be set by a login screen, but player only needs to login once.
 var user_token: String
 
-# private variables - order: export > normal var > onready 
-### ---------------------------------------
+#--- private variables - order: export > normal var > onready -------------------------------------
+### -----------------------------------------------------------------------------------------------
 
-func set_private_key(value: String) -> void:
-	private_key = value
+### Built in Engine Methods -----------------------------------------------------------------------
 
-func get_game_id() -> String:
-	return game_id
-
-### Built in Engine Methods ---------------
 func _ready() -> void:
 	connect("request_completed", self, "_on_request_completed")
 	
-	game_id = GAME_CREDENTIALS.game_id
-	private_key = GAME_CREDENTIALS.private_key
+	var game_credentials = load(GAME_CREDENTIALS)
+	
+	game_id = game_credentials.game_id
+	private_key = game_credentials.private_key
 	_auto_set_user_credentials()
 
-### ---------------------------------------
+### -----------------------------------------------------------------------------------------------
 
 
-### Public Methods ------------------------
+### Public Methods --------------------------------------------------------------------------------
 
-### ---------------------------------------
+### -----------------------------------------------------------------------------------------------
 
 
-### Private Methods -----------------------
+### Private Methods -------------------------------------------------------------------------------
+
 func _on_request_completed(result: int, code: int, headers: PoolStringArray, body: PoolByteArray) -> void:
 	var response_text = _get_request_resuls_basic_text(result, code, headers)
 	var body_dict :Dictionary = _get_parsed_dict(body)
@@ -184,6 +186,4 @@ func _set_user_credentials(p_username, p_user_token) -> void:
 	username = p_username
 	user_token = p_user_token
 
-### ---------------------------------------
-
-
+### -----------------------------------------------------------------------------------------------

@@ -1,6 +1,6 @@
-extends Resource
 # Data Struct that describes the response from `--------` endpoint
-# Documentation for member variables at --------------------------------
+# Further details at [gamejolt's api documentation](--------------------------------)
+extends Resource
 
 func _init() -> void:
 	pass

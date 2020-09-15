@@ -1,5 +1,5 @@
+# Just a simple class to allow toggling password secret on/off
 extends LineEdit
-# Write your doc striing for this file here
 
 ### Member Variables and Dependencies -----
 # signals 
