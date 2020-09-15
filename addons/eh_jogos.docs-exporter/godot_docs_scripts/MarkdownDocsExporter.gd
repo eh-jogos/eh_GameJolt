@@ -31,6 +31,15 @@ const MD_BLOCK_METHODS_TABLE_TITLE = ""\
 		+"| ----------- | ---------------- |  \n" 
 const MD_BLOCK_METHOD_TABLE_LINE = ""\
 		+"| {type} | {siganture} |  \n"
+const MD_BLOCK_SIGNALS_TITLE = ""\
+		+"  \n"\
+		+"## Signals  \n"\
+		+"  \n"
+const MD_BLOCK_SIGNALS_LINE = ""\
+		+"- **{name}**({arguments}) \n"\
+		+"  \n"\
+		+"{description}  \n"\
+		+"---------\n"
 const MD_BLOCK_ENUMS_TITLE = ""\
 		+"  \n"\
 		+"## Enumerations  \n"\
@@ -261,6 +270,9 @@ func _get_md_content(docs_entry: Dictionary) -> String:
 		md_content += MD_BLOCK_METHODS_TABLE_TITLE
 		md_content += _get_method_table(docs_entry)
 	
+	if not docs_entry.signals.empty():
+		md_content += _get_signals_block(docs_entry)
+	
 	if not docs_entry.constants.empty():
 		md_content += _get_enums_and_constants_block(docs_entry)
 	
@@ -454,6 +466,18 @@ func _get_method_table(docs_entry: Dictionary) -> String:
 	return table
 
 
+func _get_signals_block(docs_entry: Dictionary) -> String:
+	var block = MD_BLOCK_SIGNALS_TITLE
+	for entry in docs_entry.signals:
+		var description = _check_for_links(entry.description, docs_entry.name)
+		block += MD_BLOCK_SIGNALS_LINE.format({
+			name = entry.name,
+			arguments = str(entry.arguments).replace("[", "").replace("]", ""),
+			description = description,
+		})
+	return block
+
+
 func _get_enums_and_constants_block(docs_entry: Dictionary) -> String:
 	var block: = ""
 	var block_enums: = ""
@@ -470,7 +494,18 @@ func _get_enums_and_constants_block(docs_entry: Dictionary) -> String:
 			
 			block_enums += "---------\n"
 		else:
-			pass
+			if block_constants == "":
+				block_constants = MD_BLOCK_CONSTANTS_TITLE
+			
+			if constant.description != "":
+				block_constants += MD_BLOCK_CONSTANTS_LINE.format({
+					signature = "%s = %s"%[constant.name, constant.value],
+					description = constant.description.strip_edges()
+				})
+			else:
+				block_constants += MD_BLOCK_ENUM_KEY_LINE.format({
+					signature = "%s = %s"%[constant.name, constant.value],
+				})
 	
 	block = block_enums + block_constants
 	
