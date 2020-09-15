@@ -6,7 +6,7 @@
     <description>Recent content in References on eh_jogos Godot GamejoltApi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 Sep 2020 07:32:33 -0300</lastBuildDate>
+    <lastBuildDate>Tue, 15 Sep 2020 07:31:57 -0300</lastBuildDate>
     
 	<atom:link href="https://eh-jogos.github.io/eh_GameJolt/reference/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,13 +14,13 @@
     <item>
       <title>eh_GJBaseRequest</title>
       <link>https://eh-jogos.github.io/eh_GameJolt/reference/eh_gjbaserequest/</link>
-      <pubDate>Mon, 14 Sep 2020 07:32:33 -0300</pubDate>
+      <pubDate>Tue, 15 Sep 2020 07:31:57 -0300</pubDate>
       
       <guid>https://eh-jogos.github.io/eh_GameJolt/reference/eh_gjbaserequest/</guid>
       <description>Inherits: HTTPRequest &amp;gt; Node &amp;gt; Object
 Inherited by: eh_GJUsersAuthRequest, eh_GJUsersFetchRequest
-Description This Class is not to be used directly, rather it is the base class for all of GameJolt&amp;rsquo;s Endpoint Requests. This will contain the base to build urls and manage responses
-Properties    type property default value     Variant test_int Null   String game_id joaozinho   String private_key Null   String username Null   String user_token Null    Methods    return type method signature     null set_private_key(String value)   String get_game_id()    Properties Descriptions test_int  Variant test_int  Test variable to test doc hugo export</description>
+Description This Class is not to be used directly, rather it is the base class for all of GameJolt&amp;rsquo;s Endpoint Requests. This contains the base to build urls and manage responses
+Properties    type property default value     String game_id Null   String private_key Null   String username Null   String user_token Null    Signals  gj_request_failed(error_dict)  Signal sent when requests fail.</description>
     </item>
     
   </channel>

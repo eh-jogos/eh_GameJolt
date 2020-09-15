@@ -6,7 +6,7 @@
     <description>Recent content in Requests on eh_jogos Godot GamejoltApi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 Sep 2020 07:32:33 -0300</lastBuildDate>
+    <lastBuildDate>Tue, 15 Sep 2020 07:31:57 -0300</lastBuildDate>
     
 	<atom:link href="https://eh-jogos.github.io/eh_GameJolt/reference/user/requests/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,20 +14,20 @@
     <item>
       <title>eh_GJUsersAuthRequest</title>
       <link>https://eh-jogos.github.io/eh_GameJolt/reference/user/requests/eh_gjusersauthrequest/</link>
-      <pubDate>Mon, 14 Sep 2020 07:32:33 -0300</pubDate>
+      <pubDate>Tue, 15 Sep 2020 07:31:57 -0300</pubDate>
       
       <guid>https://eh-jogos.github.io/eh_GameJolt/reference/user/requests/eh_gjusersauthrequest/</guid>
       <description>Inherits: eh_GJBaseRequest &amp;gt; HTTPRequest &amp;gt; Node &amp;gt; Object
-Description This class decribes the Auth api endpoint. It&amp;rsquo;s response is modeled in the custom resource of eh_GJUsersAuthData
+Description This class decribes the Auth api endpoint. It&amp;rsquo;s response is modeled in the custom resource of eh_GJUsersAuthData.
 It&amp;rsquo;s a simple class to help with login in the user, but should be the first thing the game does or check for.
 If the request fails, the signal gj_request_failed will be emitted with an error dict as its parameter.
-Methods    return type method signature     int auth_user_credentials(String p_username, String p_user_token)    Method Descriptions auth_user_credentials  int auth_user_credentials(String p_username, String p_user_token)  Builds url and send request to the auth Endpoint.</description>
+Methods    return type method signature     int auth_user_credentials(String p_username, String p_user_token)    Signals  gj_auth_data_received(eh_gj_users_auth_data)  Signal sent with Auth Data response.</description>
     </item>
     
     <item>
       <title>eh_GJUsersFetchRequest</title>
       <link>https://eh-jogos.github.io/eh_GameJolt/reference/user/requests/eh_gjusersfetchrequest/</link>
-      <pubDate>Mon, 14 Sep 2020 07:32:33 -0300</pubDate>
+      <pubDate>Tue, 15 Sep 2020 07:31:57 -0300</pubDate>
       
       <guid>https://eh-jogos.github.io/eh_GameJolt/reference/user/requests/eh_gjusersfetchrequest/</guid>
       <description>Inherits: eh_GJBaseRequest &amp;gt; HTTPRequest &amp;gt; Node &amp;gt; Object

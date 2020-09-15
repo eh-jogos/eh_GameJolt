@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/eh_GameJolt/images/favicon.png" type="image/png">
 
-    <title>eh_GJBaseRequest :: eh_jogos Godot GamejoltApi</title>
+    <title>eh_GJUsersFetch :: eh_jogos Godot GamejoltApi</title>
 
     
     <link href="/eh_GameJolt/css/nucleus.css?1600166537" rel="stylesheet">
@@ -39,7 +39,7 @@
 <link href="https://eh-jogos.github.io/eh_GameJolt//css/theme-eh-gjapi.css" rel="stylesheet"> 
 
   </head>
-  <body class="" data-url="/eh_GameJolt/reference/eh_gjbaserequest/">
+  <body class="" data-url="/eh_GameJolt/reference/user/eh_gjusersfetch/">
     <nav id="sidebar" class="">
 
 
@@ -116,7 +116,7 @@
  
   
     
-      <li data-nav-id="/eh_GameJolt/reference/eh_gjbaserequest/" title="eh_GJBaseRequest" class="dd-item active">
+      <li data-nav-id="/eh_GameJolt/reference/eh_gjbaserequest/" title="eh_GJBaseRequest" class="dd-item ">
         <a href="/eh_GameJolt/reference/eh_gjbaserequest/">
         eh_GJBaseRequest
         
@@ -262,7 +262,7 @@
   
     
     <li data-nav-id="/eh_GameJolt/reference/user/" title="User" class="dd-item
-        
+        parent
         
         
         ">
@@ -315,7 +315,7 @@
  
   
     
-      <li data-nav-id="/eh_GameJolt/reference/user/eh_gjusersfetch/" title="eh_GJUsersFetch" class="dd-item ">
+      <li data-nav-id="/eh_GameJolt/reference/user/eh_gjusersfetch/" title="eh_GJUsersFetch" class="dd-item active">
         <a href="/eh_GameJolt/reference/user/eh_gjusersfetch/">
         eh_GJUsersFetch
         
@@ -556,7 +556,13 @@
             
           
           
-            <a href='/eh_GameJolt/'>eh_jogos Godot GamejoltApi</a> > <a href='/eh_GameJolt/reference/'>References</a> > eh_GJBaseRequest
+            
+            
+          
+          
+            <a href='/eh_GameJolt/'>eh_jogos Godot GamejoltApi</a> > <a href='/eh_GameJolt/reference/'>References</a> > <a href='/eh_GameJolt/reference/user/'>User</a> > eh_GJUsersFetch
+          
+        
           
         
           
@@ -572,15 +578,12 @@
 <nav id="TableOfContents">
   <ul>
     <li><a href="#description">Description</a></li>
-    <li><a href="#properties">Properties</a></li>
+    <li><a href="#methods">Methods</a></li>
     <li><a href="#signals">Signals</a></li>
-    <li><a href="#constants">Constants</a></li>
-    <li><a href="#properties-descriptions">Properties Descriptions</a>
+    <li><a href="#method-descriptions">Method Descriptions</a>
       <ul>
-        <li><a href="#game_id">game_id</a></li>
-        <li><a href="#private_key">private_key</a></li>
-        <li><a href="#username">username</a></li>
-        <li><a href="#user_token">user_token</a></li>
+        <li><a href="#request_user">request_user</a></li>
+        <li><a href="#request_users">request_users</a></li>
       </ul>
     </li>
   </ul>
@@ -600,92 +603,71 @@
           
             <h1>
               
-              eh_GJBaseRequest
+              eh_GJUsersFetch
             </h1>
           
 
         
 
 
-<p><strong>Inherits:</strong> <em><a href="https://docs.godotengine.org/en/stable/classes/class_httprequest.html" target="_blank">HTTPRequest</a> &gt; <a href="https://docs.godotengine.org/en/stable/classes/class_node.html" target="_blank">Node</a> &gt; <a href="https://docs.godotengine.org/en/stable/classes/class_object.html" target="_blank">Object</a></em><br>
-<strong>Inherited by:</strong> <em><a href="/eh_GameJolt/reference/user/requests/eh_gjusersauthrequest/">eh_GJUsersAuthRequest</a>, <a href="/eh_GameJolt/reference/user/requests/eh_gjusersfetchrequest/">eh_GJUsersFetchRequest</a></em></p>
+<p><strong>Inherits:</strong> <em><a href="https://docs.godotengine.org/en/stable/classes/class_node.html" target="_blank">Node</a> &gt; <a href="https://docs.godotengine.org/en/stable/classes/class_object.html" target="_blank">Object</a></em></p>
 <h2 id="description">Description</h2>
-<p>This Class is not to be used directly, rather it is the base class for all of GameJolt&rsquo;s
-Endpoint Requests. This contains the base to build urls and manage responses</p>
-<h2 id="properties">Properties</h2>
+<p>Node to manage requests to the <code>users</code> endpoint. It wil instantiate and remove
+<a href="/eh_GameJolt/reference/user/requests/eh_gjusersauthrequest/">eh_GJUsersAuthRequest</a> nodes as needed.</p>
+<p>It can make requests for data on a single user or on multiple users at a time.</p>
+<h2 id="methods">Methods</h2>
 <table>
 <thead>
 <tr>
-<th>type</th>
-<th>property</th>
-<th>default value</th>
+<th>return type</th>
+<th>method signature</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></td>
-<td><a href="/eh_GameJolt/reference/eh_gjbaserequest/#game_id">game_id</a></td>
-<td>Null</td>
+<td><a href="https://docs.godotengine.org/en/stable/classes/class_null.html" target="_blank">null</a></td>
+<td><strong><a href="/eh_GameJolt/reference/user/eh_gjusersfetch/#request_user">request_user</a></strong>(<a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a> p_username, <a href="https://docs.godotengine.org/en/stable/classes/class_bool.html" target="_blank">bool</a> is_user_id)</td>
 </tr>
 <tr>
-<td><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></td>
-<td><a href="/eh_GameJolt/reference/eh_gjbaserequest/#private_key">private_key</a></td>
-<td>Null</td>
-</tr>
-<tr>
-<td><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></td>
-<td><a href="/eh_GameJolt/reference/eh_gjbaserequest/#username">username</a></td>
-<td>Null</td>
-</tr>
-<tr>
-<td><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></td>
-<td><a href="/eh_GameJolt/reference/eh_gjbaserequest/#user_token">user_token</a></td>
-<td>Null</td>
+<td><a href="https://docs.godotengine.org/en/stable/classes/class_null.html" target="_blank">null</a></td>
+<td><strong><a href="/eh_GameJolt/reference/user/eh_gjusersfetch/#request_users">request_users</a></strong>(<a href="https://docs.godotengine.org/en/stable/classes/class_array.html" target="_blank">Array</a> p_user_ids)</td>
 </tr>
 </tbody>
 </table>
 <h2 id="signals">Signals</h2>
 <ul>
-<li><strong>gj_request_failed</strong>(error_dict)</li>
+<li><strong>gj_fetch_user_completed</strong>(eh_gj_users_fetch_data)</li>
 </ul>
-<p>Signal sent when requests fail. Sends an dictionary with details about the error.</p>
+<p>Signal emitted when a single user request is completed successfully. Sends a <a href="/eh_GameJolt/reference/user/responsedata/eh_gjusersfetchdata/">eh_GJUsersFetchData</a>
+as parameter.</p>
 <hr>
-<h2 id="constants">Constants</h2>
 <ul>
-<li><strong>GAME_CREDENTIALS = res://addons/eh_jogos_game_jolt_api/gj_game_credentials.res</strong> &mdash; Path where game credentials are saved as a binary file custom resource.</li>
-<li><strong>API_GAME_ID_PARAMETER = ?game_id=</strong> &mdash; Game Parameter string that will be added to all request urls.</li>
-<li><strong>API_VERSION = v1_2</strong> &mdash; API version to use. Will be added to base url to build request urls.</li>
-<li><strong>API_URL = <a href="https://api.gamejolt.com/api/game/">https://api.gamejolt.com/api/game/</a></strong> &mdash; Base url for api calls.</li>
-<li><strong>USER_CREDENTIALS_PATH = res://addons/eh_jogos_game_jolt_api/gj_user_credentials.res</strong> &mdash; Path where user credentials are saved as a binary file custom resource.</li>
+<li><strong>gj_fetch_users_completed</strong>(array_of_eh_gj_users_fetch_data)</li>
 </ul>
-<h2 id="properties-descriptions">Properties Descriptions</h2>
-<h3 id="game_id">game_id</h3>
-<ul>
-<li><em><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></em> <strong>game_id</strong></li>
-</ul>
-<p>The game_id in Gamejolt. Should be set in the &ldquo;GameJolt&rdquo; Tab that appears in Project Settings
-after enabling the plugin.</p>
+<p>Signal emitted when a multi user request is completed successfully. Sends an array of
+<a href="/eh_GameJolt/reference/user/responsedata/eh_gjusersfetchdata/">eh_GJUsersFetchData</a> as parameter.</p>
 <hr>
-<h3 id="private_key">private_key</h3>
 <ul>
-<li><em><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></em> <strong>private_key</strong></li>
+<li><strong>gj_fetch_failed</strong>(error_dict)</li>
 </ul>
-<p>The game&rsquo;s private_key in Gamejolt. Should be set in the &ldquo;GameJolt&rdquo; Tab that appears in Project
-Settings after enabling the plugin.</p>
+<p>Signal emitted when a fetch request fails. The dictionary format can vary according to the type of
+error</p>
 <hr>
-<h3 id="username">username</h3>
+<h2 id="method-descriptions">Method Descriptions</h2>
+<h3 id="request_user">request_user</h3>
 <ul>
-<li><em><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></em> <strong>username</strong></li>
+<li><em>void</em> <strong>request_user</strong>(<a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a> p_username, <a href="https://docs.godotengine.org/en/stable/classes/class_bool.html" target="_blank">bool</a> is_user_id)</li>
 </ul>
-<p>The player&rsquo;s username. Will be aquired automatically if the game was downloaded through GameJolt&rsquo;s
-client. Otherwise, will be set by a login screen, but player only needs to login once.</p>
+<p>Creates a single user request. If you&rsquo;re passing a user_id number instead of username the optional
+parameter must be sent as true.
+Emits [gj_fetch_user_completed] signal if completed successfully or [gj_fetch_failed] if not.</p>
 <hr>
-<h3 id="user_token">user_token</h3>
+<h3 id="request_users">request_users</h3>
 <ul>
-<li><em><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></em> <strong>user_token</strong></li>
+<li><em>void</em> <strong>request_users</strong>(<a href="https://docs.godotengine.org/en/stable/classes/class_array.html" target="_blank">Array</a> p_user_ids)</li>
 </ul>
-<p>The player&rsquo;s game_token. Will be aquired automatically if the game was downloaded through
-GameJolt&rsquo;s client. Otherwise, will be set by a login screen, but player only needs to login once.</p>
+<p>Creates a multi user request. It only accepts user_ids.
+Emits [gj_fetch_users_completed] signal if completed successfully or [gj_fetch_failed] if not.</p>
 <hr>
 
 
@@ -740,53 +722,8 @@ GameJolt&rsquo;s client. Otherwise, will be set by a login screen, but player on
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                         
                         
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -809,17 +746,10 @@ GameJolt&rsquo;s client. Otherwise, will be set by a login screen, but player on
 
                     
                     
+                        
+                    
                     
 
-                    
-            
-        
-                    
-            
-        
-                    
-            
-        
                     
                         
             
@@ -830,8 +760,6 @@ GameJolt&rsquo;s client. Otherwise, will be set by a login screen, but player on
                 
 
                     
-                    
-                        
                     
                     
 
@@ -868,10 +796,71 @@ GameJolt&rsquo;s client. Otherwise, will be set by a login screen, but player on
             
         
                     
+            
+        
+                    
+            
+        
+                    
                         
             
             
                 
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -979,10 +968,10 @@ GameJolt&rsquo;s client. Otherwise, will be set by a login screen, but player on
 	 
 	 
 		
-			<a class="nav nav-prev" href="/eh_GameJolt/reference/" title="References"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/eh_GameJolt/reference/user/eh_gjusersauth/" title="eh_GJUsersAuth"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/eh_GameJolt/reference/resources/" title="Resources" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/eh_GameJolt/reference/user/requests/" title="Requests" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

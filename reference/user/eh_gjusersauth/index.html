@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/eh_GameJolt/images/favicon.png" type="image/png">
 
-    <title>eh_GJBaseRequest :: eh_jogos Godot GamejoltApi</title>
+    <title>eh_GJUsersAuth :: eh_jogos Godot GamejoltApi</title>
 
     
     <link href="/eh_GameJolt/css/nucleus.css?1600166537" rel="stylesheet">
@@ -39,7 +39,7 @@
 <link href="https://eh-jogos.github.io/eh_GameJolt//css/theme-eh-gjapi.css" rel="stylesheet"> 
 
   </head>
-  <body class="" data-url="/eh_GameJolt/reference/eh_gjbaserequest/">
+  <body class="" data-url="/eh_GameJolt/reference/user/eh_gjusersauth/">
     <nav id="sidebar" class="">
 
 
@@ -116,7 +116,7 @@
  
   
     
-      <li data-nav-id="/eh_GameJolt/reference/eh_gjbaserequest/" title="eh_GJBaseRequest" class="dd-item active">
+      <li data-nav-id="/eh_GameJolt/reference/eh_gjbaserequest/" title="eh_GJBaseRequest" class="dd-item ">
         <a href="/eh_GameJolt/reference/eh_gjbaserequest/">
         eh_GJBaseRequest
         
@@ -262,7 +262,7 @@
   
     
     <li data-nav-id="/eh_GameJolt/reference/user/" title="User" class="dd-item
-        
+        parent
         
         
         ">
@@ -294,7 +294,7 @@
  
   
     
-      <li data-nav-id="/eh_GameJolt/reference/user/eh_gjusersauth/" title="eh_GJUsersAuth" class="dd-item ">
+      <li data-nav-id="/eh_GameJolt/reference/user/eh_gjusersauth/" title="eh_GJUsersAuth" class="dd-item active">
         <a href="/eh_GameJolt/reference/user/eh_gjusersauth/">
         eh_GJUsersAuth
         
@@ -556,7 +556,13 @@
             
           
           
-            <a href='/eh_GameJolt/'>eh_jogos Godot GamejoltApi</a> > <a href='/eh_GameJolt/reference/'>References</a> > eh_GJBaseRequest
+            
+            
+          
+          
+            <a href='/eh_GameJolt/'>eh_jogos Godot GamejoltApi</a> > <a href='/eh_GameJolt/reference/'>References</a> > <a href='/eh_GameJolt/reference/user/'>User</a> > eh_GJUsersAuth
+          
+        
           
         
           
@@ -573,14 +579,21 @@
   <ul>
     <li><a href="#description">Description</a></li>
     <li><a href="#properties">Properties</a></li>
+    <li><a href="#methods">Methods</a></li>
     <li><a href="#signals">Signals</a></li>
     <li><a href="#constants">Constants</a></li>
     <li><a href="#properties-descriptions">Properties Descriptions</a>
       <ul>
-        <li><a href="#game_id">game_id</a></li>
-        <li><a href="#private_key">private_key</a></li>
-        <li><a href="#username">username</a></li>
-        <li><a href="#user_token">user_token</a></li>
+        <li><a href="#is_logged_in">is_logged_in</a></li>
+      </ul>
+    </li>
+    <li><a href="#method-descriptions">Method Descriptions</a>
+      <ul>
+        <li><a href="#get_player_username">get_player_username</a></li>
+        <li><a href="#get_player_user_token">get_player_user_token</a></li>
+        <li><a href="#has_player_credentials">has_player_credentials</a></li>
+        <li><a href="#self_login">self_login</a></li>
+        <li><a href="#request">request</a></li>
       </ul>
     </li>
   </ul>
@@ -600,18 +613,19 @@
           
             <h1>
               
-              eh_GJBaseRequest
+              eh_GJUsersAuth
             </h1>
           
 
         
 
 
-<p><strong>Inherits:</strong> <em><a href="https://docs.godotengine.org/en/stable/classes/class_httprequest.html" target="_blank">HTTPRequest</a> &gt; <a href="https://docs.godotengine.org/en/stable/classes/class_node.html" target="_blank">Node</a> &gt; <a href="https://docs.godotengine.org/en/stable/classes/class_object.html" target="_blank">Object</a></em><br>
-<strong>Inherited by:</strong> <em><a href="/eh_GameJolt/reference/user/requests/eh_gjusersauthrequest/">eh_GJUsersAuthRequest</a>, <a href="/eh_GameJolt/reference/user/requests/eh_gjusersfetchrequest/">eh_GJUsersFetchRequest</a></em></p>
+<p><strong>Inherits:</strong> <em><a href="https://docs.godotengine.org/en/stable/classes/class_node.html" target="_blank">Node</a> &gt; <a href="https://docs.godotengine.org/en/stable/classes/class_object.html" target="_blank">Object</a></em></p>
 <h2 id="description">Description</h2>
-<p>This Class is not to be used directly, rather it is the base class for all of GameJolt&rsquo;s
-Endpoint Requests. This contains the base to build urls and manage responses</p>
+<p>Node to manage requests to the <code>users/auth</code> endpoint. It wil instantiate and remove
+<a href="/eh_GameJolt/reference/user/requests/eh_gjusersauthrequest/">eh_GJUsersAuthRequest</a> nodes as needed.</p>
+<p>It is able to read credentials from gamejolt&rsquo;s &ldquo;.gj-credentials&rdquo; the game launcher creates,
+has methods to facilitate login, and auto-saving user credentials.</p>
 <h2 id="properties">Properties</h2>
 <table>
 <thead>
@@ -623,69 +637,103 @@ Endpoint Requests. This contains the base to build urls and manage responses</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></td>
-<td><a href="/eh_GameJolt/reference/eh_gjbaserequest/#game_id">game_id</a></td>
+<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html" target="_blank">bool</a></td>
+<td><a href="/eh_GameJolt/reference/user/eh_gjusersauth/#is_logged_in">is_logged_in</a></td>
 <td>Null</td>
+</tr>
+</tbody>
+</table>
+<h2 id="methods">Methods</h2>
+<table>
+<thead>
+<tr>
+<th>return type</th>
+<th>method signature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></td>
+<td><strong><a href="/eh_GameJolt/reference/user/eh_gjusersauth/#get_player_username">get_player_username</a></strong>()</td>
 </tr>
 <tr>
 <td><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></td>
-<td><a href="/eh_GameJolt/reference/eh_gjbaserequest/#private_key">private_key</a></td>
-<td>Null</td>
+<td><strong><a href="/eh_GameJolt/reference/user/eh_gjusersauth/#get_player_user_token">get_player_user_token</a></strong>()</td>
 </tr>
 <tr>
-<td><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></td>
-<td><a href="/eh_GameJolt/reference/eh_gjbaserequest/#username">username</a></td>
-<td>Null</td>
+<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html" target="_blank">bool</a></td>
+<td><strong><a href="/eh_GameJolt/reference/user/eh_gjusersauth/#has_player_credentials">has_player_credentials</a></strong>()</td>
 </tr>
 <tr>
-<td><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></td>
-<td><a href="/eh_GameJolt/reference/eh_gjbaserequest/#user_token">user_token</a></td>
-<td>Null</td>
+<td><a href="https://docs.godotengine.org/en/stable/classes/class_null.html" target="_blank">null</a></td>
+<td><strong><a href="/eh_GameJolt/reference/user/eh_gjusersauth/#self_login">self_login</a></strong>(<a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a> p_username, <a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a> p_user_token)</td>
+</tr>
+<tr>
+<td><a href="https://docs.godotengine.org/en/stable/classes/class_null.html" target="_blank">null</a></td>
+<td><strong><a href="/eh_GameJolt/reference/user/eh_gjusersauth/#request">request</a></strong>(<a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a> p_username, <a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a> p_user_token)</td>
 </tr>
 </tbody>
 </table>
 <h2 id="signals">Signals</h2>
 <ul>
-<li><strong>gj_request_failed</strong>(error_dict)</li>
+<li><strong>gj_auth_completed</strong>(eh_gj_users_auth_data)</li>
 </ul>
-<p>Signal sent when requests fail. Sends an dictionary with details about the error.</p>
+<p>Signal emitted when auth request is successfuly completed. Sends an <a href="/eh_GameJolt/reference/user/responsedata/eh_gjusersauthdata/">eh_GJUsersAuthData</a> resource
+as parameter</p>
+<hr>
+<ul>
+<li><strong>gj_auth_failed</strong>(error_dictionary)</li>
+</ul>
+<p>Signal emitted when auth request fails. The dictionary format can vary according to the type of
+error</p>
 <hr>
 <h2 id="constants">Constants</h2>
 <ul>
-<li><strong>GAME_CREDENTIALS = res://addons/eh_jogos_game_jolt_api/gj_game_credentials.res</strong> &mdash; Path where game credentials are saved as a binary file custom resource.</li>
-<li><strong>API_GAME_ID_PARAMETER = ?game_id=</strong> &mdash; Game Parameter string that will be added to all request urls.</li>
-<li><strong>API_VERSION = v1_2</strong> &mdash; API version to use. Will be added to base url to build request urls.</li>
-<li><strong>API_URL = <a href="https://api.gamejolt.com/api/game/">https://api.gamejolt.com/api/game/</a></strong> &mdash; Base url for api calls.</li>
 <li><strong>USER_CREDENTIALS_PATH = res://addons/eh_jogos_game_jolt_api/gj_user_credentials.res</strong> &mdash; Path where user credentials are saved as a binary file custom resource.</li>
 </ul>
 <h2 id="properties-descriptions">Properties Descriptions</h2>
-<h3 id="game_id">game_id</h3>
+<h3 id="is_logged_in">is_logged_in</h3>
 <ul>
-<li><em><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></em> <strong>game_id</strong></li>
+<li><em><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html" target="_blank">bool</a></em> <strong>is_logged_in</strong></li>
 </ul>
-<p>The game_id in Gamejolt. Should be set in the &ldquo;GameJolt&rdquo; Tab that appears in Project Settings
-after enabling the plugin.</p>
+<p>Flag to tell if player credentials has been successfully checked and logged in.</p>
 <hr>
-<h3 id="private_key">private_key</h3>
+<h2 id="method-descriptions">Method Descriptions</h2>
+<h3 id="get_player_username">get_player_username</h3>
 <ul>
-<li><em><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></em> <strong>private_key</strong></li>
+<li><em><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></em> <strong>get_player_username</strong>()</li>
 </ul>
-<p>The game&rsquo;s private_key in Gamejolt. Should be set in the &ldquo;GameJolt&rdquo; Tab that appears in Project
-Settings after enabling the plugin.</p>
+<p>Returns player username retrieved either from saved credentials, or from &ldquo;.gj-credentials&rdquo; file
+generated by gamejolt launcher.</p>
 <hr>
-<h3 id="username">username</h3>
+<h3 id="get_player_user_token">get_player_user_token</h3>
 <ul>
-<li><em><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></em> <strong>username</strong></li>
+<li><em><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></em> <strong>get_player_user_token</strong>()</li>
 </ul>
-<p>The player&rsquo;s username. Will be aquired automatically if the game was downloaded through GameJolt&rsquo;s
-client. Otherwise, will be set by a login screen, but player only needs to login once.</p>
+<p>Returns player game token retrieved either from saved credentials, or from &ldquo;.gj-credentials&rdquo; file
+generated by gamejolt launcher.</p>
 <hr>
-<h3 id="user_token">user_token</h3>
+<h3 id="has_player_credentials">has_player_credentials</h3>
 <ul>
-<li><em><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></em> <strong>user_token</strong></li>
+<li><em><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html" target="_blank">bool</a></em> <strong>has_player_credentials</strong>()</li>
 </ul>
-<p>The player&rsquo;s game_token. Will be aquired automatically if the game was downloaded through
-GameJolt&rsquo;s client. Otherwise, will be set by a login screen, but player only needs to login once.</p>
+<p>Returns true if player credentials has already been found and/or saved.</p>
+<hr>
+<h3 id="self_login">self_login</h3>
+<ul>
+<li><em>void</em> <strong>self_login</strong>(<a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a> p_username, <a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a> p_user_token)</li>
+</ul>
+<p>Auto Auth request for the player. It&rsquo;s a helper for login in the current player without needing
+to whory about username and game token, but it accepts them as optional parameters, and in case
+they&rsquo;re used it will save them as the new default credentials.
+Emits [gj_auth_completed] signal if completed successfully or [gj_auth_failed] if not.</p>
+<hr>
+<h3 id="request">request</h3>
+<ul>
+<li><em>void</em> <strong>request</strong>(<a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a> p_username, <a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a> p_user_token)</li>
+</ul>
+<p>Sends auth request for the username and token passsed. Will not overwrite default credentials.
+Emits [gj_auth_completed] signal if completed successfully or [gj_auth_failed] if not.</p>
 <hr>
 
 
@@ -740,23 +788,6 @@ GameJolt&rsquo;s client. Otherwise, will be set by a login screen, but player on
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                         
                         
                     
@@ -765,58 +796,8 @@ GameJolt&rsquo;s client. Otherwise, will be set by a login screen, but player on
 
                     
                     
-                        
-                    
                     
 
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
                     
             
         
@@ -849,6 +830,19 @@ GameJolt&rsquo;s client. Otherwise, will be set by a login screen, but player on
                     
 
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
             
         
                     
@@ -856,6 +850,64 @@ GameJolt&rsquo;s client. Otherwise, will be set by a login screen, but player on
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -979,10 +1031,10 @@ GameJolt&rsquo;s client. Otherwise, will be set by a login screen, but player on
 	 
 	 
 		
-			<a class="nav nav-prev" href="/eh_GameJolt/reference/" title="References"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/eh_GameJolt/reference/user/" title="User"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/eh_GameJolt/reference/resources/" title="Resources" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/eh_GameJolt/reference/user/eh_gjusersfetch/" title="eh_GJUsersFetch" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
