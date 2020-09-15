@@ -1,13 +1,13 @@
 ---  
 title: eh_GJUsersAuthData  
 author: eh-jogos  
-date: 2020-09-14T07:32:33-03:00  
+date: 2020-09-15T07:31:57-03:00  
 summary:   
 ---  
 **Inherits:** _[Resource](https://docs.godotengine.org/en/stable/classes/class_resource.html) > [Reference](https://docs.godotengine.org/en/stable/classes/class_reference.html) > [Object](https://docs.godotengine.org/en/stable/classes/class_object.html)_  
 ## Description  
  Data Struct that describes the response from `/users/auth/` endpoint
- Documentation for member variables at https://gamejolt.com/game-api/doc/users/auth/
+ Further details at [gamejolt's api documentation](https://gamejolt.com/game-api/doc/users/auth/)
   
 ## Properties 
   
@@ -21,10 +21,12 @@ summary:
 ### success 
 - _[bool](https://docs.godotengine.org/en/stable/classes/class_bool.html)_ **success**  
   
+ Status of the request.
   
 ---------
 ### message 
 - _[String](https://docs.godotengine.org/en/stable/classes/class_string.html)_ **message**  
   
+ Will contain error message if request fails.
   
 ---------

@@ -1,13 +1,13 @@
 ---  
 title: eh_GJGameCredentials  
 author: eh-jogos  
-date: 2020-09-14T07:32:33-03:00  
+date: 2020-09-15T07:31:57-03:00  
 summary:   
 ---  
 **Inherits:** _[Resource](https://docs.godotengine.org/en/stable/classes/class_resource.html) > [Reference](https://docs.godotengine.org/en/stable/classes/class_reference.html) > [Object](https://docs.godotengine.org/en/stable/classes/class_object.html)_  
 ## Description  
  Just a basic struct to hold game credentials information and be able to save it in disk 
- as a Resource
+ as a Resource.
   
 ## Properties 
   
@@ -25,6 +25,7 @@ summary:
 | - |:-:|  
 | _Default_ | ` "" ` |  
 
+ Your game id.
   
 ---------
 ### private_key 
@@ -34,5 +35,7 @@ summary:
 | - |:-:|  
 | _Default_ | ` "" ` |  
 
+ Your private key. This addon already comes with .gitignore configured so that this file will never
+ be pushed to the repository, but be carefull not to share it.
   
 ---------
