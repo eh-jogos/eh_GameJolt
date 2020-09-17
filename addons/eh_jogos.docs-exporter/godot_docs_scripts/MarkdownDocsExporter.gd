@@ -93,6 +93,7 @@ var _shared_variables_path = "res://addons/eh_jogos.docs-exporter/editor_uis/sha
 var _custom_class_db : DictionaryVariable
 var _custom_inheritance_db : DictionaryVariable
 var _built_in_type_db : StringArrayVariable
+var _category_db: = {}
 
 ### ---------------------------------------
 
@@ -116,6 +117,7 @@ func _run() -> void:
 ### Public Methods ------------------------
 
 func export_github_wiki_pages(reference_json_path: String, export_path: String) -> void:
+	_category_db.clear()
 	var reference_dict : = _get_dictionary_from_file(reference_json_path)
 	if reference_dict.has("error"):
 		push_error(reference_dict.error)
@@ -128,13 +130,9 @@ func export_github_wiki_pages(reference_json_path: String, export_path: String) 
 		_update_signatures_db(entry)
 	
 	for entry in reference_dict.classes:
-		var md_filename: = "%s.md" % [entry.name.to_lower()]
-		var category: String = entry.category if entry.has("category") else ""
-		var md_file_path: = _get_md_filepath(export_path, md_filename, category)
-		
-		var md_content: = _get_md_content(entry)
-		
-		_write_documentation_file(md_content, md_file_path)
+		_build_and_save_md(entry, export_path)
+	
+	_build_and_save_sidebar(export_path)
 	
 	print("Success!")
 
@@ -143,16 +141,9 @@ func export_github_wiki_pages(reference_json_path: String, export_path: String) 
 
 ### Private Methods -----------------------
 
-func _get_md_filepath(export_path: String, filename: String, category: = "") -> String:
-	if not export_path.ends_with("/"):
-		export_path += "/"
-	
-	if not category.ends_with("/") and category != "":
-		category += "/"
-	
-	var filepath: = "%s%s%s"%[export_path, category, filename]
-	return filepath
-
+#--------------------------------------------------------------------------------------------------
+#---LINKS AND SIGNATURES --------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------
 
 func _update_links_db(class_entry: Dictionary, export_path: String) -> void:
 	var category: String = class_entry.category if class_entry.has("category") else ""
@@ -257,6 +248,34 @@ func _get_method_formatted_signature(method: Dictionary, class_entry: Dictionary
 	doc_signature.partial = "**%s**(%s)"%[linked_name, argument_list]
 	return doc_signature
 
+#--- LINKS AND SIGNATURES END ---------------------------------------------------------------------
+
+#--------------------------------------------------------------------------------------------------
+#--- CONTENT, CATEGORIES, AND FILE WRITING --------------------------------------------------------
+#--------------------------------------------------------------------------------------------------
+
+func _build_and_save_md(docs_entry: Dictionary, export_path: String) -> void:
+	var category: String = docs_entry.category if docs_entry.has("category") else ""
+	_add_to_category_db(category, docs_entry.name)
+	
+	var md_filename: = "%s.md" % [docs_entry.name]
+	var md_file_path: = _get_md_filepath(export_path, md_filename, category)
+	
+	var md_content: = _get_md_content(docs_entry)
+	
+	_write_documentation_file(md_content, md_file_path)
+
+
+func _get_md_filepath(export_path: String, filename: String, category: = "") -> String:
+	if not export_path.ends_with("/"):
+		export_path += "/"
+	
+	if not category.ends_with("/") and category != "":
+		category += "/"
+	
+	var filepath: = "%s%s%s"%[export_path, category, filename]
+	return filepath
+
 
 func _get_md_content(docs_entry: Dictionary) -> String:
 	var md_content: = _get_inheritance_block(docs_entry)
@@ -286,6 +305,107 @@ func _get_md_content(docs_entry: Dictionary) -> String:
 	
 	return md_content
 
+
+func _add_to_category_db(category: String, page_title: String) -> void:
+	if category == "":
+		return
+	
+	if not category.ends_with("/"):
+		category += "/"
+	
+	var base_dirs = []
+	var category_copy = category
+	while (category.get_base_dir() != ""):
+		var base_dir = category.get_base_dir()
+		base_dirs.push_back(base_dir)
+		category = base_dir
+	
+	for base_dir in base_dirs:
+		if not _category_db.has(base_dir):
+			_category_db[base_dir] = {
+				description = "teste",
+				page_titles = []
+			}
+	
+	category = category_copy.get_base_dir()
+	_category_db[category].page_titles.append(page_title)
+
+
+func _write_documentation_file(p_content: String, p_file_path: String) -> void:
+	var directory := Directory.new()
+	if not directory.dir_exists(p_file_path.get_base_dir()):
+		directory.make_dir_recursive(p_file_path.get_base_dir())
+	
+	var docs_file := File.new()
+	var error = docs_file.open(p_file_path, File.WRITE)
+	if error != OK:
+		_push_reading_file_error(error, p_file_path)
+		return
+	docs_file.store_string(p_content)
+	docs_file.close()
+
+
+func _build_and_save_sidebar(export_path: String) -> void:
+	var md_filename = "_Sidebar.md"
+	var md_file_path =  _get_md_filepath(export_path, md_filename)
+	
+	var sidebar_content: = {
+		page_titles = [],
+	}
+	var root_pages = links_db.keys()
+	for key in _category_db.keys():
+		var folders: Array = (key as String).split("/")
+		var pages: Array = _category_db[key].page_titles
+		
+		for page in pages:
+			if root_pages.has(page):
+				root_pages.erase(page)
+		
+		var current_dict = sidebar_content
+		for index in range(folders.size()):
+			var folder = folders[index]
+			if not current_dict.has(folder):
+				current_dict[folder] = {}
+				
+			if index == folders.size() - 1:
+				current_dict[folder]["page_titles"] = _category_db[key].page_titles
+			
+			current_dict = current_dict[folder]
+	
+	sidebar_content.page_titles = root_pages
+	
+	var md_content = "[Home](Home)  \n  \n"
+	md_content += "[Documentation Site](https://eh-jogos.github.io/eh_GameJolt/)  \n  \n"
+	md_content += "**Quick Reference**  \n"
+	md_content += _get_link_tree(sidebar_content)
+	
+	_write_documentation_file(md_content, md_file_path)
+	pass
+
+
+func _get_link_tree(dict : Dictionary, identation: = "") -> String:
+	var link_tree: = ""
+	
+	if dict.has("page_titles"):
+		for page in dict.page_titles:
+			link_tree += "%s- [%s](%s)  \n"%[identation, page, page]
+	
+	for key in dict.keys():
+		if key == "page_titles":
+			continue
+		
+		link_tree += "%s- **%s**  \n"%[identation, key]
+		link_tree += _get_link_tree(dict[key], identation+"  ")
+	
+	return link_tree
+
+#--- CONTENT, CATEGORIES, AND FILE WRITING END ----------------------------------------------------
+
+#--------------------------------------------------------------------------------------------------
+#--- INNER MD BLOCKS ------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------
+
+#------ INHERITANCE -------------------------------------------------------------------------------
 
 func _get_inheritance_block(docs_entry: Dictionary) -> String:
 	var content: = ""
@@ -318,6 +438,9 @@ func _format_array_into_string(p_array: Array, delimiter: String, p_class_name: 
 	formatted_string = formatted_string.left(formatted_string.length()-delimiter.length())
 	return formatted_string
 
+#------ INHERITANCE END ---------------------------------------------------------------------------
+
+#------ DESCRIPTION AND LINKS ---------------------------------------------------------------------
 
 func _get_description_block(docs_entry: Dictionary) -> String:
 	var text = MD_BLOCK_DESCRIPTION.format({description=docs_entry.description})
@@ -417,6 +540,9 @@ func _handle_links_in_text(text: String, split_index: int,
 	
 	return text
 
+#------ DESCRIPTION AND LINKS END -----------------------------------------------------------------
+
+#------ CONTENT TABLES ----------------------------------------------------------------------------
 
 func _get_properties_table(docs_entry: Dictionary) -> String:
 	var table = ""
@@ -465,6 +591,9 @@ func _get_method_table(docs_entry: Dictionary) -> String:
 		
 	return table
 
+#------ CONTENT TABLES END ------------------------------------------------------------------------
+
+#------ CONTENT LISTS -----------------------------------------------------------------------------
 
 func _get_signals_block(docs_entry: Dictionary) -> String:
 	var block = MD_BLOCK_SIGNALS_TITLE
@@ -523,6 +652,10 @@ func _is_enum(constant_dict: Dictionary) -> bool:
 		is_enum = false
 	
 	return is_enum
+
+#------ CONTENT LISTS END -------------------------------------------------------------------------
+
+#------ DETAILED DOCS -----------------------------------------------------------------------------
 
 func _get_properties_block(docs_entry: Dictionary) -> String:
 	var content: = ""
@@ -587,19 +720,9 @@ func _get_method_block(docs_entry: Dictionary) -> String:
 	
 	return content
 
+#------ DETAILED DOCS END -------------------------------------------------------------------------
 
-func _write_documentation_file(p_content: String, p_file_path: String) -> void:
-	var directory := Directory.new()
-	if not directory.dir_exists(p_file_path.get_base_dir()):
-		directory.make_dir_recursive(p_file_path.get_base_dir())
-	
-	var docs_file := File.new()
-	var error = docs_file.open(p_file_path, File.WRITE)
-	if error != OK:
-		_push_reading_file_error(error, p_file_path)
-		return
-	docs_file.store_string(p_content)
-	docs_file.close()
+#--- INNER MD BLOCKS END --------------------------------------------------------------------------
 
 ### ---------------------------------------
 
