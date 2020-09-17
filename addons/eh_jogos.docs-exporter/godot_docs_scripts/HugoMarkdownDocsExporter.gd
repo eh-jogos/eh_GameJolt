@@ -36,10 +36,9 @@ const HUGO_BLOCK_PROPERTY = ""\
 
 var author: = "eh-jogos"
 var date: = ""
+var should_create_toc_on_category_pages: = true
 
 # private variables - order: export > normal var > onready 
-
-var _category_db: = {}
 
 ### ---------------------------------------
 
@@ -73,15 +72,7 @@ func export_hugo_site_pages(reference_json_path: String, export_path: String) ->
 		_update_signatures_db(entry)
 	
 	for entry in reference_dict.classes:
-		var md_filename: = "%s.md" % [entry.name.to_lower()]
-		var category: String = entry.category if entry.has("category") else ""
-		var md_file_path: = _get_md_filepath(export_path, md_filename, category.to_lower())
-		
-		_add_category_to_db(category)
-		
-		var md_content: = _get_md_content(entry)
-		
-		_write_documentation_file(md_content, md_file_path)
+		_build_and_save_md(entry, export_path)
 	
 	for category in _category_db:
 		var md_filename = "_index.md"
@@ -89,6 +80,8 @@ func export_hugo_site_pages(reference_json_path: String, export_path: String) ->
 		
 		var name = (category as String).replace(category.get_base_dir()+"/", "")
 		var md_content: = _get_hugo_front_matter(name, true)
+		md_content += "%s  \n"%[_category_db[category].description]
+		md_content += _get_link_tree(_category_db[category])
 		
 		_write_documentation_file(md_content, md_file_path)
 	
@@ -98,6 +91,17 @@ func export_hugo_site_pages(reference_json_path: String, export_path: String) ->
 
 
 ### Private Methods -----------------------
+func _build_and_save_md(docs_entry: Dictionary, export_path: String) -> void:
+	var category: String = docs_entry.category if docs_entry.has("category") else ""
+	_add_to_category_db(category, docs_entry.name)
+	
+	var md_filename: = "%s.md" % [docs_entry.name]
+	var md_file_path: = _get_md_filepath(export_path, md_filename, category.to_lower())
+	
+	var md_content: = _get_md_content(docs_entry)
+	
+	_write_documentation_file(md_content, md_file_path)
+
 
 func _get_md_content(docs_entry: Dictionary) -> String:
 	var md_content = _get_hugo_front_matter(docs_entry.name)
@@ -142,24 +146,22 @@ func _get_hugo_front_matter(title: String, is_chapter: = false) -> String:
 	return front_matter
 
 
-func _add_category_to_db(category: String) -> void:
-	if category == "":
-		return
+func _get_link_tree(dict : Dictionary, identation: = "") -> String:
+	var link_tree: = ""
 	
-	if not category.ends_with("/"):
-		category += "/"
+	if dict.has("page_titles"):
+		for page in dict.page_titles:
+			var link_path = links_db[page].full_path
+			link_tree += "%s- [%s](%s)  \n"%[identation, page, link_path]
 	
-	var base_dirs = []
-	while (category.get_base_dir() != ""):
-		var base_dir = category.get_base_dir()
-		base_dirs.push_back(base_dir)
-		category = base_dir
+	for key in dict.keys():
+		if key == "page_titles" or key == "description":
+			continue
+		
+		link_tree += "%s- **%s**  \n"%[identation, key]
+		link_tree += _get_link_tree(dict[key], identation+"  ")
 	
-	for base_dir in base_dirs:
-		if not _category_db.has(base_dir):
-			_category_db[base_dir] = {
-				description = ""
-			}
+	return link_tree
 
 
 func _add_link_to_keyword(text: String, split_index: int, link: String) -> String:
