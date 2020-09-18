@@ -256,7 +256,7 @@ func _get_method_formatted_signature(method: Dictionary, class_entry: Dictionary
 
 func _build_and_save_md(docs_entry: Dictionary, export_path: String) -> void:
 	var category: String = docs_entry.category if docs_entry.has("category") else ""
-	_add_to_category_db(category, docs_entry.name)
+	_add_to_category_db(category, docs_entry.name, export_path)
 	
 	var md_filename: = "%s.md" % [docs_entry.name]
 	var md_file_path: = _get_md_filepath(export_path, md_filename, category)
@@ -306,12 +306,15 @@ func _get_md_content(docs_entry: Dictionary) -> String:
 	return md_content
 
 
-func _add_to_category_db(category: String, page_title: String) -> void:
+func _add_to_category_db(category: String, page_title: String, export_path: String) -> void:
 	if category == "":
 		return
 	
 	if not category.ends_with("/"):
 		category += "/"
+	
+	if export_path.ends_with("/"):
+			export_path = export_path.left(export_path.length()-1)
 	
 	var base_dirs = []
 	var category_copy = category
@@ -320,12 +323,24 @@ func _add_to_category_db(category: String, page_title: String) -> void:
 		base_dirs.push_back(base_dir)
 		category = base_dir
 	
+	var previous_category: String = ""
 	for base_dir in base_dirs:
 		if not _category_db.has(base_dir):
 			_category_db[base_dir] = {
-				description = "teste",
-				page_titles = []
+				full_path = "/%s/%s"%[export_path.get_file(), base_dir.to_lower()],
+				description = "",
+				page_titles = [],
+				children = [],
+				is_root = false
 			}
+		
+		if previous_category != "":
+			if not _category_db[base_dir].children.has(previous_category):
+				_category_db[base_dir].children.append(previous_category)
+		
+		previous_category = base_dir
+	
+	_category_db[previous_category].is_root = true
 	
 	category = category_copy.get_base_dir()
 	_category_db[category].page_titles.append(page_title)
@@ -349,38 +364,50 @@ func _build_and_save_sidebar(export_path: String) -> void:
 	var md_filename = "_Sidebar.md"
 	var md_file_path =  _get_md_filepath(export_path, md_filename)
 	
+	var sidebar_content: = _get_export_full_toc_dict()
+	
+	var md_content = "[Home](Home)  \n  \n"
+	md_content += "[Documentation Site](https://eh-jogos.github.io/eh_GameJolt/)  \n  \n"
+	md_content += "**Quick Reference**  \n"
+	md_content += _get_toc(sidebar_content)
+	
+	_write_documentation_file(md_content, md_file_path)
+	pass
+
+
+func _get_export_full_toc_dict() -> Dictionary:
 	var sidebar_content: = {
 		page_titles = [],
+		children = []
 	}
+	
 	var root_pages = links_db.keys()
 	for key in _category_db.keys():
-		var folders: Array = (key as String).split("/")
 		var pages: Array = _category_db[key].page_titles
 		
 		for page in pages:
 			if root_pages.has(page):
 				root_pages.erase(page)
 		
-		var current_dict = sidebar_content
-		for index in range(folders.size()):
-			var folder = folders[index]
-			if not current_dict.has(folder):
-				current_dict[folder] = {}
-				
-			if index == folders.size() - 1:
-				current_dict[folder]["page_titles"] = _category_db[key].page_titles
-			
-			current_dict = current_dict[folder]
+		if _category_db[key].is_root:
+			sidebar_content.children.append(key)
 	
 	sidebar_content.page_titles = root_pages
 	
-	var md_content = "[Home](Home)  \n  \n"
-	md_content += "[Documentation Site](https://eh-jogos.github.io/eh_GameJolt/)  \n  \n"
-	md_content += "**Quick Reference**  \n"
-	md_content += _get_link_tree(sidebar_content)
+	return sidebar_content
+
+
+func _get_toc(starting_category: Dictionary, identation = "") -> String:
+	var content = ""
+	content += _get_link_tree(starting_category, identation)
 	
-	_write_documentation_file(md_content, md_file_path)
-	pass
+	if starting_category.has("children") and not starting_category.children.empty():
+		for category_name in starting_category.children:
+			var category: Dictionary = _category_db[category_name]
+			content += "%s- **%s**  \n"%[identation, category_name.get_file()]
+			content += _get_toc(category, identation + "  ")
+	
+	return content
 
 
 func _get_link_tree(dict : Dictionary, identation: = "") -> String:
@@ -389,13 +416,6 @@ func _get_link_tree(dict : Dictionary, identation: = "") -> String:
 	if dict.has("page_titles"):
 		for page in dict.page_titles:
 			link_tree += "%s- [%s](%s)  \n"%[identation, page, page]
-	
-	for key in dict.keys():
-		if key == "page_titles":
-			continue
-		
-		link_tree += "%s- **%s**  \n"%[identation, key]
-		link_tree += _get_link_tree(dict[key], identation+"  ")
 	
 	return link_tree
 

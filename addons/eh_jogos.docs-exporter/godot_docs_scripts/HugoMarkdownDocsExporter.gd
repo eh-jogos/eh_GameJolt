@@ -22,6 +22,7 @@ const HUGO_CHAPTER_FRONT_MATTER = ""\
 		+"author: {author}  \n"\
 		+"date: {datetime}  \n"\
 		+"summary: {summary}  \n"\
+		+"weight: {weight}  \n"\
 		+"---  \n"  
 
 const HUGO_BLOCK_PROPERTY = ""\
@@ -74,6 +75,8 @@ func export_hugo_site_pages(reference_json_path: String, export_path: String) ->
 	for entry in reference_dict.classes:
 		_build_and_save_md(entry, export_path)
 	
+	_build_root_index(export_path)
+	
 	for category in _category_db:
 		var md_filename = "_index.md"
 		var md_file_path =  _get_md_filepath(export_path, md_filename, category.to_lower())
@@ -81,7 +84,7 @@ func export_hugo_site_pages(reference_json_path: String, export_path: String) ->
 		var name = (category as String).replace(category.get_base_dir()+"/", "")
 		var md_content: = _get_hugo_front_matter(name, true)
 		md_content += "%s  \n"%[_category_db[category].description]
-		md_content += _get_link_tree(_category_db[category])
+		md_content += _get_toc(_category_db[category])
 		
 		_write_documentation_file(md_content, md_file_path)
 	
@@ -93,7 +96,7 @@ func export_hugo_site_pages(reference_json_path: String, export_path: String) ->
 ### Private Methods -----------------------
 func _build_and_save_md(docs_entry: Dictionary, export_path: String) -> void:
 	var category: String = docs_entry.category if docs_entry.has("category") else ""
-	_add_to_category_db(category, docs_entry.name)
+	_add_to_category_db(category, docs_entry.name, export_path)
 	
 	var md_filename: = "%s.md" % [docs_entry.name]
 	var md_file_path: = _get_md_filepath(export_path, md_filename, category.to_lower())
@@ -103,6 +106,21 @@ func _build_and_save_md(docs_entry: Dictionary, export_path: String) -> void:
 	_write_documentation_file(md_content, md_file_path)
 
 
+func _build_root_index(export_path: String) -> void:
+	if export_path.ends_with("/"):
+			export_path = export_path.left(export_path.length()-1)
+	
+	var root_export_md_filename = "_index.md"
+	var root_export_md_path = _get_md_filepath(export_path, root_export_md_filename, "")
+	var name = export_path.get_file().capitalize()
+	
+	var toc_dict = _get_export_full_toc_dict()
+	var md_content: = _get_hugo_front_matter(name, true)
+	md_content += _get_toc(toc_dict)
+	
+	_write_documentation_file(md_content, root_export_md_path)
+
+
 func _get_md_content(docs_entry: Dictionary) -> String:
 	var md_content = _get_hugo_front_matter(docs_entry.name)
 	md_content += ._get_md_content(docs_entry)
@@ -110,7 +128,7 @@ func _get_md_content(docs_entry: Dictionary) -> String:
 	return md_content
 
 
-func _get_hugo_front_matter(title: String, is_chapter: = false) -> String:
+func _get_hugo_front_matter(title: String, is_category: = false) -> String:
 	var formated_date = date
 	if formated_date == "":
 		var datetime: = OS.get_datetime()
@@ -128,7 +146,7 @@ func _get_hugo_front_matter(title: String, is_chapter: = false) -> String:
 		})
 	
 	var front_matter: = ""
-	if is_chapter:
+	if is_category:
 		front_matter = HUGO_CHAPTER_FRONT_MATTER.format({
 				author = author,
 				datetime = formated_date,
@@ -146,6 +164,23 @@ func _get_hugo_front_matter(title: String, is_chapter: = false) -> String:
 	return front_matter
 
 
+func _get_toc(starting_category: Dictionary, identation = "") -> String:
+	var content = ""
+	content += _get_link_tree(starting_category, identation)
+	
+	if starting_category.has("children") and not starting_category.children.empty():
+		for category_name in starting_category.children:
+			var category: Dictionary = _category_db[category_name]
+			content += "%s- [%s](%s)  \n"%[
+					identation, 
+					category_name.get_file(), 
+					category.full_path
+			]
+			content += _get_toc(category, identation + "  ")
+	
+	return content
+
+
 func _get_link_tree(dict : Dictionary, identation: = "") -> String:
 	var link_tree: = ""
 	
@@ -153,13 +188,6 @@ func _get_link_tree(dict : Dictionary, identation: = "") -> String:
 		for page in dict.page_titles:
 			var link_path = links_db[page].full_path
 			link_tree += "%s- [%s](%s)  \n"%[identation, page, link_path]
-	
-	for key in dict.keys():
-		if key == "page_titles" or key == "description":
-			continue
-		
-		link_tree += "%s- **%s**  \n"%[identation, key]
-		link_tree += _get_link_tree(dict[key], identation+"  ")
 	
 	return link_tree
 
