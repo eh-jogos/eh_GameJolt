@@ -1,8 +1,7 @@
 ---  
 title: eh_GJUsersFetchRequest  
 author: eh-jogos  
-date: 2020-09-18T08:00:15-03:00  
-summary:   
+date: 2020-09-19T19:10:16-03:00  
 ---  
 **Inherits:** _[eh_GJBaseRequest]({{< ref "/reference/eh_gjbaserequest" >}}) > [HTTPRequest](https://docs.godotengine.org/en/stable/classes/class_httprequest.html) > [Node](https://docs.godotengine.org/en/stable/classes/class_node.html) > [Object](https://docs.godotengine.org/en/stable/classes/class_object.html)_  
 ## Description  

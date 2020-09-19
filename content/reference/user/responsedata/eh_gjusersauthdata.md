@@ -1,8 +1,7 @@
 ---  
 title: eh_GJUsersAuthData  
 author: eh-jogos  
-date: 2020-09-18T08:00:15-03:00  
-summary:   
+date: 2020-09-19T19:10:16-03:00  
 ---  
 **Inherits:** _[Resource](https://docs.godotengine.org/en/stable/classes/class_resource.html) > [Reference](https://docs.godotengine.org/en/stable/classes/class_reference.html) > [Object](https://docs.godotengine.org/en/stable/classes/class_object.html)_  
 ## Description  
