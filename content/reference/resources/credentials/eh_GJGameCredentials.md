@@ -1,7 +1,7 @@
 ---  
 title: eh_GJGameCredentials  
 author: eh-jogos  
-date: 2020-09-15T07:31:57-03:00  
+date: 2020-09-18T08:00:15-03:00  
 summary:   
 ---  
 **Inherits:** _[Resource](https://docs.godotengine.org/en/stable/classes/class_resource.html) > [Reference](https://docs.godotengine.org/en/stable/classes/class_reference.html) > [Object](https://docs.godotengine.org/en/stable/classes/class_object.html)_  
