@@ -7,5 +7,5 @@ script = ExtResource( 1 )
 value = {
 "JsonIO": [ "MarkdownDocsExporter", "ReferenceFormatter" ],
 "MarkdownDocsExporter": [ "HugoMarkdownDocsExporter" ],
-"eh_GJBaseRequest": [  ]
+"eh_GJBaseRequest": [ "eh_GJUsersAuthRequest", "eh_GJUsersFetchRequest" ]
 }

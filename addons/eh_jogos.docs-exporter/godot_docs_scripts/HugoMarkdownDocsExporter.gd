@@ -13,7 +13,6 @@ const HUGO_DEFAULT_FRONT_MATTER = ""\
 		+"title: {title}  \n"\
 		+"author: {author}  \n"\
 		+"date: {datetime}  \n"\
-		+"summary: {summary}  \n"\
 		+"---  \n"  
 
 const HUGO_CHAPTER_FRONT_MATTER = ""\
@@ -21,7 +20,6 @@ const HUGO_CHAPTER_FRONT_MATTER = ""\
 		+"title: {title}  \n"\
 		+"author: {author}  \n"\
 		+"date: {datetime}  \n"\
-		+"summary: {summary}  \n"\
 		+"weight: {weight}  \n"\
 		+"---  \n"  
 
@@ -98,7 +96,7 @@ func _build_and_save_md(docs_entry: Dictionary, export_path: String) -> void:
 	var category: String = docs_entry.category if docs_entry.has("category") else ""
 	_add_to_category_db(category, docs_entry.name, export_path)
 	
-	var md_filename: = "%s.md" % [docs_entry.name]
+	var md_filename: = "%s.md" % [docs_entry.name.to_lower()]
 	var md_file_path: = _get_md_filepath(export_path, md_filename, category.to_lower())
 	
 	var md_content: = _get_md_content(docs_entry)
@@ -171,7 +169,7 @@ func _get_toc(starting_category: Dictionary, identation = "") -> String:
 	if starting_category.has("children") and not starting_category.children.empty():
 		for category_name in starting_category.children:
 			var category: Dictionary = _category_db[category_name]
-			content += "%s- [%s](%s)  \n"%[
+			content += "%s- [%s]({{< ref \"%s\" >}})  \n"%[
 					identation, 
 					category_name.get_file(), 
 					category.full_path
@@ -187,7 +185,7 @@ func _get_link_tree(dict : Dictionary, identation: = "") -> String:
 	if dict.has("page_titles"):
 		for page in dict.page_titles:
 			var link_path = links_db[page].full_path
-			link_tree += "%s- [%s](%s)  \n"%[identation, page, link_path]
+			link_tree += "%s- [%s]({{< ref \"%s\" >}})  \n"%[identation, page, link_path]
 	
 	return link_tree
 

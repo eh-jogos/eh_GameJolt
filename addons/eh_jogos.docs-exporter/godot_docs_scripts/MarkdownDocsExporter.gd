@@ -1,12 +1,13 @@
 tool
+# Write your doc striing for this file here
 class_name MarkdownDocsExporter
 extends JsonIO
-# Write your doc striing for this file here
 
 ### Member Variables and Dependencies -----
 # signals 
 # enums
 # constants
+
 const MD_BLOCK_INHERITANCE = ""\
 		+"**Inherits:** _{inheritance}_  \n"
 const MD_BLOCK_INHERITED_BY = ""\
@@ -93,16 +94,20 @@ var _shared_variables_path = "res://addons/eh_jogos.docs-exporter/editor_uis/sha
 var _custom_class_db : DictionaryVariable
 var _custom_inheritance_db : DictionaryVariable
 var _built_in_type_db : StringArrayVariable
-var _category_db: = {}
+var _category_optional_data: DictionaryVariable
+var _category_db: DictionaryVariable
 
 ### ---------------------------------------
 
 
 ### Built in Engine Methods ---------------
+
 func _init():
 	_custom_class_db = load(_shared_variables_path + "dict_custom_class_db.tres")
 	_custom_inheritance_db = load(_shared_variables_path + "dict_custom_inheritance_db.tres")
 	_built_in_type_db = load(_shared_variables_path + "array_built_in_type_db.tres")
+	_category_optional_data = load(_shared_variables_path + "dict_categories_optional_data.tres")
+	_category_db = load(_shared_variables_path + "dict_category_db.tres")
 	
 	key_to_use_for_link = "local_path"
 	property_block = MD_BLOCK_PROPERTY
@@ -116,8 +121,29 @@ func _run() -> void:
 
 ### Public Methods ------------------------
 
+func build_category_db(reference_json_path: String, export_path: String):
+	var keys_start = _category_db.value.keys()
+	var keys_end: = []
+	var reference_dict : = _get_dictionary_from_file(reference_json_path)
+	if reference_dict.has("error"):
+		push_error(reference_dict.error)
+		return
+	
+	for entry in reference_dict.classes:
+		var category: String = entry.category if entry.has("category") else ""
+		keys_end += _add_to_category_db(category, entry.name, export_path)
+	
+	for key in keys_start:
+		if not keys_end.has(key):
+			_category_db.value.erase(key)
+	
+	print("PRINTING _category_db")
+	print(JSON.print(_category_db.value, " "))
+
+
 func export_github_wiki_pages(reference_json_path: String, export_path: String) -> void:
-	_category_db.clear()
+	build_category_db(reference_json_path, export_path)
+	
 	var reference_dict : = _get_dictionary_from_file(reference_json_path)
 	if reference_dict.has("error"):
 		push_error(reference_dict.error)
@@ -306,9 +332,11 @@ func _get_md_content(docs_entry: Dictionary) -> String:
 	return md_content
 
 
-func _add_to_category_db(category: String, page_title: String, export_path: String) -> void:
+func _add_to_category_db(category: String, page_title: String, export_path: String) -> Array:
+	var base_dir_categories = []
+	var category_db = _category_db.value
 	if category == "":
-		return
+		return base_dir_categories
 	
 	if not category.ends_with("/"):
 		category += "/"
@@ -316,34 +344,60 @@ func _add_to_category_db(category: String, page_title: String, export_path: Stri
 	if export_path.ends_with("/"):
 			export_path = export_path.left(export_path.length()-1)
 	
-	var base_dirs = []
-	var category_copy = category
-	while (category.get_base_dir() != ""):
-		var base_dir = category.get_base_dir()
-		base_dirs.push_back(base_dir)
-		category = base_dir
+	base_dir_categories = _split_category_into_base_dirs(category)
 	
 	var previous_category: String = ""
-	for base_dir in base_dirs:
-		if not _category_db.has(base_dir):
-			_category_db[base_dir] = {
-				full_path = "/%s/%s"%[export_path.get_file(), base_dir.to_lower()],
-				description = "",
-				page_titles = [],
-				children = [],
-				is_root = false
-			}
+	for base_dir in base_dir_categories:
+		_create_category_entry_if_needed(base_dir)
+		category_db[base_dir].full_path = "/%s/%s"%[export_path.get_file(), base_dir.to_lower()]
 		
 		if previous_category != "":
-			if not _category_db[base_dir].children.has(previous_category):
-				_category_db[base_dir].children.append(previous_category)
+			if not category_db[base_dir].children.has(previous_category):
+				category_db[base_dir].children.append(previous_category)
 		
 		previous_category = base_dir
 	
-	_category_db[previous_category].is_root = true
+	category_db[previous_category].is_root = true
 	
-	category = category_copy.get_base_dir()
-	_category_db[category].page_titles.append(page_title)
+	category = category.get_base_dir()
+	if not category_db[category].page_titles.has(page_title):
+		category_db[category].page_titles.append(page_title)
+	
+	return base_dir_categories
+
+
+func _split_category_into_base_dirs(full_category: String) -> Array:
+	var base_dirs: = []
+	while (full_category.get_base_dir() != ""):
+		var base_dir = full_category.get_base_dir()
+		base_dirs.push_back(base_dir)
+		full_category = base_dir
+	
+	return base_dirs
+
+
+func _create_category_entry_if_needed(id: String) -> void:
+	if not _category_db.value.has(id):
+		_category_db.value[id] = {
+			full_path = "",
+			description = "",
+			weight = "",
+			is_root = false,
+			children = [],
+			page_titles = [],
+		}
+	
+	if not _category_db.value[id].has("children"):
+		_category_db.value[id]["children"] = []
+	
+	if _category_optional_data.value.has(id):
+		_category_db.value[id].description = _category_optional_data.value[id].description
+		_category_db.value[id].weight = _category_optional_data.value[id].weight
+	else:
+		_category_optional_data.value[id] = {
+			description = _category_db.value[id].description,
+			weight = _category_db.value[id].weight
+		}
 
 
 func _write_documentation_file(p_content: String, p_file_path: String) -> void:
@@ -372,7 +426,6 @@ func _build_and_save_sidebar(export_path: String) -> void:
 	md_content += _get_toc(sidebar_content)
 	
 	_write_documentation_file(md_content, md_file_path)
-	pass
 
 
 func _get_export_full_toc_dict() -> Dictionary:
@@ -382,14 +435,14 @@ func _get_export_full_toc_dict() -> Dictionary:
 	}
 	
 	var root_pages = links_db.keys()
-	for key in _category_db.keys():
-		var pages: Array = _category_db[key].page_titles
+	for key in _category_db.value.keys():
+		var pages: Array = _category_db.value[key].page_titles
 		
 		for page in pages:
 			if root_pages.has(page):
 				root_pages.erase(page)
 		
-		if _category_db[key].is_root:
+		if _category_db.value[key].is_root:
 			sidebar_content.children.append(key)
 	
 	sidebar_content.page_titles = root_pages
@@ -403,7 +456,7 @@ func _get_toc(starting_category: Dictionary, identation = "") -> String:
 	
 	if starting_category.has("children") and not starting_category.children.empty():
 		for category_name in starting_category.children:
-			var category: Dictionary = _category_db[category_name]
+			var category: Dictionary = _category_db.value[category_name]
 			content += "%s- **%s**  \n"%[identation, category_name.get_file()]
 			content += _get_toc(category, identation + "  ")
 	
