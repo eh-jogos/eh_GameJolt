@@ -105,9 +105,9 @@ var _category_db: DictionaryVariable
 func _init():
 	_custom_class_db = load(_shared_variables_path + "dict_custom_class_db.tres")
 	_custom_inheritance_db = load(_shared_variables_path + "dict_custom_inheritance_db.tres")
+	_category_db = load(_shared_variables_path + "dict_category_db.tres")
 	_built_in_type_db = load(_shared_variables_path + "array_built_in_type_db.tres")
 	_category_optional_data = load(_shared_variables_path + "dict_categories_optional_data.tres")
-	_category_db = load(_shared_variables_path + "dict_category_db.tres")
 	
 	key_to_use_for_link = "local_path"
 	property_block = MD_BLOCK_PROPERTY

@@ -76,14 +76,14 @@ func export_hugo_site_pages(reference_json_path: String, export_path: String) ->
 	
 	_build_root_index(export_path)
 	
-	for category in _category_db:
+	for category in _category_db.value:
 		var md_filename = "_index.md"
 		var md_file_path =  _get_md_filepath(export_path, md_filename, category.to_lower())
 		
 		var name = (category as String).replace(category.get_base_dir()+"/", "")
 		var md_content: = _get_hugo_front_matter(name, true)
-		md_content += "%s  \n"%[_category_db[category].description]
-		md_content += _get_toc(_category_db[category])
+		md_content += "%s  \n"%[_category_db.value[category].description]
+		md_content += _get_toc(_category_db.value[category])
 		
 		_write_documentation_file(md_content, md_file_path)
 	
@@ -169,7 +169,7 @@ func _get_toc(starting_category: Dictionary, identation = "") -> String:
 	
 	if starting_category.has("children") and not starting_category.children.empty():
 		for category_name in starting_category.children:
-			var category: Dictionary = _category_db[category_name]
+			var category: Dictionary = _category_db.value[category_name]
 			content += "%s- [%s]({{< ref \"%s\" >}})  \n"%[
 					identation, 
 					category_name.get_file(), 
