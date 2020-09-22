@@ -58,7 +58,8 @@ func _run() -> void:
 ### Public Methods ------------------------
 
 func export_hugo_site_pages(reference_json_path: String, export_path: String) -> void:
-	_category_db.clear()
+	build_category_db(reference_json_path, export_path)
+	
 	var reference_dict : = _get_dictionary_from_file(reference_json_path)
 	if reference_dict.has("error"):
 		push_error(reference_dict.error)
