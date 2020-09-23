@@ -29,7 +29,7 @@ func _ready():
 		queue_free()
 		return
 	
-	_handle_text(_collapsible.visible)
+	handle_text()
 	if not _collapsible.is_connected("ready", self, "_on_collapsible_ready"):
 		_collapsible.connect("ready", self, "_on_collapsible_ready")
 
@@ -40,14 +40,11 @@ func _ready():
 
 func toggle_collapse() -> void:
 	_collapsible.visible = not _collapsible.visible
-	_handle_text(_collapsible.visible)
-
-### -----------------------------------------------------------------------------------------------
+	handle_text()
 
 
-### Private Methods -------------------------------------------------------------------------------
-
-func _handle_text(is_open: bool) -> void:
+func handle_text() -> void:
+	var is_open = _collapsible.visible
 	if "text" in _text_element:
 		var text: String = _text_element.text
 		if is_open:
@@ -64,8 +61,12 @@ func _handle_text(is_open: bool) -> void:
 		_text_element.text = text
 
 
-func _on_collapsible_ready() -> void:
-	_handle_text(_collapsible.visible)
+### -----------------------------------------------------------------------------------------------
 
+
+### Private Methods -------------------------------------------------------------------------------
+
+func _on_collapsible_ready() -> void:
+	handle_text()
 
 ### -----------------------------------------------------------------------------------------------
