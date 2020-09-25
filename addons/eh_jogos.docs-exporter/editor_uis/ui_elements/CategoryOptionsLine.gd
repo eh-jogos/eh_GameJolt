@@ -1,4 +1,5 @@
 # Write your doc string for this file here
+tool
 class_name CategoryOptions
 extends VBoxContainer
 
@@ -13,8 +14,7 @@ extends VBoxContainer
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _entry_dict: Dictionary
-
+onready var _data: CategoryOptionalData	
 onready var category_name: Button = $CategoryName
 onready var weight_spin_box: SpinBox = $OptionsContent/MainColumn/WeightLine/SpinBox
 onready var description_text: TextEdit = \
@@ -30,16 +30,23 @@ onready var description_text: TextEdit = \
 
 ### Public Methods --------------------------------------------------------------------------------
 
-func populate_category_entry(p_name: String, p_dict: Dictionary) -> void:
+func populate_category_entry(p_name: String, p_data: CategoryOptionalData) -> void:
 	name = "%sOptions"%[p_name]
 	category_name.set_category_name(p_name)
-	_entry_dict = p_dict
-	weight_spin_box.value = int(_entry_dict.weight)
-	description_text.text = _entry_dict.description
+	_data = p_data
+	weight_spin_box.value = int(_data.weight)
+	description_text.text = _data.description
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _on_SpinBox_value_changed(value):
+	_data.weight = value
+
+
+func _on_ResizableTextEdit_text_changed():
+	_data.description = description_text.text
 
 ### -----------------------------------------------------------------------------------------------

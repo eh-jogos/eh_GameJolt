@@ -1,4 +1,5 @@
 # Write your doc string for this file here
+tool
 class_name Collapsible
 extends Node
 
@@ -51,12 +52,12 @@ func handle_text() -> void:
 			if text.begins_with("+"):
 				text = "-" + text.right(1)
 			elif not text.begins_with("-"):
-				text = "-" + text
+				text = "- " + text
 		else:
 			if text.begins_with("-"):
 				text = "+" + text.right(1)
 			elif not text.begins_with("+"):
-				text = "+" + text
+				text = "+ " + text
 		
 		_text_element.text = text
 
