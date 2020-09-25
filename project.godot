@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/eh_jogos.docs-exporter/editor_uis/shared_variables/scripts/BoolVariable.gd"
 }, {
+"base": "Resource",
+"class": "CategoryOptionalData",
+"language": "GDScript",
+"path": "res://addons/eh_jogos.docs-exporter/custom_resources/CategoryOptionalData.gd"
+}, {
+"base": "Resource",
+"class": "CategoryOptionalDataDict",
+"language": "GDScript",
+"path": "res://addons/eh_jogos.docs-exporter/custom_resources/CategoryOptionalDataDict.gd"
+}, {
 "base": "VBoxContainer",
 "class": "CategoryOptions",
 "language": "GDScript",
@@ -117,6 +127,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "ArrayVariable": "",
 "BoolVariable": "",
+"CategoryOptionalData": "",
+"CategoryOptionalDataDict": "",
 "CategoryOptions": "",
 "Collapsible": "",
 "DictionaryVariable": "",
