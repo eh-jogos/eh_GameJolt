@@ -1,5 +1,5 @@
 # Data Struct that describes the response from `/users/` endpoint
-# Further details at [gamejolt's api documentation](https://gamejolt.com/game-api/doc/users/fetch)
+# Further details at [gamejolt\'s api documentation](https://gamejolt.com/game-api/doc/users/fetch)
 # @category: User/ResponseData
 class_name eh_GJUsersFetchData
 extends Resource

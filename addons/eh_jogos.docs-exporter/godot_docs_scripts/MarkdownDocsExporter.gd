@@ -94,7 +94,7 @@ var _shared_variables_path = "res://addons/eh_jogos.docs-exporter/editor_uis/sha
 var _custom_class_db : DictionaryVariable
 var _custom_inheritance_db : DictionaryVariable
 var _built_in_type_db : StringArrayVariable
-var _category_optional_data: DictionaryVariable
+var _category_optional_data: CategoryOptionalDataDict
 var _category_db: DictionaryVariable
 
 ### ---------------------------------------
@@ -137,8 +137,7 @@ func build_category_db(reference_json_path: String, export_path: String):
 		if not keys_end.has(key):
 			_category_db.value.erase(key)
 	
-	print("PRINTING _category_db")
-	print(JSON.print(_category_db.value, " "))
+#	print("PRINTING _category_db: %s"%[JSON.print(_category_db.value, "  ")])
 
 
 func export_github_wiki_pages(reference_json_path: String, export_path: String) -> void:
@@ -151,6 +150,8 @@ func export_github_wiki_pages(reference_json_path: String, export_path: String) 
 	
 	for entry in reference_dict.classes:
 		_update_links_db(entry, export_path)
+	
+#	print("PRINTING links_db: %s"%[JSON.print(links_db, "  ")])
 	
 	for entry in reference_dict.classes:
 		_update_signatures_db(entry)
@@ -182,7 +183,7 @@ func _update_links_db(class_entry: Dictionary, export_path: String) -> void:
 		sanitized_category = category.to_lower()
 	
 	if export_path.ends_with("/"):
-			export_path = export_path.left(export_path.length()-1)
+			export_path = export_path.rstrip("/")
 	
 	var full_path = ""
 	if sanitized_category == "":
@@ -394,10 +395,11 @@ func _create_category_entry_if_needed(id: String) -> void:
 		_category_db.value[id].description = _category_optional_data.value[id].description
 		_category_db.value[id].weight = _category_optional_data.value[id].weight
 	else:
-		_category_optional_data.value[id] = {
-			description = _category_db.value[id].description,
-			weight = _category_db.value[id].weight
-		}
+		var optional_data: CategoryOptionalData = CategoryOptionalData.new()
+		optional_data.weight = _category_db.value[id].weight
+		optional_data.description = _category_db.value[id].description
+		
+		_category_optional_data.value[id] = optional_data
 
 
 func _write_documentation_file(p_content: String, p_file_path: String) -> void:
@@ -798,5 +800,3 @@ func _get_method_block(docs_entry: Dictionary) -> String:
 #--- INNER MD BLOCKS END --------------------------------------------------------------------------
 
 ### ---------------------------------------
-
-

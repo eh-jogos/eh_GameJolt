@@ -59,6 +59,7 @@ func export_formatted_reference_json(
 			is_recursive
 	)
 	
+	
 	var formatted_reference : Dictionary = {
 			name = reference_dict.name,
 			description = reference_dict.description,
@@ -67,7 +68,7 @@ func export_formatted_reference_json(
 	}
 	
 	for class_entry in reference_dict.classes:
-		if class_entry.name == "":
+		if not class_entry.has("name") or class_entry.name == "":
 			continue
 		
 		var parent_class : String = class_entry.extends_class[0]

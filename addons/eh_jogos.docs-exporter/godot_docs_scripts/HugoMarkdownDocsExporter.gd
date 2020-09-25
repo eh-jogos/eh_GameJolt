@@ -13,6 +13,7 @@ const HUGO_DEFAULT_FRONT_MATTER = ""\
 		+"title: {title}  \n"\
 		+"author: {author}  \n"\
 		+"date: {datetime}  \n"\
+		+"weight: 1  \n"\
 		+"---  \n"  
 
 const HUGO_CHAPTER_FRONT_MATTER = ""\
@@ -46,7 +47,6 @@ var should_create_toc_on_category_pages: = true
 
 func _init():
 	key_to_use_for_link = "full_path"
-	property_block = HUGO_BLOCK_PROPERTY
 
 
 func _run() -> void:
@@ -68,6 +68,8 @@ func export_hugo_site_pages(reference_json_path: String, export_path: String) ->
 	for entry in reference_dict.classes:
 		_update_links_db(entry, export_path)
 	
+#	print("PRINTING links_db: %s"%[JSON.print(links_db, "  ")])
+	
 	for entry in reference_dict.classes:
 		_update_signatures_db(entry)
 	
@@ -81,7 +83,7 @@ func export_hugo_site_pages(reference_json_path: String, export_path: String) ->
 		var md_file_path =  _get_md_filepath(export_path, md_filename, category.to_lower())
 		
 		var name = (category as String).replace(category.get_base_dir()+"/", "")
-		var md_content: = _get_hugo_front_matter(name, true)
+		var md_content: = _get_hugo_front_matter(name, true, _category_db.value[category].weight)
 		md_content += "%s  \n"%[_category_db.value[category].description]
 		md_content += _get_toc(_category_db.value[category])
 		
@@ -127,7 +129,7 @@ func _get_md_content(docs_entry: Dictionary) -> String:
 	return md_content
 
 
-func _get_hugo_front_matter(title: String, is_category: = false) -> String:
+func _get_hugo_front_matter(title: String, is_category: = false, weight: = 0) -> String:
 	var formated_date = date
 	if formated_date == "":
 		var datetime: = OS.get_datetime()
@@ -150,14 +152,13 @@ func _get_hugo_front_matter(title: String, is_category: = false) -> String:
 				author = author,
 				datetime = formated_date,
 				title = title,
-				summary = ""
+				weight = weight
 		})
 	else:
 		front_matter = HUGO_DEFAULT_FRONT_MATTER.format({
 				author = author,
 				datetime = formated_date,
 				title = title,
-				summary = ""
 		})
 	
 	return front_matter
