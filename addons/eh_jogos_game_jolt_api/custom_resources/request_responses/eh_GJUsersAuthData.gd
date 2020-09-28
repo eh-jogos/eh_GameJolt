@@ -5,9 +5,9 @@ class_name eh_GJUsersAuthData
 extends Resource
 
 # Status of the request.
-var success: = false
+var success: bool = false
 # Will contain error message if request fails.
-var message: = ""
+var message: String = ""
 
 func _init(p_success: bool, p_message: String) -> void:
 	success = p_success

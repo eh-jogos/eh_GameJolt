@@ -107,6 +107,4 @@ margin_bottom = 156.0
 custom_constants/margin_left = 30
 
 [node name="ResizableTextEdit" parent="OptionsContent/MainColumn/DescriptionContent" instance=ExtResource( 1 )]
-[connection signal="value_changed" from="OptionsContent/MainColumn/WeightLine/SpinBox" to="." method="_on_SpinBox_value_changed"]
-[connection signal="pressed" from="OptionsContent/MainColumn/DescriptionButton" to="OptionsContent/MainColumn/DescriptionButton/Collapsible" method="toggle_collapse"]
-[connection signal="text_changed" from="OptionsContent/MainColumn/DescriptionContent/ResizableTextEdit" to="." method="_on_ResizableTextEdit_text_changed"]
+[connection signal="toggled" from="OptionsContent/MainColumn/DescriptionButton" to="OptionsContent/MainColumn/DescriptionButton/Collapsible" method="toggle_collapse"]

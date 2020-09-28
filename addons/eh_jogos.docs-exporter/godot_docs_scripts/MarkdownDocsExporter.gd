@@ -632,6 +632,9 @@ func _get_properties_table(docs_entry: Dictionary) -> String:
 	
 		var property_name = _check_for_links("[%s]"%[member.name], docs_entry.name)
 		var default_value = member.default_value
+		if typeof(default_value) == TYPE_STRING:
+			default_value = "\"%s\""%[default_value]
+		default_value = "`%s`"%[default_value]
 	
 		table += MD_BLOCK_PROPERTIES_TABLE_LINE.format({
 			type = type,

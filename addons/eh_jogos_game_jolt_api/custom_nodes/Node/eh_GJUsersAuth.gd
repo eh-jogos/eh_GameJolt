@@ -26,7 +26,7 @@ const USER_CREDENTIALS_PATH: String = "res://addons/eh_jogos_game_jolt_api/gj_us
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 # Flag to tell if player credentials has been successfully checked and logged in.
-var is_logged_in: = false
+var is_logged_in: bool = false
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
@@ -78,7 +78,7 @@ func self_login(p_username: String = _username, p_user_token: String = _user_tok
 		_user_token = p_user_token
 	
 	if has_player_credentials():
-		var request = eh_GJUsersAuthRequest.new()
+		var request: = eh_GJUsersAuthRequest.new()
 		add_child(request, true)
 		request.connect("gj_auth_data_received", self, "_on_self_login_data_received")
 		request.connect("gj_request_failed", self, "_on_self_login_request_failed")
@@ -91,7 +91,7 @@ func self_login(p_username: String = _username, p_user_token: String = _user_tok
 # Sends auth request for the username and token passsed. Will not overwrite default credentials.
 # Emits [gj_auth_completed] signal if completed successfully or [gj_auth_failed] if not.
 func request(p_username: String, p_user_token: String) -> void:
-	var request = eh_GJUsersAuthRequest.new()
+	var request: = eh_GJUsersAuthRequest.new()
 	add_child(request, true)
 	request.connect("gj_auth_data_received", self, "_on_gj_auth_data_received")
 	request.connect("gj_request_failed", self, "_on_gj_request_failed")

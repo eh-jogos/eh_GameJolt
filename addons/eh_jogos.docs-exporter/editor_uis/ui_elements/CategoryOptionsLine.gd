@@ -14,7 +14,7 @@ extends VBoxContainer
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-onready var _data: CategoryOptionalData	
+onready var _data: CategoryOptionalData
 onready var category_name: Button = $CategoryName
 onready var weight_spin_box: SpinBox = $OptionsContent/MainColumn/WeightLine/SpinBox
 onready var description_text: TextEdit = \
@@ -34,19 +34,22 @@ func populate_category_entry(p_name: String, p_data: CategoryOptionalData) -> vo
 	name = "%sOptions"%[p_name]
 	category_name.set_category_name(p_name)
 	_data = p_data
-	weight_spin_box.value = int(_data.weight)
+	weight_spin_box.value = _data.weight
 	description_text.text = _data.description
+	
+	weight_spin_box.connect("value_changed", self, "_on_weight_spin_box_value_changed")
+	description_text.connect("text_changed", self, "_on_description_text_text_changed")
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _on_SpinBox_value_changed(value):
+func _on_weight_spin_box_value_changed(value):
 	_data.weight = value
 
 
-func _on_ResizableTextEdit_text_changed():
+func _on_description_text_text_changed():
 	_data.description = description_text.text
 
 ### -----------------------------------------------------------------------------------------------

@@ -19,36 +19,36 @@ enum Status {
 }
 
 # Status of the request.
-var success: = false
+var success: bool = false
 # Will contain error message if request fails.
-var message: = ""
+var message: String = ""
 # The ID of the user. 
-var id: = 0
+var id: int = 0
 # The type of user. Can be any type defined in the enum Types
 var type: int = Type.User
 # The type of user.
-var username: = ""
+var username: String = ""
 # The URL of the user's avatar. 
-var avatar_url: = ""
+var avatar_url: String = ""
 # How long ago the user signed up. 
-var signed_up: = ""
+var signed_up: String = ""
 # The timestamp (in seconds) of when the user signed up. 
-var signed_up_timestamp: = 0
+var signed_up_timestamp: int = 0
 # How long ago the user was last logged in. Will be \"Online Now\" if the user is currently online. 
-var last_logged_in: = ""
+var last_logged_in: String = ""
 # The timestamp (in seconds) of when the user was last logged in. 
-var last_logged_in_timestamp: = 0
+var last_logged_in_timestamp: int = 0
 # `Status.Active` if the user is still a member of the site. `Status.Banned` if they've been banned. 
 var status: int = Status.Active
 # The user's display name. 
 # (This is available to all users and the `developer_` is there for backwards compatibility)
-var developer_name: = ""
+var developer_name: String = ""
 # The user's website (or empty string if not specified) 
 # (This is available to all users and the `developer_` is there for backwards compatibility)
-var developer_website: = ""
+var developer_website: String = ""
 # The user's profile markdown description. 
 # (This is available to all users and the `developer_` is there for backwards compatibility)
-var developer_description: = ""
+var developer_description: String = ""
 
 
 func _init(p_success: bool, p_message: String, user_response: Dictionary) -> void:
