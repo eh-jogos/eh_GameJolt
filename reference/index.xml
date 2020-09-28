@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>References on eh_jogos Godot GamejoltApi</title>
+    <title>Reference on eh_jogos Godot GamejoltApi</title>
     <link>https://eh-jogos.github.io/eh_GameJolt/reference/</link>
-    <description>Recent content in References on eh_jogos Godot GamejoltApi</description>
+    <description>Recent content in Reference on eh_jogos Godot GamejoltApi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Sep 2020 07:31:57 -0300</lastBuildDate>
+    <lastBuildDate>Mon, 28 Sep 2020 09:02:35 -0300</lastBuildDate>
     
 	<atom:link href="https://eh-jogos.github.io/eh_GameJolt/reference/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>eh_GJBaseRequest</title>
       <link>https://eh-jogos.github.io/eh_GameJolt/reference/eh_gjbaserequest/</link>
-      <pubDate>Tue, 15 Sep 2020 07:31:57 -0300</pubDate>
+      <pubDate>Mon, 28 Sep 2020 09:02:35 -0300</pubDate>
       
       <guid>https://eh-jogos.github.io/eh_GameJolt/reference/eh_gjbaserequest/</guid>
       <description>Inherits: HTTPRequest &amp;gt; Node &amp;gt; Object

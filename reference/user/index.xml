@@ -6,7 +6,7 @@
     <description>Recent content in User on eh_jogos Godot GamejoltApi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Sep 2020 07:31:57 -0300</lastBuildDate>
+    <lastBuildDate>Mon, 28 Sep 2020 09:02:35 -0300</lastBuildDate>
     
 	<atom:link href="https://eh-jogos.github.io/eh_GameJolt/reference/user/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,19 +14,19 @@
     <item>
       <title>eh_GJUsersAuth</title>
       <link>https://eh-jogos.github.io/eh_GameJolt/reference/user/eh_gjusersauth/</link>
-      <pubDate>Tue, 15 Sep 2020 07:31:57 -0300</pubDate>
+      <pubDate>Mon, 28 Sep 2020 09:02:35 -0300</pubDate>
       
       <guid>https://eh-jogos.github.io/eh_GameJolt/reference/user/eh_gjusersauth/</guid>
       <description>Inherits: Node &amp;gt; Object
 Description Node to manage requests to the users/auth endpoint. It wil instantiate and remove eh_GJUsersAuthRequest nodes as needed.
 It is able to read credentials from gamejolt&amp;rsquo;s &amp;ldquo;.gj-credentials&amp;rdquo; the game launcher creates, has methods to facilitate login, and auto-saving user credentials.
-Properties    type property default value     bool is_logged_in Null    Methods    return type method signature     String get_player_username()   String get_player_user_token()   bool has_player_credentials()   null self_login(String p_username, String p_user_token)   null request(String p_username, String p_user_token)    Signals  gj_auth_completed(eh_gj_users_auth_data)  Signal emitted when auth request is successfuly completed.</description>
+Properties    type property default value     bool is_logged_in False    Methods    return type method signature     String get_player_username()   String get_player_user_token()   bool has_player_credentials()   null self_login(String p_username, String p_user_token)   null request(String p_username, String p_user_token)    Signals  gj_auth_completed(eh_gj_users_auth_data)  Signal emitted when auth request is successfuly completed.</description>
     </item>
     
     <item>
       <title>eh_GJUsersFetch</title>
       <link>https://eh-jogos.github.io/eh_GameJolt/reference/user/eh_gjusersfetch/</link>
-      <pubDate>Tue, 15 Sep 2020 07:31:57 -0300</pubDate>
+      <pubDate>Mon, 28 Sep 2020 09:02:35 -0300</pubDate>
       
       <guid>https://eh-jogos.github.io/eh_GameJolt/reference/user/eh_gjusersfetch/</guid>
       <description>Inherits: Node &amp;gt; Object

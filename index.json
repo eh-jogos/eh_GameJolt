@@ -1,45 +1,38 @@
 [
 {
-	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/resources/credentials/",
-	"title": "Credentials",
-	"tags": [],
-	"description": "",
-	"content": ""
-},
-{
 	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/eh_gjbaserequest/",
 	"title": "eh_GJBaseRequest",
 	"tags": [],
 	"description": "",
-	"content": "Inherits: HTTPRequest \u0026gt; Node \u0026gt; Object\nInherited by: eh_GJUsersAuthRequest, eh_GJUsersFetchRequest\nDescription This Class is not to be used directly, rather it is the base class for all of GameJolt\u0026rsquo;s Endpoint Requests. This contains the base to build urls and manage responses\nProperties    type property default value     String game_id Null   String private_key Null   String username Null   String user_token Null    Signals  gj_request_failed(error_dict)  Signal sent when requests fail. Sends an dictionary with details about the error.\n Constants  GAME_CREDENTIALS = res://addons/eh_jogos_game_jolt_api/gj_game_credentials.res \u0026mdash; Path where game credentials are saved as a binary file custom resource. API_GAME_ID_PARAMETER = ?game_id= \u0026mdash; Game Parameter string that will be added to all request urls. API_VERSION = v1_2 \u0026mdash; API version to use. Will be added to base url to build request urls. API_URL = https://api.gamejolt.com/api/game/ \u0026mdash; Base url for api calls. USER_CREDENTIALS_PATH = res://addons/eh_jogos_game_jolt_api/gj_user_credentials.res \u0026mdash; Path where user credentials are saved as a binary file custom resource.  Properties Descriptions game_id  String game_id  The game_id in Gamejolt. Should be set in the \u0026ldquo;GameJolt\u0026rdquo; Tab that appears in Project Settings after enabling the plugin.\n private_key  String private_key  The game\u0026rsquo;s private_key in Gamejolt. Should be set in the \u0026ldquo;GameJolt\u0026rdquo; Tab that appears in Project Settings after enabling the plugin.\n username  String username  The player\u0026rsquo;s username. Will be aquired automatically if the game was downloaded through GameJolt\u0026rsquo;s client. Otherwise, will be set by a login screen, but player only needs to login once.\n user_token  String user_token  The player\u0026rsquo;s game_token. Will be aquired automatically if the game was downloaded through GameJolt\u0026rsquo;s client. Otherwise, will be set by a login screen, but player only needs to login once.\n "
+	"content": "Inherits: HTTPRequest \u0026gt; Node \u0026gt; Object\nInherited by: eh_GJUsersAuthRequest, eh_GJUsersFetchRequest\nDescription This Class is not to be used directly, rather it is the base class for all of GameJolt\u0026rsquo;s Endpoint Requests. This contains the base to build urls and manage responses\nProperties    type property default value     String game_id Null   String private_key Null   String username Null   String user_token Null    Signals  gj_request_failed(error_dict)  Signal sent when requests fail. Sends an dictionary with details about the error.\n Constants  GAME_CREDENTIALS = res://addons/eh_jogos_game_jolt_api/gj_game_credentials.res \u0026mdash; Path where game credentials are saved as a binary file custom resource. API_VERSION = v1_2 \u0026mdash; API version to use. Will be added to base url to build request urls. API_URL = https://api.gamejolt.com/api/game/ \u0026mdash; Base url for api calls. USER_CREDENTIALS_PATH = res://addons/eh_jogos_game_jolt_api/gj_user_credentials.res \u0026mdash; Path where user credentials are saved as a binary file custom resource. API_GAME_ID_PARAMETER = ?game_id= \u0026mdash; Game Parameter string that will be added to all request urls.  Properties Descriptions game_id  String game_id  The game_id in Gamejolt. Should be set in the \u0026ldquo;GameJolt\u0026rdquo; Tab that appears in Project Settings after enabling the plugin.\n private_key  String private_key  The game\u0026rsquo;s private_key in Gamejolt. Should be set in the \u0026ldquo;GameJolt\u0026rdquo; Tab that appears in Project Settings after enabling the plugin.\n username  String username  The player\u0026rsquo;s username. Will be aquired automatically if the game was downloaded through GameJolt\u0026rsquo;s client. Otherwise, will be set by a login screen, but player only needs to login once.\n user_token  String user_token  The player\u0026rsquo;s game_token. Will be aquired automatically if the game was downloaded through GameJolt\u0026rsquo;s client. Otherwise, will be set by a login screen, but player only needs to login once.\n "
 },
 {
 	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/resources/credentials/eh_gjgamecredentials/",
 	"title": "eh_GJGameCredentials",
 	"tags": [],
 	"description": "",
-	"content": "Inherits: Resource \u0026gt; Reference \u0026gt; Object\nDescription Just a basic struct to hold game credentials information and be able to save it in disk as a Resource.\nProperties    type property default value     String game_id    String private_key     Properties Descriptions game_id  String game_id           Default \u0026quot;\u0026quot;    Your game id.\n private_key  String private_key           Default \u0026quot;\u0026quot;    Your private key. This addon already comes with .gitignore configured so that this file will never be pushed to the repository, but be carefull not to share it.\n "
+	"content": "Inherits: Resource \u0026gt; Reference \u0026gt; Object\nDescription Just a basic struct to hold game credentials information and be able to save it in disk as a Resource.\nProperties    type property default value     String game_id \u0026quot;\u0026quot;   String private_key \u0026quot;\u0026quot;    Properties Descriptions game_id  String game_id           Default \u0026quot;\u0026quot;    Your game id.\n private_key  String private_key           Default \u0026quot;\u0026quot;    Your private key. This addon already comes with .gitignore configured so that this file will never be pushed to the repository, but be carefull not to share it.\n "
 },
 {
 	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/resources/credentials/eh_gjusercredentials/",
 	"title": "eh_GJUserCredentials",
 	"tags": [],
 	"description": "",
-	"content": "Inherits: Resource \u0026gt; Reference \u0026gt; Object\nDescription Just a basic struct to hold user credentials information and be able to save it in disk as a Resource\nProperties    type property default value     String username    String user_game_token     Properties Descriptions username  String username           Default \u0026quot;\u0026quot;    User\u0026rsquo;s username\n user_game_token  String user_game_token           Default \u0026quot;\u0026quot;    User\u0026rsquo;s game token. This addon already comes with .gitignore configured so that the credentials for the player that owns the game won\u0026rsquo;t be pushed to the repository, but be carefull not to share it. This isn\u0026rsquo;t a problem for the released game, but might expose your game token if you\u0026rsquo;re testing your game in production and you share this file, or push files like this to your repository.\n "
+	"content": "Inherits: Resource \u0026gt; Reference \u0026gt; Object\nDescription Just a basic struct to hold user credentials information and be able to save it in disk as a Resource\nProperties    type property default value     String username \u0026quot;\u0026quot;   String user_game_token \u0026quot;\u0026quot;    Properties Descriptions username  String username           Default \u0026quot;\u0026quot;    User\u0026rsquo;s username\n user_game_token  String user_game_token           Default \u0026quot;\u0026quot;    User\u0026rsquo;s game token. This addon already comes with .gitignore configured so that the credentials for the player that owns the game won\u0026rsquo;t be pushed to the repository, but be carefull not to share it. This isn\u0026rsquo;t a problem for the released game, but might expose your game token if you\u0026rsquo;re testing your game in production and you share this file, or push files like this to your repository.\n "
 },
 {
 	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/user/eh_gjusersauth/",
 	"title": "eh_GJUsersAuth",
 	"tags": [],
 	"description": "",
-	"content": "Inherits: Node \u0026gt; Object\nDescription Node to manage requests to the users/auth endpoint. It wil instantiate and remove eh_GJUsersAuthRequest nodes as needed.\nIt is able to read credentials from gamejolt\u0026rsquo;s \u0026ldquo;.gj-credentials\u0026rdquo; the game launcher creates, has methods to facilitate login, and auto-saving user credentials.\nProperties    type property default value     bool is_logged_in Null    Methods    return type method signature     String get_player_username()   String get_player_user_token()   bool has_player_credentials()   null self_login(String p_username, String p_user_token)   null request(String p_username, String p_user_token)    Signals  gj_auth_completed(eh_gj_users_auth_data)  Signal emitted when auth request is successfuly completed. Sends an eh_GJUsersAuthData resource as parameter\n  gj_auth_failed(error_dictionary)  Signal emitted when auth request fails. The dictionary format can vary according to the type of error\n Constants  USER_CREDENTIALS_PATH = res://addons/eh_jogos_game_jolt_api/gj_user_credentials.res \u0026mdash; Path where user credentials are saved as a binary file custom resource.  Properties Descriptions is_logged_in  bool is_logged_in  Flag to tell if player credentials has been successfully checked and logged in.\n Method Descriptions get_player_username  String get_player_username()  Returns player username retrieved either from saved credentials, or from \u0026ldquo;.gj-credentials\u0026rdquo; file generated by gamejolt launcher.\n get_player_user_token  String get_player_user_token()  Returns player game token retrieved either from saved credentials, or from \u0026ldquo;.gj-credentials\u0026rdquo; file generated by gamejolt launcher.\n has_player_credentials  bool has_player_credentials()  Returns true if player credentials has already been found and/or saved.\n self_login  void self_login(String p_username, String p_user_token)  Auto Auth request for the player. It\u0026rsquo;s a helper for login in the current player without needing to whory about username and game token, but it accepts them as optional parameters, and in case they\u0026rsquo;re used it will save them as the new default credentials. Emits [gj_auth_completed] signal if completed successfully or [gj_auth_failed] if not.\n request  void request(String p_username, String p_user_token)  Sends auth request for the username and token passsed. Will not overwrite default credentials. Emits [gj_auth_completed] signal if completed successfully or [gj_auth_failed] if not.\n "
+	"content": "Inherits: Node \u0026gt; Object\nDescription Node to manage requests to the users/auth endpoint. It wil instantiate and remove eh_GJUsersAuthRequest nodes as needed.\nIt is able to read credentials from gamejolt\u0026rsquo;s \u0026ldquo;.gj-credentials\u0026rdquo; the game launcher creates, has methods to facilitate login, and auto-saving user credentials.\nProperties    type property default value     bool is_logged_in False    Methods    return type method signature     String get_player_username()   String get_player_user_token()   bool has_player_credentials()   null self_login(String p_username, String p_user_token)   null request(String p_username, String p_user_token)    Signals  gj_auth_completed(eh_gj_users_auth_data)  Signal emitted when auth request is successfuly completed. Sends an eh_GJUsersAuthData resource as parameter\n  gj_auth_failed(error_dictionary)  Signal emitted when auth request fails. The dictionary format can vary according to the type of error\n Constants  USER_CREDENTIALS_PATH = res://addons/eh_jogos_game_jolt_api/gj_user_credentials.res \u0026mdash; Path where user credentials are saved as a binary file custom resource.  Properties Descriptions is_logged_in  bool is_logged_in           Default False    Flag to tell if player credentials has been successfully checked and logged in.\n Method Descriptions get_player_username  String get_player_username()  Returns player username retrieved either from saved credentials, or from \u0026ldquo;.gj-credentials\u0026rdquo; file generated by gamejolt launcher.\n get_player_user_token  String get_player_user_token()  Returns player game token retrieved either from saved credentials, or from \u0026ldquo;.gj-credentials\u0026rdquo; file generated by gamejolt launcher.\n has_player_credentials  bool has_player_credentials()  Returns true if player credentials has already been found and/or saved.\n self_login  void self_login(String p_username, String p_user_token)  Auto Auth request for the player. It\u0026rsquo;s a helper for login in the current player without needing to whory about username and game token, but it accepts them as optional parameters, and in case they\u0026rsquo;re used it will save them as the new default credentials. Emits [gj_auth_completed] signal if completed successfully or [gj_auth_failed] if not.\n request  void request(String p_username, String p_user_token)  Sends auth request for the username and token passsed. Will not overwrite default credentials. Emits [gj_auth_completed] signal if completed successfully or [gj_auth_failed] if not.\n "
 },
 {
 	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/user/responsedata/eh_gjusersauthdata/",
 	"title": "eh_GJUsersAuthData",
 	"tags": [],
 	"description": "",
-	"content": "Inherits: Resource \u0026gt; Reference \u0026gt; Object\nDescription Data Struct that describes the response from /users/auth/ endpoint Further details at gamejolt\u0026amp;rsquo;s api documentation\nProperties    type property default value     bool success Null   String message Null    Properties Descriptions success  bool success  Status of the request.\n message  String message  Will contain error message if request fails.\n "
+	"content": "Inherits: Resource \u0026gt; Reference \u0026gt; Object\nDescription Data Struct that describes the response from /users/auth/ endpoint Further details at gamejolt\u0026#39;s api documentation\nProperties    type property default value     bool success False   String message \u0026quot;\u0026quot;    Properties Descriptions success  bool success           Default False    Status of the request.\n message  String message           Default \u0026quot;\u0026quot;    Will contain error message if request fails.\n "
 },
 {
 	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/user/requests/eh_gjusersauthrequest/",
@@ -60,7 +53,7 @@
 	"title": "eh_GJUsersFetchData",
 	"tags": [],
 	"description": "",
-	"content": "Inherits: Resource \u0026gt; Reference \u0026gt; Object\nDescription Data Struct that describes the response from /users/ endpoint Further details at gamejolt\u0026amp;rsquo;s api documentation\nProperties    type property default value     bool success Null   String message Null   int id Null   int type Null   String username Null   String avatar_url Null   String signed_up Null   int signed_up_timestamp Null   String last_logged_in Null   int last_logged_in_timestamp Null   int status Null   String developer_name Null   String developer_website Null   String developer_description Null    Enumerations enum Status:\n Active = 0 Banned = 1   enum Type:\n User = 0 Developer = 1 Moderator = 2 Administrator = 3   Properties Descriptions success  bool success  Status of the request.\n message  String message  Will contain error message if request fails.\n id  int id  The ID of the user.\n type  int type  The type of user. Can be any type defined in the enum Types\n username  String username  The type of user.\n avatar_url  String avatar_url  The URL of the user\u0026rsquo;s avatar.\n signed_up  String signed_up  How long ago the user signed up.\n signed_up_timestamp  int signed_up_timestamp  The timestamp (in seconds) of when the user signed up.\n last_logged_in  String last_logged_in  How long ago the user was last logged in. Will be \u0026quot;Online Now\u0026quot; if the user is currently online.\n last_logged_in_timestamp  int last_logged_in_timestamp  The timestamp (in seconds) of when the user was last logged in.\n status  int status  Status.Active if the user is still a member of the site. Status.Banned if they\u0026rsquo;ve been banned.\n developer_name  String developer_name  The user\u0026rsquo;s display name. (This is available to all users and the developer_ is there for backwards compatibility)\n developer_website  String developer_website  The user\u0026rsquo;s website (or empty string if not specified) (This is available to all users and the developer_ is there for backwards compatibility)\n developer_description  String developer_description  The user\u0026rsquo;s profile markdown description. (This is available to all users and the developer_ is there for backwards compatibility)\n "
+	"content": "Inherits: Resource \u0026gt; Reference \u0026gt; Object\nDescription Data Struct that describes the response from /users/ endpoint Further details at gamejolt\u0026#39;s api documentation\nProperties    type property default value     bool success False   String message \u0026quot;\u0026quot;   int id 0   int type Null   String username \u0026quot;\u0026quot;   String avatar_url \u0026quot;\u0026quot;   String signed_up \u0026quot;\u0026quot;   int signed_up_timestamp 0   String last_logged_in \u0026quot;\u0026quot;   int last_logged_in_timestamp 0   int status Null   String developer_name \u0026quot;\u0026quot;   String developer_website \u0026quot;\u0026quot;   String developer_description \u0026quot;\u0026quot;    Enumerations enum Status:\n Active = 0 Banned = 1   enum Type:\n User = 0 Developer = 1 Moderator = 2 Administrator = 3   Properties Descriptions success  bool success           Default False    Status of the request.\n message  String message           Default \u0026quot;\u0026quot;    Will contain error message if request fails.\n id  int id           Default 0    The ID of the user.\n type  int type  The type of user. Can be any type defined in the enum Types\n username  String username           Default \u0026quot;\u0026quot;    The type of user.\n avatar_url  String avatar_url           Default \u0026quot;\u0026quot;    The URL of the user\u0026rsquo;s avatar.\n signed_up  String signed_up           Default \u0026quot;\u0026quot;    How long ago the user signed up.\n signed_up_timestamp  int signed_up_timestamp           Default 0    The timestamp (in seconds) of when the user signed up.\n last_logged_in  String last_logged_in           Default \u0026quot;\u0026quot;    How long ago the user was last logged in. Will be \u0026quot;Online Now\u0026quot; if the user is currently online.\n last_logged_in_timestamp  int last_logged_in_timestamp           Default 0    The timestamp (in seconds) of when the user was last logged in.\n status  int status  Status.Active if the user is still a member of the site. Status.Banned if they\u0026rsquo;ve been banned.\n developer_name  String developer_name           Default \u0026quot;\u0026quot;    The user\u0026rsquo;s display name. (This is available to all users and the developer_ is there for backwards compatibility)\n developer_website  String developer_website           Default \u0026quot;\u0026quot;    The user\u0026rsquo;s website (or empty string if not specified) (This is available to all users and the developer_ is there for backwards compatibility)\n developer_description  String developer_description           Default \u0026quot;\u0026quot;    The user\u0026rsquo;s profile markdown description. (This is available to all users and the developer_ is there for backwards compatibility)\n "
 },
 {
 	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/user/requests/eh_gjusersfetchrequest/",
@@ -68,6 +61,41 @@
 	"tags": [],
 	"description": "",
 	"content": "Inherits: eh_GJBaseRequest \u0026gt; HTTPRequest \u0026gt; Node \u0026gt; Object\nDescription This class decribes the Fetch api endpoint It\u0026rsquo;s response is modeled in the custom resource of eh_GJUsersFetchData\nIt is possible to request data for a single user with fetch_user or for multiple users with fetch_users. These methods return the request Error Code, so that you can check if for connection errors.\nEach has it\u0026rsquo;s own signal with the response data, so be sure to listen for the corresponding signal.\nIf the request fails, the signal gj_request_failed will be emitted with an error dict as its parameter.\nMethods    return type method signature     int fetch_user(String p_username, bool is_user_id)   int fetch_users(Array p_array_of_ids)    Signals  gj_users_fetch_data_received(array_of_eh_gj_users_fetch_data)  Multi User Request Response. Sends an array of eh_GJUsersFetchData as parameter\n  gj_user_fetch_data_received(eh_gj_users_fetch_data)  Single User Request Response. Send an eh_GJUsersFetchData Resource as parameter\n Constants  URL_ENDPOINT = /users/ \u0026mdash; Address for this endpoint.  Method Descriptions fetch_user  int fetch_user(String p_username, bool is_user_id)  Request for a single user. Returns request error code. The user data will be sent either by the signal [gj_user_fetch_data_received] or [eh_GJBaseRequest.gj_request_failed] will be emitted.\n fetch_users  int fetch_users(Array p_array_of_ids)  Request for multiple users. Returns request error code. The user data will be sent either by the signal [gj_users_fetch_data_received] or [eh_GJBaseRequest.gj_request_failed] will be emitted.\n "
+},
+{
+	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/user/requests/",
+	"title": "Requests",
+	"tags": [],
+	"description": "",
+	"content": "The HTTPRequest nodes that will do the requests and parse the results. They are usually managed by their respective Endpoint Node, which will instance them when needed and listen to the results and/or errors and treat that before giving it back to you.\nBut if you want to make the requests directly yourself, you can also use these nodes.\n eh_GJUsersAuthRequest eh_GJUsersFetchRequest  "
+},
+{
+	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/user/responsedata/",
+	"title": "ResponseData",
+	"tags": [],
+	"description": "",
+	"content": "Custom Resources modeling the response data for each endpoint of this namespace. Each page here also has a link for the Gamejolt\u0026rsquo;s docs.\n eh_GJUsersAuthData eh_GJUsersFetchData  "
+},
+{
+	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/user/",
+	"title": "User",
+	"tags": [],
+	"description": "",
+	"content": "Represents Gamejolt API Users namespace.\nThere is one custom node for each endpoint in this namespace, and when integrating your game with Gamejolt, these are the nodes you\u0026rsquo;ll want to use directly. They have public methods to do the requests and signals to receive the results. You\u0026rsquo;ll find more details on each of them.\n eh_GJUsersAuth eh_GJUsersFetch Requests  eh_GJUsersAuthRequest eh_GJUsersFetchRequest   ResponseData  eh_GJUsersAuthData eh_GJUsersFetchData    "
+},
+{
+	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/resources/",
+	"title": "Resources",
+	"tags": [],
+	"description": "",
+	"content": "Custom Resources created to help share data between different parts of the plugin, and as well as hold shared data that can be accessed from anywhere.\n Credentials  eh_GJGameCredentials eh_GJUserCredentials    "
+},
+{
+	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/resources/credentials/",
+	"title": "Credentials",
+	"tags": [],
+	"description": "",
+	"content": "Custom Credential files, both for the game itself so you can configure your project through the Project Settings and to save player credentials after they login.\n eh_GJGameCredentials eh_GJUserCredentials  "
 },
 {
 	"uri": "https://eh-jogos.github.io/eh_GameJolt/",
@@ -78,38 +106,10 @@
 },
 {
 	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/",
-	"title": "References",
+	"title": "Reference",
 	"tags": [],
 	"description": "",
-	"content": ""
-},
-{
-	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/user/requests/",
-	"title": "Requests",
-	"tags": [],
-	"description": "",
-	"content": ""
-},
-{
-	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/resources/",
-	"title": "Resources",
-	"tags": [],
-	"description": "",
-	"content": ""
-},
-{
-	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/user/responsedata/",
-	"title": "ResponseData",
-	"tags": [],
-	"description": "",
-	"content": ""
-},
-{
-	"uri": "https://eh-jogos.github.io/eh_GameJolt/reference/user/",
-	"title": "User",
-	"tags": [],
-	"description": "",
-	"content": ""
+	"content": " eh_GJBaseRequest Resources  Credentials  eh_GJGameCredentials eh_GJUserCredentials     User  eh_GJUsersAuth eh_GJUsersFetch Requests  eh_GJUsersAuthRequest eh_GJUsersFetchRequest   ResponseData  eh_GJUsersAuthData eh_GJUsersFetchData      "
 },
 {
 	"uri": "https://eh-jogos.github.io/eh_GameJolt/categories/",

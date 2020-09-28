@@ -6,7 +6,7 @@
     <description>Recent content in Requests on eh_jogos Godot GamejoltApi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Sep 2020 07:31:57 -0300</lastBuildDate>
+    <lastBuildDate>Mon, 28 Sep 2020 09:02:35 -0300</lastBuildDate>
     
 	<atom:link href="https://eh-jogos.github.io/eh_GameJolt/reference/user/requests/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>eh_GJUsersAuthRequest</title>
       <link>https://eh-jogos.github.io/eh_GameJolt/reference/user/requests/eh_gjusersauthrequest/</link>
-      <pubDate>Tue, 15 Sep 2020 07:31:57 -0300</pubDate>
+      <pubDate>Mon, 28 Sep 2020 09:02:35 -0300</pubDate>
       
       <guid>https://eh-jogos.github.io/eh_GameJolt/reference/user/requests/eh_gjusersauthrequest/</guid>
       <description>Inherits: eh_GJBaseRequest &amp;gt; HTTPRequest &amp;gt; Node &amp;gt; Object
@@ -27,7 +27,7 @@ Methods    return type method signature     int auth_user_credentials(String p_u
     <item>
       <title>eh_GJUsersFetchRequest</title>
       <link>https://eh-jogos.github.io/eh_GameJolt/reference/user/requests/eh_gjusersfetchrequest/</link>
-      <pubDate>Tue, 15 Sep 2020 07:31:57 -0300</pubDate>
+      <pubDate>Mon, 28 Sep 2020 09:02:35 -0300</pubDate>
       
       <guid>https://eh-jogos.github.io/eh_GameJolt/reference/user/requests/eh_gjusersfetchrequest/</guid>
       <description>Inherits: eh_GJBaseRequest &amp;gt; HTTPRequest &amp;gt; Node &amp;gt; Object
