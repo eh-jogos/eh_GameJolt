@@ -1,7 +1,8 @@
 ---  
 title: eh_GJUsersAuthRequest  
 author: eh-jogos  
-date: 2020-09-19T19:10:16-03:00  
+date: 2020-09-28T09:02:35-03:00  
+weight: 1  
 ---  
 **Inherits:** _[eh_GJBaseRequest]({{< ref "/reference/eh_gjbaserequest" >}}) > [HTTPRequest](https://docs.godotengine.org/en/stable/classes/class_httprequest.html) > [Node](https://docs.godotengine.org/en/stable/classes/class_node.html) > [Object](https://docs.godotengine.org/en/stable/classes/class_object.html)_  
 ## Description  

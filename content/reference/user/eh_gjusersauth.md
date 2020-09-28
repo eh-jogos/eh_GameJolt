@@ -1,7 +1,8 @@
 ---  
 title: eh_GJUsersAuth  
 author: eh-jogos  
-date: 2020-09-19T19:10:16-03:00  
+date: 2020-09-28T09:02:35-03:00  
+weight: 1  
 ---  
 **Inherits:** _[Node](https://docs.godotengine.org/en/stable/classes/class_node.html) > [Object](https://docs.godotengine.org/en/stable/classes/class_object.html)_  
 ## Description  
@@ -15,7 +16,7 @@ date: 2020-09-19T19:10:16-03:00
   
 | type | property | default value |  
 | ---- | -------- | ------------- |  
-| [bool](https://docs.godotengine.org/en/stable/classes/class_bool.html) | [is_logged_in]({{< ref "/reference/user/eh_gjusersauth#is_logged_in" >}}) | Null |  
+| [bool](https://docs.godotengine.org/en/stable/classes/class_bool.html) | [is_logged_in]({{< ref "/reference/user/eh_gjusersauth#is_logged_in" >}}) | `False` |  
   
 ## Methods 
   
@@ -51,6 +52,10 @@ date: 2020-09-19T19:10:16-03:00
 ### is_logged_in 
 - _[bool](https://docs.godotengine.org/en/stable/classes/class_bool.html)_ **is_logged_in**  
   
+| | |  
+| - |:-:|  
+| _Default_ | ` False ` |  
+
  Flag to tell if player credentials has been successfully checked and logged in.
   
 ---------

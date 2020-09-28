@@ -1,7 +1,8 @@
 ---  
 title: eh_GJGameCredentials  
 author: eh-jogos  
-date: 2020-09-19T19:10:16-03:00  
+date: 2020-09-28T09:02:35-03:00  
+weight: 1  
 ---  
 **Inherits:** _[Resource](https://docs.godotengine.org/en/stable/classes/class_resource.html) > [Reference](https://docs.godotengine.org/en/stable/classes/class_reference.html) > [Object](https://docs.godotengine.org/en/stable/classes/class_object.html)_  
 ## Description  
@@ -12,8 +13,8 @@ date: 2020-09-19T19:10:16-03:00
   
 | type | property | default value |  
 | ---- | -------- | ------------- |  
-| [String](https://docs.godotengine.org/en/stable/classes/class_string.html) | [game_id]({{< ref "/reference/resources/credentials/eh_gjgamecredentials#game_id" >}}) |  |  
-| [String](https://docs.godotengine.org/en/stable/classes/class_string.html) | [private_key]({{< ref "/reference/resources/credentials/eh_gjgamecredentials#private_key" >}}) |  |  
+| [String](https://docs.godotengine.org/en/stable/classes/class_string.html) | [game_id]({{< ref "/reference/resources/credentials/eh_gjgamecredentials#game_id" >}}) | `""` |  
+| [String](https://docs.godotengine.org/en/stable/classes/class_string.html) | [private_key]({{< ref "/reference/resources/credentials/eh_gjgamecredentials#private_key" >}}) | `""` |  
   
 ## Properties Descriptions  
   

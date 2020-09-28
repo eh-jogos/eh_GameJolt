@@ -1,7 +1,8 @@
 ---  
 title: eh_GJBaseRequest  
 author: eh-jogos  
-date: 2020-09-19T19:10:16-03:00  
+date: 2020-09-28T09:02:35-03:00  
+weight: 1  
 ---  
 **Inherits:** _[HTTPRequest](https://docs.godotengine.org/en/stable/classes/class_httprequest.html) > [Node](https://docs.godotengine.org/en/stable/classes/class_node.html) > [Object](https://docs.godotengine.org/en/stable/classes/class_object.html)_  
 **Inherited by:** _[eh_GJUsersAuthRequest]({{< ref "/reference/user/requests/eh_gjusersauthrequest" >}}), [eh_GJUsersFetchRequest]({{< ref "/reference/user/requests/eh_gjusersfetchrequest" >}})_  
@@ -14,10 +15,10 @@ date: 2020-09-19T19:10:16-03:00
   
 | type | property | default value |  
 | ---- | -------- | ------------- |  
-| [String](https://docs.godotengine.org/en/stable/classes/class_string.html) | [game_id]({{< ref "/reference/eh_gjbaserequest#game_id" >}}) | Null |  
-| [String](https://docs.godotengine.org/en/stable/classes/class_string.html) | [private_key]({{< ref "/reference/eh_gjbaserequest#private_key" >}}) | Null |  
-| [String](https://docs.godotengine.org/en/stable/classes/class_string.html) | [username]({{< ref "/reference/eh_gjbaserequest#username" >}}) | Null |  
-| [String](https://docs.godotengine.org/en/stable/classes/class_string.html) | [user_token]({{< ref "/reference/eh_gjbaserequest#user_token" >}}) | Null |  
+| [String](https://docs.godotengine.org/en/stable/classes/class_string.html) | [game_id]({{< ref "/reference/eh_gjbaserequest#game_id" >}}) | `Null` |  
+| [String](https://docs.godotengine.org/en/stable/classes/class_string.html) | [private_key]({{< ref "/reference/eh_gjbaserequest#private_key" >}}) | `Null` |  
+| [String](https://docs.godotengine.org/en/stable/classes/class_string.html) | [username]({{< ref "/reference/eh_gjbaserequest#username" >}}) | `Null` |  
+| [String](https://docs.godotengine.org/en/stable/classes/class_string.html) | [user_token]({{< ref "/reference/eh_gjbaserequest#user_token" >}}) | `Null` |  
   
 ## Signals  
   
@@ -30,9 +31,9 @@ date: 2020-09-19T19:10:16-03:00
 ## Constants  
   
 - **GAME_CREDENTIALS = res://addons/eh_jogos_game_jolt_api/gj_game_credentials.res** --- Path where game credentials are saved as a binary file custom resource. 
-- **USER_CREDENTIALS_PATH = res://addons/eh_jogos_game_jolt_api/gj_user_credentials.res** --- Path where user credentials are saved as a binary file custom resource. 
-- **API_URL = https://api.gamejolt.com/api/game/** --- Base url for api calls. 
 - **API_VERSION = v1_2** --- API version to use. Will be added to base url to build request urls. 
+- **API_URL = https://api.gamejolt.com/api/game/** --- Base url for api calls. 
+- **USER_CREDENTIALS_PATH = res://addons/eh_jogos_game_jolt_api/gj_user_credentials.res** --- Path where user credentials are saved as a binary file custom resource. 
 - **API_GAME_ID_PARAMETER = ?game_id=** --- Game Parameter string that will be added to all request urls. 
   
 ## Properties Descriptions  
