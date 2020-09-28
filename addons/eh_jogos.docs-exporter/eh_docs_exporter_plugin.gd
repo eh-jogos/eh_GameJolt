@@ -25,7 +25,8 @@ func _exit_tree():
 			EditorPlugin.CONTAINER_PROJECT_SETTING_TAB_RIGHT, 
 			docs_exporter_tab
 	)
-	docs_exporter_tab.queue_free()
+	docs_exporter_tab.free()
+	pass
 
 
 func _create_shared_db(path: String) -> void:
