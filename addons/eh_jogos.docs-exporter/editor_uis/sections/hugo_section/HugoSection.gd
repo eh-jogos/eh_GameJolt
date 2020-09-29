@@ -19,6 +19,7 @@ var _category_options_packed_scene: PackedScene = null
 
 onready var _resource_preloader = $ResourcePreloader
 onready var _hugo_path_selector = $ExportPathRow/DirectorySystemPathLineEdit
+onready var _category_button = $Categories
 onready var _category_list = $CategoriesBlockIdent/CategoriesList
 
 ### ---------------------------------------
@@ -52,14 +53,19 @@ func _ready() -> void:
 func _populate_category_details_ui() -> void:
 	_clear_category_list()
 	var valid_keys = _categories_db.value.keys()
-	valid_keys.sort()
-	for key in valid_keys:
-		var options_node: CategoryOptions = _category_options_packed_scene.instance()
-		_category_list.add_child(options_node, true)
-		
-		options_node.populate_category_entry(key, _optional_data_db.value[key])
-		
-#		print("%s: %s"%[key, JSON.print(_optional_data_db.value[key], " ")])
+	if valid_keys.empty():
+		_category_button.hide()
+	else:
+		_category_button.show()
+		valid_keys.sort()
+		for key in valid_keys:
+			var options_node: CategoryOptions = _category_options_packed_scene.instance()
+			_category_list.add_child(options_node, true)
+			
+			options_node.populate_category_entry(key, _optional_data_db.value[key])
+			
+#			print("%s: %s"%[key, JSON.print(_optional_data_db.value[key], " ")])
+
 
 
 func _clear_category_list():
@@ -71,9 +77,13 @@ func _clear_category_list():
 func _on_ExportHugoContent_pressed() -> void:
 	_hugo_exporter.export_hugo_site_pages(_save_path.value, _export_path.value)
 
+
 func _on_BuildCategoryDb_pressed() -> void:
 	_hugo_exporter.build_category_db(_save_path.value, _export_path.value)
 	_populate_category_details_ui()
 
-### ---------------------------------------
 
+func _on_HugoSection_focus_entered():
+	_populate_category_details_ui()
+
+### ---------------------------------------

@@ -72,7 +72,6 @@ text = "Hugo content export folder path"
 valign = 1
 
 [node name="DirectorySystemPathLineEdit" parent="ExportPathRow" instance=ExtResource( 3 )]
-file_dialog_filter = ""
 
 [node name="Categories" type="Button" parent="."]
 margin_top = 52.0
@@ -95,19 +94,18 @@ collapsible_node_path = NodePath("../../CategoriesBlockIdent")
 [node name="CategoriesBlockIdent" type="MarginContainer" parent="."]
 margin_top = 84.0
 margin_right = 1018.0
-margin_bottom = 1020.0
+margin_bottom = 84.0
 custom_constants/margin_left = 30
 
 [node name="CategoriesList" type="VBoxContainer" parent="CategoriesBlockIdent"]
 margin_left = 30.0
 margin_right = 1018.0
-margin_bottom = 936.0
 
 [node name="BuildCategoryDb" type="Button" parent="."]
 margin_left = 768.0
-margin_top = 1028.0
+margin_top = 92.0
 margin_right = 1018.0
-margin_bottom = 1057.0
+margin_bottom = 121.0
 rect_min_size = Vector2( 250, 0 )
 size_flags_horizontal = 8
 theme = ExtResource( 12 )
@@ -115,13 +113,14 @@ text = "Build Category Db"
 
 [node name="ExportHugoContent" type="Button" parent="."]
 margin_left = 768.0
-margin_top = 1065.0
+margin_top = 129.0
 margin_right = 1018.0
-margin_bottom = 1094.0
+margin_bottom = 158.0
 rect_min_size = Vector2( 250, 0 )
 size_flags_horizontal = 8
 theme = ExtResource( 12 )
 text = "Export Hugo Docs Pages"
+[connection signal="focus_entered" from="." to="." method="_on_HugoSection_focus_entered"]
 [connection signal="pressed" from="Categories" to="Categories/Collapsible" method="toggle_collapse"]
 [connection signal="pressed" from="BuildCategoryDb" to="." method="_on_BuildCategoryDb_pressed"]
 [connection signal="pressed" from="ExportHugoContent" to="." method="_on_ExportHugoContent_pressed"]
