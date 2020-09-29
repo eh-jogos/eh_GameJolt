@@ -96,6 +96,7 @@ var _custom_inheritance_db : DictionaryVariable
 var _built_in_type_db : StringArrayVariable
 var _category_optional_data: CategoryOptionalDataDict
 var _category_db: DictionaryVariable
+var _sidebar_prepend: StringVariable
 
 ### ---------------------------------------
 
@@ -108,6 +109,7 @@ func _init():
 	_category_db = load(_shared_variables_path + "dict_category_db.tres")
 	_built_in_type_db = load(_shared_variables_path + "array_built_in_type_db.tres")
 	_category_optional_data = load(_shared_variables_path + "dict_categories_optional_data.tres")
+	_sidebar_prepend = load(_shared_variables_path + "string_sidebar_prepend_content.tres")
 	
 	key_to_use_for_link = "local_path"
 	property_block = MD_BLOCK_PROPERTY
@@ -422,9 +424,7 @@ func _build_and_save_sidebar(export_path: String) -> void:
 	
 	var sidebar_content: = _get_export_full_toc_dict()
 	
-	var md_content = "[Home](Home)  \n  \n"
-	md_content += "[Documentation Site](https://eh-jogos.github.io/eh_GameJolt/)  \n  \n"
-	md_content += "**Quick Reference**  \n"
+	var md_content = _sidebar_prepend.value
 	md_content += _get_toc(sidebar_content)
 	
 	_write_documentation_file(md_content, md_file_path)
@@ -470,7 +470,7 @@ func _get_link_tree(dict : Dictionary, identation: = "") -> String:
 	
 	if dict.has("page_titles"):
 		for page in dict.page_titles:
-			link_tree += "%s- [%s](%s)  \n"%[identation, page, page]
+			link_tree += "%s [%s](%s)  \n"%[identation, page, page]
 	
 	return link_tree
 

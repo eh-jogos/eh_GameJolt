@@ -13,9 +13,11 @@ var _gihub_exporter: MarkdownDocsExporter
 
 var _save_path: StringVariable = null
 var _export_path: StringVariable = null
+var _sidebar_prepend_text: StringVariable = null
 
 onready var _resource_preloader = $ResourcePreloader
 onready var _github_path_selector = $ExportPathRow/DirectorySystemPathLineEdit
+onready var _sidebar_prepend_text_edit = $VBoxContainer/SidebarPrependField
 
 ### ---------------------------------------
 
@@ -27,8 +29,10 @@ func _ready() -> void:
 	
 	_save_path = _resource_preloader.get_resource("save_path")
 	_export_path = _resource_preloader.get_resource("github_export_path")
+	_sidebar_prepend_text = _resource_preloader.get_resource("sidebar_prepend_content")
 	
 	_github_path_selector.set_string_variable(_export_path)
+	_sidebar_prepend_text_edit.set_string_variable(_sidebar_prepend_text)
 
 ### ---------------------------------------
 
