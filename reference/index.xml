@@ -6,7 +6,7 @@
     <description>Recent content in Reference on eh_jogos Godot GamejoltApi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 28 Sep 2020 09:02:35 -0300</lastBuildDate>
+    <lastBuildDate>Wed, 30 Sep 2020 08:05:24 -0300</lastBuildDate>
     
 	<atom:link href="https://eh-jogos.github.io/eh_GameJolt/reference/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>eh_GJBaseRequest</title>
       <link>https://eh-jogos.github.io/eh_GameJolt/reference/eh_gjbaserequest/</link>
-      <pubDate>Mon, 28 Sep 2020 09:02:35 -0300</pubDate>
+      <pubDate>Wed, 30 Sep 2020 08:05:24 -0300</pubDate>
       
       <guid>https://eh-jogos.github.io/eh_GameJolt/reference/eh_gjbaserequest/</guid>
       <description>Inherits: HTTPRequest &amp;gt; Node &amp;gt; Object
