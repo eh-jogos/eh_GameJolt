@@ -1,5 +1,5 @@
 tool
-class_name BoolVariable
+class_name StringVariable
 extends Resource
 # Write your doc striing for this file here
 
@@ -12,7 +12,7 @@ signal value_updated
 # constants
 # public variables - order: export > normal var > onready 
 
-export var value: = true setget _set_value
+export var value: String = "" setget _set_value
 
 # private variables - order: export > normal var > onready 
 ### ---------------------------------------
@@ -29,11 +29,9 @@ export var value: = true setget _set_value
 
 ### Private Methods -----------------------
 
-func _set_value(p_value: bool) -> void:
+func _set_value(p_value: String) -> void:
 	value = p_value
-	ResourceSaver.save(resource_path, self)
 	emit_signal("value_updated")
+	ResourceSaver.save(resource_path, self)
 
 ### ---------------------------------------
-
-

@@ -6,7 +6,7 @@ const DOCS_EXPORTER_TAB = \
 
 var docs_exporter_tab: Control
 
-var shared_variables_path = "res://addons/eh_jogos.docs-exporter/editor_uis/shared_variables/"
+var shared_variables_path = "res://addons/eh_jogos.docs-exporter/shared_variables/"
 
 func _enter_tree():
 	_create_shared_db(shared_variables_path + "dict_custom_class_db.tres")
@@ -33,4 +33,3 @@ func _create_shared_db(path: String) -> void:
 	var dict_variable: DictionaryVariable = DictionaryVariable.new()
 	if not ResourceLoader.exists(path):
 		ResourceSaver.save(path, dict_variable)
-	

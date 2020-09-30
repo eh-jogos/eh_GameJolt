@@ -5,15 +5,12 @@
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
-weight = 10
-description = "Custom Resources created to help share data between different parts of the plugin, and as well as hold shared data that can be accessed from anywhere."
+weight = 2
+description = "The HTTPRequest nodes that will do the requests and parse the results. They are usually managed by their respective Endpoint Node, which will instance them when needed and listen to the results and/or errors and treat that before giving it back to you. 
+
+But if you want to make the requests directly yourself, you can also use these nodes. "
 
 [sub_resource type="Resource" id=2]
-script = ExtResource( 2 )
-weight = 0
-description = "Custom Credential files, both for the game itself so you can configure your project through the Project Settings and to save player credentials after they login."
-
-[sub_resource type="Resource" id=3]
 script = ExtResource( 2 )
 weight = 2
 description = "Represents [Gamejolt API Users namespace](https://gamejolt.com/game-api/doc/users).
@@ -21,12 +18,15 @@ description = "Represents [Gamejolt API Users namespace](https://gamejolt.com/ga
 There is one custom node for each endpoint in this namespace, and when integrating your game with Gamejolt, these are the nodes you'll want to use directly. They have public methods to do the requests and signals to receive the results. You'll find more details on each of them.  
 "
 
+[sub_resource type="Resource" id=3]
+script = ExtResource( 2 )
+weight = 0
+description = "Custom Credential files, both for the game itself so you can configure your project through the Project Settings and to save player credentials after they login."
+
 [sub_resource type="Resource" id=4]
 script = ExtResource( 2 )
-weight = 2
-description = "The HTTPRequest nodes that will do the requests and parse the results. They are usually managed by their respective Endpoint Node, which will instance them when needed and listen to the results and/or errors and treat that before giving it back to you. 
-
-But if you want to make the requests directly yourself, you can also use these nodes. "
+weight = 10
+description = "Custom Resources created to help share data between different parts of the plugin, and as well as hold shared data that can be accessed from anywhere."
 
 [sub_resource type="Resource" id=5]
 script = ExtResource( 2 )
@@ -36,9 +36,9 @@ description = "Custom Resources modeling the response data for each endpoint of 
 [resource]
 script = ExtResource( 1 )
 value = {
-"Resources": SubResource( 1 ),
-"Resources/Credentials": SubResource( 2 ),
-"User": SubResource( 3 ),
-"User/Requests": SubResource( 4 ),
+"Resources": SubResource( 4 ),
+"Resources/Credentials": SubResource( 3 ),
+"User": SubResource( 2 ),
+"User/Requests": SubResource( 1 ),
 "User/ResponseData": SubResource( 5 )
 }

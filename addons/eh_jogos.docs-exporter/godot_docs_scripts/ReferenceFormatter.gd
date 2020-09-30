@@ -24,7 +24,7 @@ var save_path := "res://formated_reference.json"
 
 # private variables - order: export > normal var > onready 
 
-var _shared_variables_path = "res://addons/eh_jogos.docs-exporter/editor_uis/shared_variables/"
+var _shared_variables_path = "res://addons/eh_jogos.docs-exporter/shared_variables/"
 var _custom_class_db : DictionaryVariable
 var _custom_inheritance_db : DictionaryVariable
 

@@ -34,5 +34,3 @@ func _set_value(p_value: Dictionary) -> void:
 	emit_signal("value_updated")
 
 ### ---------------------------------------
-
-
