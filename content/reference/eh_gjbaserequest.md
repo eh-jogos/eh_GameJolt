@@ -1,7 +1,7 @@
 ---  
 title: eh_GJBaseRequest  
 author: eh-jogos  
-date: 2020-09-28T09:02:35-03:00  
+date: 2020-09-30T08:05:24-03:00  
 weight: 1  
 ---  
 **Inherits:** _[HTTPRequest](https://docs.godotengine.org/en/stable/classes/class_httprequest.html) > [Node](https://docs.godotengine.org/en/stable/classes/class_node.html) > [Object](https://docs.godotengine.org/en/stable/classes/class_object.html)_  
@@ -30,10 +30,10 @@ weight: 1
   
 ## Constants  
   
-- **GAME_CREDENTIALS = res://addons/eh_jogos_game_jolt_api/gj_game_credentials.res** --- Path where game credentials are saved as a binary file custom resource. 
-- **API_VERSION = v1_2** --- API version to use. Will be added to base url to build request urls. 
-- **API_URL = https://api.gamejolt.com/api/game/** --- Base url for api calls. 
 - **USER_CREDENTIALS_PATH = res://addons/eh_jogos_game_jolt_api/gj_user_credentials.res** --- Path where user credentials are saved as a binary file custom resource. 
+- **GAME_CREDENTIALS = res://addons/eh_jogos_game_jolt_api/gj_game_credentials.res** --- Path where game credentials are saved as a binary file custom resource. 
+- **API_URL = https://api.gamejolt.com/api/game/** --- Base url for api calls. 
+- **API_VERSION = v1_2** --- API version to use. Will be added to base url to build request urls. 
 - **API_GAME_ID_PARAMETER = ?game_id=** --- Game Parameter string that will be added to all request urls. 
   
 ## Properties Descriptions  
