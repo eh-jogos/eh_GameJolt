@@ -160,7 +160,7 @@ _global_script_class_icons={
 
 config/name="eh_GameJolt"
 run/main_scene="res://Demo.tscn"
-config/icon="res://icon.png"
+config/icon="res://gjapi_icon.png"
 config/version="0.2.0"
 
 [editor_plugins]
